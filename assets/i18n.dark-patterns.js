@@ -134,7 +134,7 @@
   Object.assign(window.I18N.uk, {
     "dp.kicker.tag": "ДИЗАЙН · ЕТИКА · ПАТЕРНИ",
     "dp.title":      "Dark patterns. 20 способів, як інтерфейси крадуть твій час, гроші і дані.",
-    "dp.author":     "ДМИТРО ШАЇН",
+    "dp.author":     "ДМИТРО ШЕЙН",
     "dp.read":       "12 ХВ ЧИТАННЯ",
 
     "dp.intro.1":    "Гарний UX - чесний UX.",

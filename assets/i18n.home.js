@@ -54,7 +54,7 @@ window.I18N = {
 
     /* Portfolio */
     "portfolio.idx": "§ 02 · Portfolio",
-    "portfolio.h2": "Selected work, 2018 - 2026. <span class=\"em\">Product, web, and mobile interfaces shipped across thirteen cases.</span>",
+    "portfolio.h2": "Selected work, 2018 - 2026. <span class=\"em\">Product, web, and mobile interfaces.</span>",
 
     /* Products (now includes courses) */
     "products.idx": "§ 03 · Products",
@@ -102,7 +102,7 @@ window.I18N = {
 
     /* Hero */
     "hero.kicker.idx": "00 /",
-    "hero.kicker.lbl": "Дмитро Шаїн",
+    "hero.kicker.lbl": "Дмитро Шейн",
     "hero.kicker.tag": "ПОРТФОЛІО",
     "hero.tag.role": "Product Design Lead.",
     "hero.tag.full": "<em>Product Design Lead.</em> <span class=\"np\">B2B&nbsp;·</span> <span class=\"np\">SaaS&nbsp;·</span> <span class=\"np\">Складні UX-флоу&nbsp;·</span> <span class=\"np\">Design systems&nbsp;·</span> <span class=\"np\">AI-powered UX.</span> 7+ років у веб- та мобайл-інтерфейсах.",
@@ -140,7 +140,7 @@ window.I18N = {
 
     /* Portfolio */
     "portfolio.idx": "§ 02 · Портфоліо",
-    "portfolio.h2": "Обрані роботи, 2018 - 2026. <span class=\"em\">Продуктові, веб- і мобільні інтерфейси - тринадцять кейсів.</span>",
+    "portfolio.h2": "Обрані роботи, 2018 - 2026. <span class=\"em\">Продуктові, веб- і мобільні інтерфейси.</span>",
 
     /* Products (now includes courses) */
     "products.idx": "§ 03 · Продукти",
@@ -169,6 +169,6 @@ window.I18N = {
     "cta.socials.label": "Деінде",
 
     /* Footer */
-    "footer.copyright": "© 2026 · Дмитро Шаїн"
+    "footer.copyright": "© 2026 · Дмитро Шейн"
   }
 };

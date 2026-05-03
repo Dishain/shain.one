@@ -1,0 +1,52 @@
+# shain.one - robots.txt
+# https://www.rfc-editor.org/rfc/rfc9309
+# Per Brignull/Vercel-MERJ research, robots.txt is honored by major AI crawlers.
+
+# ===== Search & general crawlers =====
+User-agent: *
+Allow: /
+
+# Apple (Siri, Spotlight) - renders JS, indexes
+User-agent: AppleBot
+Allow: /
+
+# ===== AI search assistants (allow - they cite sources) =====
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# ===== AI training crawlers (disallow - no consent for model training) =====
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+# ===== Sitemap =====
+Sitemap: https://shain.one/sitemap.xml

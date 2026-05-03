@@ -18,8 +18,9 @@
     try { localStorage.setItem(STORE_THEME, v); } catch {}
   };
   const detectTheme = () => {
-    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) return "light";
-    return "dark";
+    // Default: light. Switch to dark only if user's OS explicitly prefers dark.
+    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) return "dark";
+    return "light";
   };
   const applyTheme = (theme, animate) => {
     const root = document.documentElement;
@@ -29,6 +30,10 @@
     }
     if (theme === "light") root.setAttribute("data-theme", "light");
     else root.removeAttribute("data-theme");
+    // Clarity custom tag - lets Microsoft Clarity dashboard segment by theme
+    if (typeof window.clarity === "function") {
+      try { window.clarity("set", "theme", theme); } catch {}
+    }
   };
 
   // ---------- language ----------
@@ -85,6 +90,11 @@
         ? "Змінити мову на англійську"
         : "Switch language to Ukrainian");
     });
+
+    // Clarity custom tag - lets Microsoft Clarity dashboard segment by language
+    if (typeof window.clarity === "function") {
+      try { window.clarity("set", "lang", lang); } catch {}
+    }
   };
 
   // ---------- bootstrap (run BEFORE DOMContentLoaded to avoid flash) ----------

@@ -8,23 +8,15 @@
   <rect width="1200" height="675" fill="#0A0A0A"/>
   <rect width="1200" height="675" fill="url(#dots)"/>
 
-  <!-- Hairline frame -->
   <rect x="32" y="32" width="1136" height="611" fill="none" stroke="#2A2A2A" stroke-width="1"/>
 
-  <!-- Accent yellow dot -->
   <circle cx="64" cy="64" r="5" fill="#F4D700"/>
+  <text x="84" y="69" fill="rgba(255,255,255,0.55)" font-family="Helvetica-Bold,Helvetica,sans-serif" font-size="11" letter-spacing="2.4" font-weight="700">FIG. 01 &#8226; BLOG / 01</text>
+  <text x="1136" y="69" text-anchor="end" fill="rgba(255,255,255,0.4)" font-family="Helvetica-Bold,Helvetica,sans-serif" font-size="11" letter-spacing="2.4" font-weight="700">2026 &#8226; UA</text>
 
-  <!-- Mono caption top-left -->
-  <text x="84" y="69" fill="rgba(255,255,255,0.55)" font-family="ui-monospace, 'Space Mono', monospace" font-size="11" letter-spacing="2.2" font-weight="700">FIG. 01 · BLOG / 01</text>
-  <text x="1136" y="69" text-anchor="end" fill="rgba(255,255,255,0.4)" font-family="ui-monospace, 'Space Mono', monospace" font-size="11" letter-spacing="2.2" font-weight="700">2026 · UA</text>
+  <text x="80" y="430" fill="#FFFFFF" font-family="Helvetica-Bold,Helvetica,sans-serif" font-size="220" letter-spacing="-8" font-weight="700">FIGMA?</text>
+  <text x="84" y="500" fill="rgba(255,255,255,0.55)" font-family="Helvetica,sans-serif" font-size="22" font-weight="300">Не зовсім.</text>
 
-  <!-- Big mark -->
-  <text x="80" y="430" fill="#FFFFFF" font-family="'Doto', ui-monospace, monospace" font-size="220" letter-spacing="-2" font-weight="700">FIGMA?</text>
-
-  <!-- Subline -->
-  <text x="84" y="500" fill="rgba(255,255,255,0.55)" font-family="ui-sans-serif, 'Space Grotesk', system-ui" font-size="22" font-weight="300">Не зовсім.</text>
-
-  <!-- Mono footer -->
-  <text x="64" y="616" fill="rgba(255,255,255,0.36)" font-family="ui-monospace, 'Space Mono', monospace" font-size="11" letter-spacing="2.2" font-weight="700">SHAIN.SITE / BLOG</text>
-  <text x="1136" y="616" text-anchor="end" fill="rgba(255,255,255,0.36)" font-family="ui-monospace, 'Space Mono', monospace" font-size="11" letter-spacing="2.2" font-weight="700">DESIGN · CODE · UX</text>
+  <text x="64" y="616" fill="rgba(255,255,255,0.36)" font-family="Helvetica-Bold,Helvetica,sans-serif" font-size="11" letter-spacing="2.4" font-weight="700">SHAIN.ONE / BLOG</text>
+  <text x="1136" y="616" text-anchor="end" fill="rgba(255,255,255,0.36)" font-family="Helvetica-Bold,Helvetica,sans-serif" font-size="11" letter-spacing="2.4" font-weight="700">DESIGN &#8226; CODE &#8226; UX</text>
 </svg>

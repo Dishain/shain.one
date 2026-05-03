@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="Manufactured urgency banner">
+  <rect width="960" height="540" fill="#0A0A0A"/>
+  <rect x="48" y="48" width="864" height="444" fill="none" stroke="#2A2A2A"/>
+
+  <!-- Listing -->
+  <rect x="120" y="120" width="720" height="100" fill="#111111" stroke="#2A2A2A"/>
+  <text x="140" y="155" fill="rgba(255,255,255,0.86)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="18" font-weight="500">Sea-view double room</text>
+  <text x="140" y="180" fill="rgba(255,255,255,0.55)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="13">King bed · Balcony · Free Wi-Fi</text>
+  <text x="820" y="170" text-anchor="end" fill="#FFFFFF" font-family="ui-monospace,'Space Mono',monospace" font-size="22" font-weight="700">$142</text>
+
+  <!-- Urgency banner -->
+  <rect x="120" y="240" width="720" height="44" fill="rgba(255,120,73,0.12)" stroke="#FF7849"/>
+  <circle cx="148" cy="262" r="5" fill="#FF7849"/>
+  <text x="168" y="266" fill="#FF7849" font-family="ui-monospace,'Space Mono',monospace" font-size="12" font-weight="700">5 PEOPLE ARE LOOKING AT THIS ROOM RIGHT NOW</text>
+  <text x="820" y="266" text-anchor="end" fill="#FF7849" font-family="ui-monospace,'Space Mono',monospace" font-size="12" font-weight="700">ONLY 1 LEFT!</text>
+
+  <!-- Note below -->
+  <text x="120" y="330" fill="rgba(255,255,255,0.36)" font-family="ui-monospace,'Space Mono',monospace" font-size="10" letter-spacing="2" font-weight="700">UNDER THE HOOD</text>
+  <text x="120" y="358" fill="rgba(255,255,255,0.55)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="13">return Math.floor(Math.random() * 9) + 1;</text>
+  <text x="120" y="380" fill="rgba(255,255,255,0.36)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="12">No real-time data. Just a number that triggers FOMO.</text>
+
+  <text x="64" y="476" fill="rgba(255,255,255,0.36)" font-family="ui-monospace,'Space Mono',monospace" font-size="10" letter-spacing="2" font-weight="700">URGENCY · COUNTER WITHOUT A REAL SOURCE</text>
+</svg>

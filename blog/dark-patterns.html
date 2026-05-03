@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dark patterns - Shain Blog</title>
+  <meta name="description" content="Six dark patterns you bump into every week, with real cases from Amazon (FTC 2023), Booking (EU 2019), and the standard Brignull taxonomy." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=Space+Mono:wght@400;700&family=Doto:wght@700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../assets/theme.css" />
+  <script src="../assets/i18n.shell.js" defer></script>
+  <script src="../assets/i18n.dark-patterns.js" defer></script>
+  <script src="../assets/theme.js" defer></script>
+
+  <style>
+    :root{
+      --bg-0:#000; --bg-1:#070707; --bg-2:#0E0E0E;
+      --line:#1A1A1A; --line-2:#2A2A2A;
+      --text-display:rgba(255,255,255,1);
+      --text-primary:rgba(255,255,255,0.90);
+      --text-secondary:rgba(255,255,255,0.60);
+      --text-disabled:rgba(255,255,255,0.40);
+      --text-muted:rgba(255,255,255,0.24);
+      --accent:#F4D700; --accent-hi:#FFE500; --accent-ink:#0A0A0A;
+      --accent-wash:rgba(244,215,0,0.12); --accent-ring:rgba(244,215,0,0.40);
+      --dur:140ms; --ease:cubic-bezier(.2,.7,.2,1);
+      --maxw:1200px; --gutter:24px;
+    }
+    *{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    html,body{margin:0;padding:0;background:var(--bg-0);color:var(--text-primary);}
+    body{
+      font-family:"Space Grotesk",ui-sans-serif,system-ui,sans-serif;
+      font-weight:400;font-size:16px;line-height:1.5;
+      -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+      overflow-x:hidden;
+    }
+    ::selection{background:var(--accent);color:var(--accent-ink);}
+    a{color:inherit;}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter);position:relative;}
+
+    /* NAV */
+    nav.top{position:sticky;top:0;z-index:50;background:var(--bg-0);border-bottom:1px solid var(--line);}
+    .nav-inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:56px;padding:0 var(--gutter);max-width:var(--maxw);margin:0 auto;gap:24px;}
+    .brand{font-family:"Space Mono",monospace;font-size:12px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-primary);text-decoration:none;display:inline-flex;align-items:center;gap:10px;justify-self:start;}
+    .brand .dot{width:6px;height:6px;border-radius:999px;background:var(--accent);}
+    .nav-links{display:flex;gap:28px;align-items:center;justify-self:center;}
+    .nav-links > a{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-secondary);text-decoration:none;padding:18px 0;transition:color var(--dur) var(--ease);}
+    .nav-links > a:hover{color:var(--text-primary);}
+    .nav-links > a.active{color:var(--text-primary);}
+    .nav-cta{font-family:"Space Mono",monospace;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-primary);text-decoration:none;border:1px solid var(--line-2);padding:8px 14px;border-radius:999px;transition:border-color var(--dur) var(--ease);display:inline-flex;align-items:center;gap:8px;}
+    .nav-cta:hover{border-color:var(--text-primary);}
+    .nav-cta .dot{width:5px;height:5px;border-radius:999px;background:var(--accent);}
+
+    /* BACK BAR */
+    .back-bar{padding:24px 0 0;}
+    .back{display:inline-flex;align-items:center;gap:10px;font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-secondary);text-decoration:none;transition:color var(--dur) var(--ease);}
+    .back:hover{color:var(--text-primary);}
+    .back .arr{display:inline-block;width:16px;height:1px;background:currentColor;position:relative;}
+    .back .arr::before{content:"";position:absolute;left:0;top:-3px;width:6px;height:6px;border-left:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg);}
+
+    /* HERO */
+    section.article-hero{padding:48px 0 32px;}
+    .article-kicker{display:flex;align-items:center;gap:12px;margin-bottom:32px;}
+    .article-kicker .idx{font-family:"Space Mono",monospace;font-size:10px;color:var(--text-disabled);letter-spacing:0.18em;}
+    .article-kicker .lbl{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-secondary);}
+    .article-kicker .hair{flex:1;height:1px;background:var(--line);}
+    .article-kicker .mono-sm{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-disabled);}
+
+    /* FOOTER */
+    footer.foot{border-top:1px solid var(--line);padding:40px 0 56px;margin-top:64px;}
+    .foot-inner{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;}
+    .foot-left{display:flex;align-items:center;gap:14px;font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-disabled);}
+    .foot-left .hair{display:inline-block;width:40px;height:1px;background:var(--line-2);}
+    .foot-right{display:flex;gap:20px;align-items:center;}
+    .foot-right a{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-secondary);text-decoration:none;}
+    .foot-right a:hover{color:var(--text-primary);}
+
+    @media (max-width:960px){
+      .nav-inner{grid-template-columns:auto 1fr auto;}
+      .nav-links{display:none;}
+    }
+    /* CATEGORY DIVIDER (used between groups of patterns) */
+    .dp-cat{
+      margin: 96px 0 24px;
+      padding-top: 32px;
+      border-top: 1px solid var(--accent-ring);
+    }
+    .dp-cat-num{
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .dp-cat-h{
+      font-family: "Doto", monospace;
+      font-weight: 700;
+      font-size: clamp(40px, 6vw, 64px);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin: 0 0 12px;
+      color: var(--text-display);
+      text-transform: uppercase;
+    }
+    .dp-cat-sub{
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 300;
+      font-size: 17px;
+      line-height: 1.45;
+      color: var(--text-secondary);
+      max-width: 60ch;
+      margin: 0;
+    }
+    @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
+  </style>
+</head>
+<body>
+
+  <nav class="top">
+    <div class="nav-inner">
+      <a href="../index.html" class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        SHAIN
+      </a>
+      <div class="nav-links">
+        <a href="../index.html#about" data-i18n="nav.about">About</a>
+        <a href="../index.html#portfolio" data-i18n="nav.portfolio">Portfolio</a>
+        <a href="../index.html#products" data-i18n="nav.products">Products</a>
+        <a href="../blog/index.html" class="active" data-i18n="nav.blog">Blog</a>
+        <a href="../index.html#contacts" data-i18n="nav.contacts">Contacts</a>
+      </div>
+      <div class="nav-right" style="display:inline-flex;align-items:center;gap:8px;justify-self:end;">
+        <div class="tools" aria-label="Site preferences">
+          <button class="tool-btn" type="button" data-theme-btn aria-label="Toggle color theme">
+            <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          </button>
+          <button class="tool-btn lang-btn" type="button" data-lang-btn aria-label="Switch language">
+            <span class="lang-current">EN</span><span class="lang-sep">/</span><span class="lang-other">UA</span>
+          </button>
+        </div>
+        <a href="mailto:web.shain@gmail.com" class="nav-cta">
+          <span class="dot" aria-hidden="true"></span>
+          <span data-i18n="nav.email_cta">Email me</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="back-bar">
+    <div class="wrap">
+      <a class="back" href="index.html">
+        <span class="arr" aria-hidden="true"></span>
+        <span data-i18n="nav.back_to_blog">Back to blog</span>
+      </a>
+    </div>
+  </div>
+
+  <section class="article-hero">
+    <div class="wrap">
+      <div class="article-kicker">
+        <span class="idx">B / 02</span>
+        <span class="lbl" data-i18n="dp.kicker.tag">DESIGN · ETHICS · PATTERNS</span>
+        <span class="hair" aria-hidden="true"></span>
+        <span class="mono-sm">2026 · APR</span>
+      </div>
+    </div>
+  </section>
+
+  <article class="article-shell">
+    <h1 data-i18n="dp.title">Dark patterns. How interfaces steal your time, money, and data.</h1>
+    <div class="article-meta">
+      <span><span class="accent">●</span>&nbsp;&nbsp;<span data-i18n="dp.author">DMYTRO SHAIN</span></span>
+      <span>2026 · 04 · 30</span>
+      <span data-i18n="dp.read">8 MIN READ</span>
+    </div>
+
+    <figure>
+      <img src="../assets/blog/dark-patterns/cover.svg" alt="Dark patterns - article cover" />
+    </figure>
+
+    <p data-i18n="dp.intro.1">Good UX is honest UX.</p>
+    <p data-i18n="dp.intro.2">Not really.</p>
+    <p data-i18n="dp.intro.3">Half the products you use every day are designed so you do what the business wants, not what you want. This isn't a bug. It's a feature. Designers have a name for it: dark patterns. Harry Brignull mapped them out in 2010 and runs the catalog at deceptive.design.</p>
+    <p data-i18n="dp.intro.4">Twenty patterns you bump into every week. By family.</p>
+
+    <!-- ========== SNEAKING ========== -->
+    <div class="dp-cat">
+      <div class="dp-cat-num">FAMILY 01 / 05</div>
+      <div class="dp-cat-h" data-i18n="dp.cat.sneak">Sneaking</div>
+      <div class="dp-cat-sub" data-i18n="dp.cat.sneak.sub">Hiding information that would change your decision.</div>
+    </div>
+
+    <h2 data-i18n="dp.p.01.h">01 / Hidden costs</h2>
+    <h3 data-i18n="dp.p.01.sub">The checkout surprise.</h3>
+    <p data-i18n="dp.p.01.body">Price on the page: $89. At checkout: $112. Service fee, processing fee, bullshit fee. Resort fee, urban destination fee. EU regulates this through the Digital Services Act. From January 2024 the displayed price must include all mandatory fees. Fines are still symbolic, so companies keep doing it.</p>
+    <figure>
+      <img src="../assets/blog/dark-patterns/hidden-costs.svg" alt="Cart price vs checkout total" />
+      <figcaption data-i18n="dp.cap.01">FIG · CART VS CHECKOUT TOTAL</figcaption>
+    </figure>
+
+    <h2 data-i18n="dp.p.02.h">02 / Sneak into basket</h2>
+    <h3 data-i18n="dp.p.02.sub">Things you didn't ask for, in your cart.</h3>
+    <p data-i18n="dp.p.02.body">You added a $40 jacket. At checkout an "extended return protection" is pre-checked at $7. EU consumer surveys in 2023 found this in roughly 30% of fashion checkouts. Default greed, monetized.</p>
+    <figure>
+      <img src="../assets/blog/dark-patterns/sneak-into-basket.svg" alt="Pre-checked extra item in basket" />
+      <figcaption data-i18n="dp.cap.02">FIG · AN ITEM YOU NEVER ADDED</figcaption>
+    </figure>
+
+    <h2 data-i18n="dp.p.03.h">03 / Bait and switch</h2>
+    <h3 data-i18n="dp.p.03.sub">The promise wasn't the product.</h3>
+    <p data-i18n="dp.p.03.body">"Get free trial" → enter card → fine print: "$49 charged after 7 days unless cancelled." The promise was free, the action triggered a paid path. Microsoft was sued in 2016 over Windows 10 upgrade prompts where clicking the X to close counted as consent.</p>
+
+    <h2 data-i18n="dp.p.04.h">04 / Forced continuity</h2>
+    <h3 data-i18n="dp.p.04.sub">Auto-renewal you'll forget.</h3>
+    <p data-i18n="dp.p.04.body">Free trial. No reminder before the charge. Day 8 - $99 gone. The FTC sued Adobe in 2024 over hidden cancellation fees on annual subscriptions disguised as monthly billing.</p>
+    <figure>
+      <img src="../assets/blog/dark-patterns/forced-continuity.svg" alt="Trial timeline with no reminder before charge" />
+      <figcaption data-i18n="dp.cap.04">FIG · NO REMINDER BETWEEN SIGNUP AND CHARGE</figcaption>
+    </figure>
+
+    <!-- ========== URGENCY ========== -->
+    <div class="dp-cat">
+      <div class="dp-cat-num">FAMILY 02 / 05</div>
+      <div class="dp-cat-h" data-i18n="dp.cat.urgency">Urgency</div>
+      <div class="dp-cat-sub" data-i18n="dp.cat.urgency.sub">Pushing a decision before you're ready.</div>
+    </div>
+
+    <h2 data-i18n="dp.p.05.h">05 / Confirmshaming</h2>
+    <h3 data-i18n="dp.p.05.sub">They shame you for saying no.</h3>
+    <p data-i18n="dp.p.05.body">Popup: "Subscribe for deals!" Two buttons. <em>Yes, save me money</em> - bright, green, in your face. <em>No, I don't want to save money</em> - tiny, gray, bottom of the modal. Most people just click yes to make the tone go away.</p>
+    <figure>
+      <img src="../assets/blog/dark-patterns/confirmshaming.svg" alt="Confirmshaming dialog with demoted decline option" />
+      <figcaption data-i18n="dp.cap.05">FIG · DECLINE OPTION DEMOTED</figcaption>
+    </figure>
+
+    <h2 data-i18n="dp.p.06.h">06 / Manufactured urgency</h2>
+    <h3 data-i18n="dp.p.06.sub">Fake countdowns.</h3>
+    <p data-i18n="dp.p.06.body"><em>5 people are looking at this room right now.</em> <em>Only 1 ticket left at this price.</em> Booking got a warning from the EU Commission in 2019 - part of those counters weren't from real data. Pure RNG. Works through FOMO. Works even on people who know how it works.</p>
+    <figure>
+      <img src="../assets/blog/dark-patterns/urgency.svg" alt="Urgency banner with fake counter" />
+      <figcaption data-i18n="dp.cap.06">FIG · A COUNTER WITHOUT A REAL SOURCE</figcaption>
+    </figure>
+
+    <h2 data-i18n="dp.p.07.h">07 / Fake social proof</h2>
+    <h3 data-i18n="dp.p.07.sub">Invented testimonials.</h3>
+    <p data-i18n="dp.p.07.body">"Sarah from Berlin just bought this!" Notification slides in every 30 seconds. The data is fake. Most "social proof" plugins on Shopify generate from a name list and a city list. No real purchases happening, just RNG.</p>
+    <figure>
+      <img src="../assets/blog/dark-patterns/fake-social-proof.svg" alt="Fake notification stream from a name and city list" />
+      <figcaption data-i18n="dp.cap.07">FIG · NAMES + CITIES, GENERATED ON LOAD</figcaption>
+    </figure>
+
+    <h2 data-i18n="dp.p.08.h">08 / Nagging</h2>
+    <h3 data-i18n="dp.p.08.sub">They wear you down.</h3>
+    <p data-i18n="dp.p.08.body">You said no to the email signup. Three pages later, same popup. After cookies set, the "no" expires in 24 hours. Some sites refresh the prompt every session. Persistent enough that you eventually cave.</p>
+
+    <!-- ========== OBSTRUCTION ========== -->
+    <div class="dp-cat">
+      <div class="dp-cat-num">FAMILY 03 / 05</div>
+      <div class="dp-cat-h" data-i18n="dp.cat.obstruct">Obstruction</div>
+      <div class="dp-cat-sub" data-i18n="dp.cat.obstruct.sub">Making it artificially hard to do what you want.</div>
+    </div>
+
+    <h2 data-i18n="dp.p.09.h">09 / Roach motel</h2>
+    <h3 data-i18n="dp.p.09.sub">Easy to enter, impossible to leave.</h3>
+    <p data-i18n="dp.p.09.body">Subscribe: three clicks. Cancel: seven screens, a support chat, a call to your bank. The FTC sued Amazon in 2023 - court docs revealed an internal project called <em>Iliad</em> (the long Greek epic). Designers were asked to deliberately complicate the cancellation flow. Not an accident.</p>
+    <figure>
+      <img src="../assets/blog/dark-patterns/roach-motel.svg" alt="Cancel funnel with seven steps" />
+      <figcaption data-i18n="dp.cap.09">FIG · ASYMMETRIC ENTRY VS EXIT</figcaption>
+    </figure>
+
+    <h2 data-i18n="dp.p.10.h">10 / Disguised unsubscribe</h2>
+    <h3 data-i18n="dp.p.10.sub">The link you can't find.</h3>
+    <p data-i18n="dp.p.10.body">Unsubscribe is gray-on-gray, 9px, at the bottom of an 800px-tall email. Or "Manage preferences" → seventeen toggles → "Save changes" → confirmation popup. CAN-SPAM and GDPR both require easy unsubscribe. Still everywhere.</p>
+
+    <h2 data-i18n="dp.p.11.h">11 / Privacy maze</h2>
+    <h3 data-i18n="dp.p.11.sub">Settings scattered across six menus.</h3>
+    <p data-i18n="dp.p.11.body">"Adjust privacy" → Account, Ads, Apps, Notifications, Personalization, Activity. Six tabs, each with their own opt-out. By design - discouraging users from completing the full opt-out journey.</p>
+    <figure>
+      <img src="../assets/blog/dark-patterns/privacy-maze.svg" alt="Privacy settings scattered across six tabs" />
+      <figcaption data-i18n="dp.cap.11">FIG · DROP-OFF BY DESIGN</figcaption>
+    </figure>
+
+    <h2 data-i18n="dp.p.12.h">12 / Cookie consent maze</h2>
+    <h3 data-i18n="dp.p.12.sub">One-click yes, twenty-click no.</h3>
+    <p data-i18n="dp.p.12.body">"Accept all" - one big button, top right. "Reject all" - hidden behind "Manage preferences" → 47 vendor toggles → "Save changes". GDPR enforcement letters in 2023-2024 specifically called out this asymmetry as a violation.</p>
+
+    <!-- ========== FORCED ACTION ========== -->
+    <div class="dp-cat">
+      <div class="dp-cat-num">FAMILY 04 / 05</div>
+      <div class="dp-cat-h" data-i18n="dp.cat.force">Forced action</div>
+      <div class="dp-cat-sub" data-i18n="dp.cat.force.sub">Demanding more than the task requires.</div>
+    </div>
+
+    <h2 data-i18n="dp.p.13.h">13 / Forced enrollment</h2>
+    <h3 data-i18n="dp.p.13.sub">Account before content.</h3>
+    <p data-i18n="dp.p.13.body">You wanted one article. The site demands email signup before the page loads. Or "Continue with Google" is the only visible option - email signup hidden behind a tiny gray link.</p>
+
+    <h2 data-i18n="dp.p.14.h">14 / Friend spam</h2>
+    <h3 data-i18n="dp.p.14.sub">Your address book gets weaponized.</h3>
+    <p data-i18n="dp.p.14.body">LinkedIn settled a $13M class action in 2015 over "Add Connections" - the feature pulled users' entire address books and sent invites to all contacts as if from the user. Legally framed as opt-in. Almost nobody understood what they consented to.</p>
+
+    <h2 data-i18n="dp.p.15.h">15 / Privacy zuckering</h2>
+    <h3 data-i18n="dp.p.15.sub">Defaults that leak more than you expect.</h3>
+    <p data-i18n="dp.p.15.body">Defaults set to maximum data collection. Settings can be tightened, but you have to know they exist. Facebook ran this playbook for years - posts default to "everyone" instead of "friends," ad personalization on by default, location tracking quietly enabled.</p>
+
+    <h2 data-i18n="dp.p.16.h">16 / Forced disclosure</h2>
+    <h3 data-i18n="dp.p.16.sub">Required fields with no relation to the service.</h3>
+    <p data-i18n="dp.p.16.body">Signup asks for phone, address, birthday, gender, household size, occupation. None of it required to deliver the service. All of it sold to data brokers or fed to ad targeting. The required-field asterisk doesn't ask why.</p>
+
+    <!-- ========== MISDIRECTION ========== -->
+    <div class="dp-cat">
+      <div class="dp-cat-num">FAMILY 05 / 05</div>
+      <div class="dp-cat-h" data-i18n="dp.cat.misdir">Misdirection</div>
+      <div class="dp-cat-sub" data-i18n="dp.cat.misdir.sub">Visual and verbal sleight of hand.</div>
+    </div>
+
+    <h2 data-i18n="dp.p.17.h">17 / Misdirection</h2>
+    <h3 data-i18n="dp.p.17.sub">The design already decided.</h3>
+    <p data-i18n="dp.p.17.body"><em>Cancel</em> - tiny, gray, on the left. <em>Confirm subscription at $99/mo</em> - big, colored, on the right. You haven't decided anything yet - the design already decided for you. This isn't called manipulation in the industry. It's "good visual hierarchy."</p>
+    <figure>
+      <img src="../assets/blog/dark-patterns/misdirection.svg" alt="Imbalanced cancel vs confirm CTAs" />
+      <figcaption data-i18n="dp.cap.17">FIG · WEIGHT IS THE OPINION OF THE DESIGN</figcaption>
+    </figure>
+
+    <h2 data-i18n="dp.p.18.h">18 / Preselection</h2>
+    <h3 data-i18n="dp.p.18.sub">Default opt-ins.</h3>
+    <p data-i18n="dp.p.18.body">Five checkboxes on signup. Three pre-checked: marketing emails, partner offers, data sharing with third parties. You miss them, sign up, leak. GDPR explicitly bans pre-ticked boxes for consent. Enforcement is patchy outside major regulators.</p>
+    <figure>
+      <img src="../assets/blog/dark-patterns/preselection.svg" alt="Pre-checked checkboxes for consent" />
+      <figcaption data-i18n="dp.cap.18">FIG · CONSENT BY DEFAULT</figcaption>
+    </figure>
+
+    <h2 data-i18n="dp.p.19.h">19 / Visual interference</h2>
+    <h3 data-i18n="dp.p.19.sub">Important info, deliberately hard to read.</h3>
+    <p data-i18n="dp.p.19.body">Fee disclosure rendered at 8px gray-on-gray. The decline button styled as if disabled. Critical terms behind "Learn more" that doesn't render on mobile. Anti-readability is a design choice, not an accident.</p>
+
+    <h2 data-i18n="dp.p.20.h">20 / Trick questions</h2>
+    <h3 data-i18n="dp.p.20.sub">Double negatives in checkboxes.</h3>
+    <p data-i18n="dp.p.20.body">Checkbox: <em>I do not want to not receive emails.</em> Yes or no? Written that way on purpose so you fumble and tick "in favor of" the service. Classic case: free software installers. Toolbar, browser hijacker, antivirus trial - all bundled under one big "Next" and three confusing boxes.</p>
+    <figure>
+      <img src="../assets/blog/dark-patterns/trick-questions.svg" alt="Confusing double-negative checkboxes" />
+      <figcaption data-i18n="dp.cap.20">FIG · A CHECKBOX YOU CANNOT PARSE</figcaption>
+    </figure>
+
+    <hr />
+
+    <p data-i18n="dp.outro.1">The worst part - none of this is a mistake. Not "bad UX." It's deliberate design. Metric first, interface second. Conversion ↑, NPS ↓ three months later. But nobody checks NPS in a sprint review.</p>
+    <p data-i18n="dp.outro.2">What do you do as a designer? Say no, with conviction, when a brief tries to turn you into a mechanic for stealing time and money. In 2024 the EU sues for this. In 2025 - the US. The debt comes due eventually.</p>
+    <p data-i18n="dp.outro.3">For now, just notice. Next time you see a button labeled <em>"No thanks, I love overpaying"</em> - remember it's not an accident. It's the work.</p>
+
+    <aside class="tg-cta" aria-label="Telegram channel">
+      <div class="tg-cta-tag" data-i18n="cta.tg.tag">TELEGRAM</div>
+      <p class="tg-cta-h" data-i18n="cta.tg.title">More of this on Telegram.</p>
+      <p class="tg-cta-sub" data-i18n="cta.tg.body">Shorter, more often, no fluff. Posts I don't publish here.</p>
+      <a class="tg-cta-btn" href="https://t.me/+WhImivUyzWs1YTBi" target="_blank" rel="noopener noreferrer">
+        <span data-i18n="cta.tg.btn">Open channel</span>
+        <span class="arr" aria-hidden="true">↗</span>
+      </a>
+    </aside>
+  </article>
+
+  <footer class="foot">
+    <div class="wrap">
+      <div class="foot-inner">
+        <div class="foot-left">
+          <span>SHAIN</span>
+          <span class="hair" aria-hidden="true"></span>
+          <span>© 2026 · Dmytro Shain</span>
+        </div>
+        <div class="foot-right">
+          <a href="../index.html#about" data-i18n="nav.about">About</a>
+          <a href="../index.html#portfolio" data-i18n="nav.portfolio">Portfolio</a>
+          <a href="index.html" data-i18n="nav.blog">Blog</a>
+          <a href="../index.html#contacts" data-i18n="nav.contacts">Contacts</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

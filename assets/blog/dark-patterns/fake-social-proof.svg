@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="Fake social proof - generated notifications">
+  <rect width="960" height="540" fill="#0A0A0A"/>
+  <rect x="48" y="48" width="864" height="444" fill="none" stroke="#2A2A2A"/>
+
+  <!-- Stack of fake notifications -->
+  <g>
+    <rect x="80" y="100" width="380" height="60" fill="#111111" stroke="#2A2A2A"/>
+    <circle cx="110" cy="130" r="14" fill="#2A2A2A"/>
+    <text x="138" y="124" fill="rgba(255,255,255,0.86)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="13" font-weight="500">Sarah from Berlin just bought this</text>
+    <text x="138" y="144" fill="rgba(255,255,255,0.36)" font-family="ui-monospace,'Space Mono',monospace" font-size="10" letter-spacing="1.5">2 SEC AGO</text>
+
+    <rect x="80" y="170" width="380" height="60" fill="#111111" stroke="#2A2A2A" opacity="0.85"/>
+    <circle cx="110" cy="200" r="14" fill="#2A2A2A"/>
+    <text x="138" y="194" fill="rgba(255,255,255,0.86)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="13" font-weight="500">Mark from Toronto just signed up</text>
+    <text x="138" y="214" fill="rgba(255,255,255,0.36)" font-family="ui-monospace,'Space Mono',monospace" font-size="10" letter-spacing="1.5">31 SEC AGO</text>
+
+    <rect x="80" y="240" width="380" height="60" fill="#111111" stroke="#2A2A2A" opacity="0.65"/>
+    <circle cx="110" cy="270" r="14" fill="#2A2A2A"/>
+    <text x="138" y="264" fill="rgba(255,255,255,0.86)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="13" font-weight="500">Ana from Madrid just joined</text>
+    <text x="138" y="284" fill="rgba(255,255,255,0.36)" font-family="ui-monospace,'Space Mono',monospace" font-size="10" letter-spacing="1.5">1 MIN AGO</text>
+  </g>
+
+  <!-- Code panel revealing the truth -->
+  <g>
+    <rect x="500" y="100" width="380" height="200" fill="#070707" stroke="#FF7849"/>
+    <text x="520" y="128" fill="#FF7849" font-family="ui-monospace,'Space Mono',monospace" font-size="11" letter-spacing="1.5" font-weight="700">UNDER THE HOOD</text>
+
+    <text x="520" y="160" fill="rgba(255,255,255,0.86)" font-family="ui-monospace,'Space Mono',monospace" font-size="12">const names = [</text>
+    <text x="540" y="180" fill="rgba(255,255,255,0.55)" font-family="ui-monospace,'Space Mono',monospace" font-size="12">"Sarah", "Mark", "Ana", ...</text>
+    <text x="520" y="200" fill="rgba(255,255,255,0.86)" font-family="ui-monospace,'Space Mono',monospace" font-size="12">];</text>
+
+    <text x="520" y="226" fill="rgba(255,255,255,0.86)" font-family="ui-monospace,'Space Mono',monospace" font-size="12">const cities = [</text>
+    <text x="540" y="246" fill="rgba(255,255,255,0.55)" font-family="ui-monospace,'Space Mono',monospace" font-size="12">"Berlin", "Toronto", ...</text>
+    <text x="520" y="266" fill="rgba(255,255,255,0.86)" font-family="ui-monospace,'Space Mono',monospace" font-size="12">];</text>
+
+    <text x="520" y="290" fill="#FF7849" font-family="ui-monospace,'Space Mono',monospace" font-size="11" font-weight="700">// no real purchases logged</text>
+  </g>
+
+  <text x="64" y="476" fill="rgba(255,255,255,0.36)" font-family="ui-monospace,'Space Mono',monospace" font-size="10" letter-spacing="2" font-weight="700">FAKE SOCIAL PROOF · NAMES + CITIES, RNG'D</text>
+</svg>

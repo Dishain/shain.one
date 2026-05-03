@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="Sneak into basket - extra item silently added at checkout">
+  <rect width="960" height="540" fill="#0A0A0A"/>
+  <rect x="48" y="48" width="864" height="444" fill="none" stroke="#2A2A2A"/>
+
+  <text x="80" y="100" fill="rgba(255,255,255,0.36)" font-family="ui-monospace,'Space Mono',monospace" font-size="10" letter-spacing="2" font-weight="700">YOUR BASKET</text>
+
+  <!-- Item you added -->
+  <rect x="80" y="124" width="800" height="56" fill="#111111" stroke="#2A2A2A"/>
+  <text x="100" y="158" fill="rgba(255,255,255,0.86)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="14">Wool jacket - Size M</text>
+  <text x="860" y="158" text-anchor="end" fill="rgba(255,255,255,0.86)" font-family="ui-monospace,'Space Mono',monospace" font-size="14">$40.00</text>
+
+  <!-- Item silently added -->
+  <rect x="80" y="190" width="800" height="56" fill="rgba(255,120,73,0.10)" stroke="#FF7849"/>
+  <rect x="100" y="208" width="20" height="20" fill="#FF7849"/>
+  <polyline points="104,218 109,222 116,214" stroke="#0A0A0A" stroke-width="2" fill="none"/>
+  <text x="140" y="222" fill="rgba(255,255,255,0.86)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="14">Extended return protection (2 years)</text>
+  <text x="860" y="222" text-anchor="end" fill="#FF7849" font-family="ui-monospace,'Space Mono',monospace" font-size="14" font-weight="700">+$7.00</text>
+
+  <text x="140" y="240" fill="rgba(255,255,255,0.36)" font-family="ui-monospace,'Space Mono',monospace" font-size="10" letter-spacing="1.5">PRE-SELECTED · YOU DIDN'T ADD THIS</text>
+
+  <!-- Total -->
+  <line x1="80" y1="290" x2="880" y2="290" stroke="#2A2A2A"/>
+  <text x="80" y="320" fill="rgba(255,255,255,0.55)" font-family="ui-monospace,'Space Mono',monospace" font-size="13">Subtotal</text>
+  <text x="860" y="320" text-anchor="end" fill="#FFFFFF" font-family="ui-monospace,'Space Mono',monospace" font-size="14" font-weight="700">$47.00</text>
+
+  <text x="64" y="476" fill="rgba(255,255,255,0.36)" font-family="ui-monospace,'Space Mono',monospace" font-size="10" letter-spacing="2" font-weight="700">SNEAK INTO BASKET · DEFAULT GREED, MONETIZED</text>
+</svg>

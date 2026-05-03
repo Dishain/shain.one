@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="Hidden costs at checkout">
+  <rect width="960" height="540" fill="#0A0A0A"/>
+  <rect x="48" y="48" width="864" height="444" fill="none" stroke="#2A2A2A"/>
+
+  <!-- Listing card -->
+  <g>
+    <rect x="80" y="100" width="320" height="320" fill="#111111" stroke="#2A2A2A"/>
+    <text x="100" y="130" fill="rgba(255,255,255,0.36)" font-family="ui-monospace,'Space Mono',monospace" font-size="10" letter-spacing="2" font-weight="700">PRODUCT PAGE</text>
+    <text x="100" y="180" fill="rgba(255,255,255,0.86)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="16" font-weight="500">Premium hotel</text>
+    <text x="100" y="206" fill="rgba(255,255,255,0.55)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="13">2 nights, downtown</text>
+    <text x="100" y="280" fill="#FFFFFF" font-family="ui-monospace,'Space Mono',monospace" font-size="48" font-weight="700">$89</text>
+    <text x="100" y="310" fill="rgba(255,255,255,0.36)" font-family="ui-monospace,'Space Mono',monospace" font-size="10" letter-spacing="2">PER NIGHT</text>
+    <rect x="100" y="350" width="280" height="44" fill="#FF7849"/>
+    <text x="240" y="378" text-anchor="middle" fill="#0A0A0A" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="13" font-weight="700">CONTINUE TO CHECKOUT</text>
+  </g>
+
+  <!-- Arrow -->
+  <g stroke="rgba(255,255,255,0.36)" stroke-width="1" fill="none">
+    <line x1="420" y1="260" x2="500" y2="260"/>
+    <polyline points="492,254 500,260 492,266"/>
+  </g>
+
+  <!-- Receipt at checkout -->
+  <g>
+    <rect x="520" y="100" width="320" height="320" fill="#111111" stroke="#2A2A2A"/>
+    <text x="540" y="130" fill="rgba(255,255,255,0.36)" font-family="ui-monospace,'Space Mono',monospace" font-size="10" letter-spacing="2" font-weight="700">CHECKOUT</text>
+
+    <text x="540" y="170" fill="rgba(255,255,255,0.86)" font-family="ui-monospace,'Space Mono',monospace" font-size="13">Room (2 nights)</text>
+    <text x="820" y="170" text-anchor="end" fill="rgba(255,255,255,0.86)" font-family="ui-monospace,'Space Mono',monospace" font-size="13">$178.00</text>
+
+    <text x="540" y="200" fill="rgba(255,255,255,0.55)" font-family="ui-monospace,'Space Mono',monospace" font-size="13">+ Service fee</text>
+    <text x="820" y="200" text-anchor="end" fill="rgba(255,255,255,0.55)" font-family="ui-monospace,'Space Mono',monospace" font-size="13">$14.00</text>
+
+    <text x="540" y="225" fill="rgba(255,255,255,0.55)" font-family="ui-monospace,'Space Mono',monospace" font-size="13">+ Resort fee</text>
+    <text x="820" y="225" text-anchor="end" fill="rgba(255,255,255,0.55)" font-family="ui-monospace,'Space Mono',monospace" font-size="13">$22.00</text>
+
+    <text x="540" y="250" fill="rgba(255,255,255,0.55)" font-family="ui-monospace,'Space Mono',monospace" font-size="13">+ Urban destination fee</text>
+    <text x="820" y="250" text-anchor="end" fill="rgba(255,255,255,0.55)" font-family="ui-monospace,'Space Mono',monospace" font-size="13">$10.00</text>
+
+    <text x="540" y="275" fill="rgba(255,255,255,0.55)" font-family="ui-monospace,'Space Mono',monospace" font-size="13">+ Tax</text>
+    <text x="820" y="275" text-anchor="end" fill="rgba(255,255,255,0.55)" font-family="ui-monospace,'Space Mono',monospace" font-size="13">$8.00</text>
+
+    <line x1="540" y1="295" x2="820" y2="295" stroke="#2A2A2A"/>
+
+    <text x="540" y="330" fill="#FF7849" font-family="ui-monospace,'Space Mono',monospace" font-size="14" font-weight="700">TOTAL</text>
+    <text x="820" y="330" text-anchor="end" fill="#FF7849" font-family="ui-monospace,'Space Mono',monospace" font-size="14" font-weight="700">$232.00</text>
+  </g>
+
+  <text x="64" y="476" fill="rgba(255,255,255,0.36)" font-family="ui-monospace,'Space Mono',monospace" font-size="10" letter-spacing="2" font-weight="700">HIDDEN COSTS · 30%+ APPEARS AT THE LAST STEP</text>
+</svg>

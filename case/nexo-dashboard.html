@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nexo Dashboard - VC Fund · Dmytro Shain</title>
+  <meta name="description" content="Live portfolio metrics, weekly digests, capital calls. A focused dashboard for fund teams who already live in spreadsheets." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=Space+Mono:wght@400;700&family=Doto:wght@700&display=swap" rel="stylesheet" />
+  <!-- Shared theme + motion -->
+  <link rel="stylesheet" href="../assets/theme.css" />
+  <script src="../assets/i18n.shell.js" defer></script>
+  <script src="../assets/theme.js" defer></script>
+
+  <style>
+    :root{
+      --bg-0:#000; --bg-1:#070707; --bg-2:#0E0E0E;
+      --line:#1A1A1A; --line-2:#2A2A2A;
+      --text-display:rgba(255,255,255,1);
+      --text-primary:rgba(255,255,255,0.90);
+      --text-secondary:rgba(255,255,255,0.60);
+      --text-disabled:rgba(255,255,255,0.40);
+      --text-muted:rgba(255,255,255,0.24);
+      --accent:#F4D700; --accent-hi:#FFE500; --accent-ink:#0A0A0A;
+      --accent-wash:rgba(244,215,0,0.12); --accent-ring:rgba(244,215,0,0.40);
+      --dur:140ms; --ease:cubic-bezier(.2,.7,.2,1);
+      --maxw:1200px; --gutter:24px;
+    }
+    *{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    html,body{margin:0;padding:0;background:var(--bg-0);color:var(--text-primary);}
+    body{
+      font-family:"Space Grotesk",ui-sans-serif,system-ui,sans-serif;
+      font-weight:400;font-size:16px;line-height:1.5;
+      -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+      overflow-x:hidden;
+    }
+    ::selection{background:var(--accent);color:var(--accent-ink);}
+    a{color:inherit;}
+
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter);position:relative;}
+    .mono{font-family:"Space Mono",ui-monospace,monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-secondary);}
+    .mono-sm{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-disabled);}
+
+    /* NAV (mirrors home, with active-on-portfolio cue) */
+    nav.top{position:sticky;top:0;z-index:50;background:var(--bg-0);border-bottom:1px solid var(--line);}
+    .nav-inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:56px;padding:0 var(--gutter);max-width:var(--maxw);margin:0 auto;gap:24px;}
+    .brand{font-family:"Space Mono",monospace;font-size:12px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-primary);text-decoration:none;display:inline-flex;align-items:center;gap:10px;justify-self:start;}
+    .brand .dot{width:6px;height:6px;border-radius:999px;background:var(--accent);}
+    .nav-links{display:flex;gap:28px;align-items:center;justify-self:center;}
+    .nav-links > a{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-secondary);text-decoration:none;padding:18px 0;transition:color var(--dur) var(--ease);}
+    .nav-links > a:hover{color:var(--text-primary);}
+    .nav-links > a.active{color:var(--text-primary);}
+    .nav-cta{font-family:"Space Mono",monospace;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-primary);text-decoration:none;border:1px solid var(--line-2);padding:8px 14px;border-radius:999px;transition:border-color var(--dur) var(--ease);justify-self:end;display:inline-flex;align-items:center;gap:8px;}
+    .nav-cta:hover{border-color:var(--text-primary);}
+    .nav-cta .dot{width:5px;height:5px;border-radius:999px;background:var(--accent);}
+
+    /* BACK LINK */
+    .back-bar{padding:24px 0 0;}
+    .back{display:inline-flex;align-items:center;gap:10px;font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-secondary);text-decoration:none;transition:color var(--dur) var(--ease);}
+    .back:hover{color:var(--text-primary);}
+    .back .arr{display:inline-block;width:16px;height:1px;background:currentColor;position:relative;}
+    .back .arr::before{content:"";position:absolute;left:0;top:-3px;width:6px;height:6px;border-left:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg);}
+
+    /* HERO */
+    section.case-hero{padding:48px 0 64px;}
+    .case-kicker{display:flex;align-items:center;gap:12px;margin-bottom:32px;}
+    .case-kicker .idx{font-family:"Space Mono",monospace;font-size:10px;color:var(--text-disabled);letter-spacing:0.18em;}
+    .case-kicker .lbl{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-secondary);}
+    .case-kicker .hair{flex:1;height:1px;background:var(--line);}
+
+    .case-title{
+      font-family:"Space Grotesk",sans-serif;
+      font-weight:300;
+      font-size:clamp(40px,6vw,80px);
+      line-height:1.05;
+      letter-spacing:-0.02em;
+      margin:0 0 24px;
+      color:var(--text-display);
+      max-width:900px;
+    }
+    .case-title em{font-style:normal;color:var(--text-secondary);}
+
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 32px;}
+    .tag{
+      font-family:"Space Mono",monospace;
+      font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;
+      color:var(--text-secondary);
+      border:1px solid var(--line-2);
+      padding:6px 12px;border-radius:999px;
+    }
+    .tag .hash{color:var(--text-disabled);margin-right:6px;}
+
+    .case-meta{
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:0;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      margin:24px 0 56px;
+    }
+    .case-meta > div{padding:18px 18px 18px 0;border-right:1px solid var(--line);}
+    .case-meta > div:last-child{border-right:0;padding-right:0;}
+    .case-meta .k{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-disabled);margin-bottom:8px;}
+    .case-meta .v{font-family:"Space Grotesk",sans-serif;font-weight:400;font-size:15px;color:var(--text-primary);}
+
+    .lede{
+      font-family:"Space Grotesk",sans-serif;
+      font-weight:300;
+      font-size:clamp(20px,2vw,26px);
+      line-height:1.45;
+      color:var(--text-secondary);
+      max-width:780px;
+      margin:0 0 40px;
+    }
+    .lede em{font-style:normal;color:var(--text-primary);}
+
+    /* HERO IMAGE */
+    .hero-img{
+      border:1px solid var(--line);
+      background:#0A0A0A;
+      overflow:hidden;
+      margin-bottom:96px;
+    }
+    .hero-img img{display:block;width:100%;height:auto;}
+
+    /* BODY SECTIONS (numbered) */
+    section.body{padding:0 0 96px;}
+    .b-section{display:grid;grid-template-columns:160px 1fr;gap:48px;align-items:start;margin-bottom:64px;}
+    .b-section .num{
+      font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+      color:var(--text-disabled);padding-top:8px;
+    }
+    .b-section h2{
+      font-family:"Space Grotesk",sans-serif;font-weight:500;
+      font-size:clamp(22px,2.4vw,32px);line-height:1.15;letter-spacing:-0.01em;
+      margin:0 0 18px;color:var(--text-display);
+    }
+    .b-section p{
+      font-family:"Space Grotesk",sans-serif;font-weight:300;
+      font-size:16px;line-height:1.6;color:var(--text-secondary);
+      max-width:680px;margin:0 0 16px;
+    }
+    .b-section p strong{color:var(--text-primary);font-weight:500;}
+    .b-section ul{
+      list-style:none;padding:0;margin:0 0 16px;max-width:680px;
+    }
+    .b-section ul li{
+      position:relative;padding-left:22px;
+      font-family:"Space Grotesk",sans-serif;font-weight:300;
+      font-size:15px;line-height:1.55;color:var(--text-secondary);
+      margin:0 0 10px;
+    }
+    .b-section ul li::before{
+      content:"";position:absolute;left:0;top:10px;width:8px;height:1px;background:var(--text-disabled);
+    }
+    .b-section ul li strong{color:var(--text-primary);font-weight:500;}
+    .b-section .impact{
+      margin-top:16px;padding:14px 16px;
+      border:1px solid var(--accent-ring);background:var(--accent-wash);
+      font-family:"Space Mono",monospace;font-size:12px;letter-spacing:0.06em;line-height:1.55;
+      color:var(--accent);
+      max-width:680px;
+    }
+    .b-section .impact .lbl{display:block;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;opacity:0.7;}
+
+    /* METRICS GRID */
+    .metrics{
+      display:grid;grid-template-columns:repeat(4, 1fr);gap:0;
+      border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+      margin:32px 0 0;
+    }
+    .metric{padding:20px 20px 20px 0;border-right:1px solid var(--line);}
+    .metric:last-child{border-right:0;padding-right:0;}
+    .metric .k{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-disabled);margin-bottom:18px;}
+    .metric .v{font-family:"Space Mono",monospace;font-size:clamp(28px,3.2vw,40px);font-weight:700;letter-spacing:-0.02em;color:var(--text-display);line-height:1;margin-bottom:6px;}
+    .metric .u{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-secondary);}
+
+    /* GALLERY */
+    section.gallery{padding:0 0 120px;}
+    .gallery-head{display:grid;grid-template-columns:160px 1fr;gap:48px;margin-bottom:32px;}
+    .gallery-head .idx{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-disabled);padding-top:8px;}
+    .gallery-head h2{font-family:"Space Grotesk",sans-serif;font-weight:300;font-size:clamp(28px,3.6vw,44px);line-height:1.05;letter-spacing:-0.02em;margin:0;color:var(--text-display);}
+    .gallery-grid{display:grid;grid-template-columns:1fr;gap:16px;}
+    .shot{
+      border:1px solid var(--line);background:#0A0A0A;overflow:hidden;
+      position:relative;
+    }
+    .shot img{display:block;width:100%;height:auto;}
+    .shot .cap{
+      display:flex;justify-content:space-between;gap:12px;
+      padding:12px 16px;border-top:1px solid var(--line);
+      font-family:"Space Mono",monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
+      color:var(--text-disabled);
+    }
+    .shot .cap .accent{color:var(--accent);}
+
+    /* NEXT CASE / FOOTER CTA */
+    section.next{padding:96px 0;border-top:1px solid var(--line);}
+    .next-grid{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;}
+    .next-line{font-family:"Space Grotesk",sans-serif;font-weight:300;font-size:clamp(20px,2vw,28px);line-height:1.4;color:var(--text-secondary);margin:0;max-width:600px;}
+    .next-line em{font-style:normal;color:var(--text-primary);}
+    .btn-primary{display:inline-flex;align-items:center;gap:12px;background:var(--accent);color:var(--accent-ink);border:1px solid var(--accent);padding:14px 22px;border-radius:999px;font-family:"Space Mono",monospace;font-size:12px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;text-decoration:none;transition:transform var(--dur) var(--ease),background var(--dur) var(--ease);}
+    .btn-primary:hover{transform:translateY(-1px);background:var(--accent-hi);}
+    .btn-primary .arrow{display:inline-block;width:14px;height:14px;position:relative;}
+    .btn-primary .arrow::before,.btn-primary .arrow::after{content:"";position:absolute;background:var(--accent-ink);}
+    .btn-primary .arrow::before{left:0;top:50%;width:14px;height:1px;transform:translateY(-0.5px);}
+    .btn-primary .arrow::after{right:0;top:50%;width:7px;height:7px;border-top:1px solid var(--accent-ink);border-right:1px solid var(--accent-ink);transform:translateY(-50%) rotate(45deg);background:transparent;}
+
+    /* FOOTER */
+    footer.foot{border-top:1px solid var(--line);padding:40px 0 56px;}
+    .foot-inner{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;}
+    .foot-left{display:flex;align-items:center;gap:14px;font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-disabled);}
+    .foot-left .hair{display:inline-block;width:40px;height:1px;background:var(--line-2);}
+    .foot-right{display:flex;gap:20px;}
+    .foot-right a{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-secondary);text-decoration:none;}
+    .foot-right a:hover{color:var(--text-primary);}
+
+    /* RESPONSIVE */
+    @media (max-width:960px){
+      .nav-links{display:none;}
+      .case-meta{grid-template-columns:1fr 1fr;}
+      .case-meta > div{padding:16px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);}
+      .case-meta > div:nth-child(1){padding-left:0;}
+      .case-meta > div:nth-child(2){border-right:0;padding-right:0;}
+      .case-meta > div:nth-child(3){padding-left:0;border-bottom:0;}
+      .case-meta > div:nth-child(4){border-right:0;border-bottom:0;padding-right:0;}
+      .b-section{grid-template-columns:1fr;gap:16px;}
+      .gallery-head{grid-template-columns:1fr;gap:8px;}
+      .metrics{grid-template-columns:1fr 1fr;}
+      .metric{padding:20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);}
+      .metric:nth-child(1){padding-left:0;}
+      .metric:nth-child(2){border-right:0;padding-right:0;}
+      .metric:nth-child(3){padding-left:0;border-bottom:0;}
+      .metric:nth-child(4){border-right:0;border-bottom:0;padding-right:0;}
+      .next-grid{grid-template-columns:1fr;}
+    }
+    @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
+  </style>
+</head>
+<body>
+
+  <nav class="top">
+    <div class="nav-inner">
+      <a href="../index.html" class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        SHAIN
+      </a>
+      <div class="nav-links">
+        <a href="../index.html#about" data-i18n="nav.about">About</a>
+        <a href="../index.html#portfolio" class="active" data-i18n="nav.portfolio">Portfolio</a>
+        <a href="../index.html#products" data-i18n="nav.products">Products</a>
+        <a href="../blog/index.html" data-i18n="nav.blog">Blog</a>
+        <a href="../index.html#contacts" data-i18n="nav.contacts">Contacts</a>
+      </div>
+      <div class="nav-right" style="display:inline-flex;align-items:center;gap:8px;justify-self:end;">
+        <div class="tools" aria-label="Site preferences">
+          <button class="tool-btn" type="button" data-theme-btn aria-label="Toggle color theme">
+            <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          </button>
+          <button class="tool-btn lang-btn" type="button" data-lang-btn aria-label="Switch language">
+            <span class="lang-current">EN</span><span class="lang-sep">/</span><span class="lang-other">UA</span>
+          </button>
+        </div>
+        <a href="mailto:web.shain@gmail.com" class="nav-cta">
+        <span class="dot" aria-hidden="true"></span>
+        <span data-i18n="nav.email_cta">Email me</span>
+      </a>
+      </div>
+    </div>
+  </nav>
+  <div class="back-bar">
+    <div class="wrap">
+      <a class="back" href="../index.html#portfolio">
+        <span class="arr" aria-hidden="true"></span>
+        <span data-i18n="nav.back_to_portfolio">Back to portfolio</span>
+      </a>
+    </div>
+  </div>
+
+  <section class="case-hero">
+    <div class="wrap">
+      <div class="case-kicker">
+        <span class="idx">P / 02</span>
+        <span class="lbl">VC Fund · Live portfolio dashboard</span>
+        <span class="hair" aria-hidden="true"></span>
+        <span class="mono-sm">2024</span>
+      </div>
+
+      <h1 class="case-title">
+        Nexo Dashboard - VC Fund.
+        <em>An investor-facing companion to the NexoBall suite.</em>
+      </h1>
+
+      <div class="tags" aria-label="Project tags">
+        <span class="tag"><span class="hash">#</span>Product</span>
+        <span class="tag"><span class="hash">#</span>iOS App</span>
+        <span class="tag"><span class="hash">#</span>Web App</span>
+        <span class="tag"><span class="hash">#</span>Dashboards</span>
+      </div>
+
+      <div class="case-meta">
+        <div>
+          <div class="k">Role</div>
+          <div class="v">Product Designer</div>
+        </div>
+        <div>
+          <div class="k">Company</div>
+          <div class="v">WeAreVolt</div>
+        </div>
+        <div>
+          <div class="k">Period</div>
+          <div class="v">2022 - 2024</div>
+        </div>
+        <div>
+          <div class="k">Platforms</div>
+          <div class="v">iOS · Web</div>
+        </div>
+      </div>
+
+      <p class="lede">
+        <em>An investor-facing companion to the NexoBall suite.</em>
+        Live portfolio metrics, weekly digests, capital calls. A focused dashboard for fund teams who already live in spreadsheets.
+      </p>
+
+      <figure class="hero-img">
+        <img src="../assets/portfolio/nexo-dashboard/01.png" alt="Nexo Dashboard - VC Fund - cover" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <div class="wrap">
+      <div class="gallery-head">
+        <div class="idx">§ STILLS</div>
+        <h2>Selected screens.</h2>
+      </div>
+      <div class="gallery-grid">
+        <figure class="shot">
+          <img src="../assets/portfolio/nexo-dashboard/02.png" alt="Screen 02" />
+          <figcaption class="cap">
+            <span><span class="accent">●</span>&nbsp;&nbsp;FIG. 02</span>
+            <span>STILL</span>
+          </figcaption>
+        </figure>
+        <figure class="shot">
+          <img src="../assets/portfolio/nexo-dashboard/03.png" alt="Screen 03" />
+          <figcaption class="cap">
+            <span><span class="accent">●</span>&nbsp;&nbsp;FIG. 03</span>
+            <span>STILL</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="next">
+    <div class="wrap">
+      <div class="next-grid">
+        <p class="next-line">
+          <em>Want to see another case?</em>
+          The full portfolio is one click away - or write to me directly.
+        </p>
+        <a href="../index.html#portfolio" class="btn-primary">
+          <span>All cases</span>
+          <span class="arrow" aria-hidden="true"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="wrap">
+      <div class="foot-inner">
+        <div class="foot-left">
+          <span>SHAIN</span>
+          <span class="hair" aria-hidden="true"></span>
+          <span>© 2026 · Dmytro Shain</span>
+        </div>
+        <div class="foot-right">
+          <a href="../index.html#about" data-i18n="nav.about">About</a>
+          <a href="../index.html#portfolio" data-i18n="nav.portfolio">Portfolio</a>
+          <a href="../index.html#products" data-i18n="nav.products">Products</a>
+          <a href="../index.html#contacts" data-i18n="nav.contacts">Contacts</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

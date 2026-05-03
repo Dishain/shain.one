@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" preserveAspectRatio="xMidYMid slice" role="img" aria-label="PR diff illustration">
+  <defs>
+    <pattern id="grid" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="960" height="540" fill="#0A0A0A"/>
+  <rect width="960" height="540" fill="url(#grid)"/>
+
+  <!-- Frame -->
+  <rect x="48" y="48" width="864" height="444" fill="none" stroke="#2A2A2A" stroke-width="1"/>
+
+  <!-- Window header -->
+  <rect x="48" y="48" width="864" height="40" fill="#111111"/>
+  <line x1="48" y1="88" x2="912" y2="88" stroke="#2A2A2A"/>
+  <text x="68" y="74" fill="rgba(255,255,255,0.55)" font-family="ui-monospace,'Space Mono',monospace" font-size="11" letter-spacing="2" font-weight="700">PR / 042 · TOKEN-DRIFT-FIX</text>
+  <circle cx="892" cy="68" r="4" fill="#F4D700"/>
+
+  <!-- Diff lines: red removed -->
+  <rect x="48" y="120" width="864" height="28" fill="rgba(215,25,33,0.10)"/>
+  <text x="68" y="139" fill="#D71921" font-family="ui-monospace,'Space Mono',monospace" font-size="13">- background: var(--bg-2);</text>
+
+  <!-- Diff: green added -->
+  <rect x="48" y="156" width="864" height="28" fill="rgba(74,158,92,0.10)"/>
+  <text x="68" y="175" fill="#4A9E5C" font-family="ui-monospace,'Space Mono',monospace" font-size="13">+ background: var(--surface-raised);</text>
+
+  <text x="68" y="220" fill="rgba(255,255,255,0.55)" font-family="ui-monospace,'Space Mono',monospace" font-size="13">  /* token name realigned with prod */</text>
+
+  <!-- Comment thread -->
+  <rect x="48" y="280" width="864" height="180" fill="#111111" stroke="#2A2A2A"/>
+  <line x1="48" y1="320" x2="912" y2="320" stroke="#2A2A2A"/>
+  <text x="68" y="306" fill="rgba(255,255,255,0.86)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="13" font-weight="500">@engineer:</text>
+  <text x="148" y="306" fill="rgba(255,255,255,0.55)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="13">tut hash vid tokena ne shodytsya z prod</text>
+  <text x="68" y="354" fill="rgba(255,255,255,0.86)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="13" font-weight="500">@dmytro:</text>
+  <text x="138" y="354" fill="rgba(255,255,255,0.55)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="13">tochno - poplyv pislya merge. Pohnav fix.</text>
+  <text x="68" y="402" fill="rgba(255,255,255,0.86)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="13" font-weight="500">@engineer:</text>
+  <text x="148" y="402" fill="rgba(255,255,255,0.55)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="13">approved · LGTM</text>
+
+  <text x="68" y="476" fill="rgba(255,255,255,0.36)" font-family="ui-monospace,'Space Mono',monospace" font-size="10" letter-spacing="2" font-weight="700">FIG. 02 · ONE PR · ONE THREAD · ONE MERGE</text>
+</svg>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="Preselection - default opt-ins">
+  <rect width="960" height="540" fill="#0A0A0A"/>
+  <rect x="48" y="48" width="864" height="444" fill="none" stroke="#2A2A2A"/>
+
+  <text x="80" y="100" fill="rgba(255,255,255,0.86)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="16" font-weight="500">Almost there - just one more thing</text>
+  <text x="80" y="124" fill="rgba(255,255,255,0.55)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="13">Customize your experience.</text>
+
+  <!-- Pre-checked: marketing emails -->
+  <rect x="80" y="160" width="20" height="20" fill="#FF7849" stroke="#FF7849"/>
+  <polyline points="84,170 89,174 96,166" stroke="#0A0A0A" stroke-width="2" fill="none"/>
+  <text x="120" y="176" fill="rgba(255,255,255,0.86)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="13">Send me marketing emails about new features.</text>
+
+  <!-- Pre-checked: partner offers -->
+  <rect x="80" y="200" width="20" height="20" fill="#FF7849" stroke="#FF7849"/>
+  <polyline points="84,210 89,214 96,206" stroke="#0A0A0A" stroke-width="2" fill="none"/>
+  <text x="120" y="216" fill="rgba(255,255,255,0.86)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="13">Receive offers from our trusted partners.</text>
+
+  <!-- Pre-checked: data sharing -->
+  <rect x="80" y="240" width="20" height="20" fill="#FF7849" stroke="#FF7849"/>
+  <polyline points="84,250 89,254 96,246" stroke="#0A0A0A" stroke-width="2" fill="none"/>
+  <text x="120" y="256" fill="rgba(255,255,255,0.86)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="13">Share usage data with affiliates for personalization.</text>
+
+  <!-- Empty: terms (only one not pre-checked) -->
+  <rect x="80" y="280" width="20" height="20" fill="none" stroke="rgba(255,255,255,0.55)"/>
+  <text x="120" y="296" fill="rgba(255,255,255,0.55)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="13">I agree to the Terms of Service.</text>
+
+  <!-- Big "continue" button -->
+  <rect x="80" y="340" width="200" height="44" fill="#FF7849"/>
+  <text x="180" y="368" text-anchor="middle" fill="#0A0A0A" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="13" font-weight="700">CONTINUE</text>
+
+  <text x="80" y="420" fill="rgba(255,255,255,0.36)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="12">3 of 4 pre-checked. GDPR explicitly bans this for consent. Still everywhere.</text>
+
+  <text x="64" y="476" fill="rgba(255,255,255,0.36)" font-family="ui-monospace,'Space Mono',monospace" font-size="10" letter-spacing="2" font-weight="700">PRESELECTION · CONSENT BY DEFAULT</text>
+</svg>

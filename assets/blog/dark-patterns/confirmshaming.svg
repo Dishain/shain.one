@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="Confirmshaming dialog mockup">
+  <rect width="960" height="540" fill="#0A0A0A"/>
+  <rect x="48" y="48" width="864" height="444" fill="none" stroke="#2A2A2A"/>
+
+  <!-- Modal dialog -->
+  <rect x="240" y="120" width="480" height="300" fill="#111111" stroke="#2A2A2A"/>
+  <text x="280" y="180" fill="rgba(255,255,255,0.86)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="22" font-weight="500">Get 15% off your first order</text>
+  <text x="280" y="220" fill="rgba(255,255,255,0.55)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="14">Subscribe and never miss a deal again.</text>
+
+  <!-- Big bright accept button -->
+  <rect x="280" y="300" width="240" height="48" fill="#FF7849" rx="6"/>
+  <text x="400" y="330" text-anchor="middle" fill="#0A0A0A" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="14" font-weight="700">YES, SAVE ME MONEY</text>
+
+  <!-- Tiny gray decline -->
+  <text x="400" y="380" text-anchor="middle" fill="rgba(255,255,255,0.36)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="11" text-decoration="underline">no, i don't want to save money</text>
+
+  <text x="64" y="476" fill="rgba(255,255,255,0.36)" font-family="ui-monospace,'Space Mono',monospace" font-size="10" letter-spacing="2" font-weight="700">CONFIRMSHAMING · DECLINE OPTION DEMOTED</text>
+</svg>

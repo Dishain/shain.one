@@ -1,0 +1,1602 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dmytro Shain - Product Design Lead</title>
+  <meta name="description" content="Dmytro Shain - Product Design Lead. B2B • SaaS • Complex UX Flows • Design Systems • AI-Powered UX. 7+ years in Web & Mobile UI/UX." />
+
+  <!-- Fonts: Space Grotesk + Space Mono + Doto (hero only) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=Space+Mono:wght@400;700&family=Doto:wght@700&display=swap" rel="stylesheet" />
+
+  <!-- Shared theme + motion + i18n -->
+  <link rel="stylesheet" href="assets/theme.css" />
+  <script src="assets/i18n.home.js" defer></script>
+  <script src="assets/theme.js" defer></script>
+
+  <style>
+    /* ============================================================
+       NOTHING-INSPIRED TOKENS - DARK MODE (OLED BLACK)
+       Mirrors ShainBox landing tokens exactly.
+       ============================================================ */
+    :root{
+      --bg-0:           #000000;
+      --bg-1:           #070707;
+      --bg-2:           #0E0E0E;
+      --line:           #1A1A1A;
+      --line-2:         #2A2A2A;
+
+      --text-display:   rgba(255,255,255,1.00);
+      --text-primary:   rgba(255,255,255,0.90);
+      --text-secondary: rgba(255,255,255,0.60);
+      --text-disabled:  rgba(255,255,255,0.40);
+      --text-muted:     rgba(255,255,255,0.24);
+
+      --accent:         #F4D700;
+      --accent-hi:      #FFE500;
+      --accent-ink:     #0A0A0A;
+      --accent-wash:    rgba(244,215,0,0.12);
+      --accent-ring:    rgba(244,215,0,0.40);
+
+      --dur:            140ms;
+      --ease:           cubic-bezier(.2,.7,.2,1);
+
+      --maxw:           1200px;
+      --gutter:         24px;
+    }
+
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
+    html, body{ margin:0; padding:0; background: var(--bg-0); color: var(--text-primary); }
+    body{
+      font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    ::selection{ background: var(--accent); color: var(--accent-ink); }
+    a{ color: inherit; }
+
+    .mono{
+      font-family: "Space Mono", ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+    .mono-sm{
+      font-family: "Space Mono", ui-monospace, monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-disabled);
+    }
+
+    .wrap{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+      position: relative;
+    }
+
+    /* ============================================================
+       NAV - left logo · center menu · right email pill
+       ============================================================ */
+    nav.top{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--bg-0);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner{
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      height: 56px;
+      padding: 0 var(--gutter);
+      max-width: var(--maxw);
+      margin: 0 auto;
+      gap: 24px;
+    }
+    .brand{
+      font-family: "Space Mono", ui-monospace, monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      justify-self: start;
+    }
+    .brand .dot{
+      width: 6px; height: 6px; border-radius: 999px;
+      background: var(--accent);
+      display: inline-block;
+    }
+    .nav-links{
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      justify-self: center;
+    }
+    .nav-links > a, .nav-links > .has-menu > .menu-trigger{
+      font-family: "Space Mono", ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      text-decoration: none;
+      background: none;
+      border: 0;
+      padding: 18px 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color var(--dur) var(--ease);
+    }
+    .nav-links > a:hover,
+    .nav-links > .has-menu:hover .menu-trigger,
+    .nav-links > .has-menu:focus-within .menu-trigger{ color: var(--text-primary); }
+    .menu-trigger .caret{
+      width: 6px; height: 6px;
+      border-right: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
+      transform: rotate(45deg) translate(-1px, -1px);
+      margin-bottom: 2px;
+      transition: transform var(--dur) var(--ease);
+    }
+    .has-menu:hover .menu-trigger .caret,
+    .has-menu:focus-within .menu-trigger .caret{
+      transform: rotate(225deg) translate(-1px, -1px);
+    }
+    .nav-cta{
+      font-family: "Space Mono", ui-monospace, monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      text-decoration: none;
+      border: 1px solid var(--line-2);
+      padding: 8px 14px;
+      border-radius: 999px;
+      transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+      justify-self: end;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-cta:hover{ border-color: var(--text-primary); }
+    .nav-cta .dot{
+      width: 5px; height: 5px; border-radius: 999px;
+      background: var(--accent);
+    }
+
+    /* Dropdown panel */
+    .has-menu{ position: relative; }
+    .menu{
+      position: absolute;
+      top: calc(100% - 1px);
+      left: 50%;
+      transform: translateX(-50%) translateY(-6px);
+      min-width: 280px;
+      background: var(--bg-0);
+      border: 1px solid var(--line-2);
+      padding: 8px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+      z-index: 60;
+    }
+    .has-menu:hover .menu,
+    .has-menu:focus-within .menu{
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+    .menu a{
+      display: grid;
+      grid-template-columns: 32px 1fr auto;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 12px;
+      text-decoration: none;
+      color: var(--text-secondary);
+      transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+    }
+    .menu a:hover, .menu a:focus-visible{
+      background: var(--bg-2);
+      color: var(--text-primary);
+      outline: none;
+    }
+    .menu a .idx{
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      color: var(--text-disabled);
+    }
+    .menu a .ttl{
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 14px;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+    .menu a .sub{
+      grid-column: 2 / 3;
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-disabled);
+      margin-top: 2px;
+    }
+    .menu a .arr{
+      font-family: "Space Mono", monospace;
+      font-size: 12px;
+      color: var(--text-disabled);
+      transition: transform var(--dur) var(--ease), color var(--dur) var(--ease);
+    }
+    .menu a:hover .arr{ color: var(--accent); transform: translateX(2px); }
+
+    /* ============================================================
+       HERO - 2-column: text left, photo right
+       ============================================================ */
+    section.hero{
+      padding: 96px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-kicker{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+    .hero-kicker .idx{
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      color: var(--text-disabled);
+      letter-spacing: 0.18em;
+    }
+    .hero-kicker .lbl{
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+    .hero-kicker .hair{ flex: 1; height: 1px; background: var(--line); }
+
+    .hero-grid{
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .hero-mark{
+      font-family: "Doto", monospace;
+      font-weight: 700;
+      font-size: clamp(72px, 11vw, 168px);
+      line-height: 0.88;
+      letter-spacing: -0.01em;
+      color: var(--text-display);
+      margin: 0 0 28px;
+    }
+    .hero-name{
+      font-family: "Space Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin: 0 0 32px;
+    }
+    .hero-tag{
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 300;
+      font-size: clamp(18px, 1.6vw, 22px);
+      line-height: 1.45;
+      color: var(--text-secondary);
+      max-width: 580px;
+      margin: 0 0 40px;
+    }
+    .hero-tag em{ font-style: normal; color: var(--text-primary); }
+    .hero-tag .pipe{ color: var(--text-muted); margin: 0 8px; }
+
+    .hero-actions{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .btn-primary{
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--accent);
+      color: var(--accent-ink);
+      border: 1px solid var(--accent);
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-family: "Space Mono", monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform var(--dur) var(--ease), background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+    }
+    .btn-primary:hover{
+      transform: translateY(-1px);
+      background: var(--accent-hi);
+      border-color: var(--accent-hi);
+    }
+    .btn-primary .arrow{ display:inline-block; width:14px; height:14px; position:relative; }
+    .btn-primary .arrow::before,
+    .btn-primary .arrow::after{ content:""; position:absolute; background: var(--accent-ink); }
+    .btn-primary .arrow::before{ left:0; top:50%; width:14px; height:1px; transform: translateY(-0.5px); }
+    .btn-primary .arrow::after{
+      right:0; top:50%; width:7px; height:7px;
+      border-top:1px solid var(--accent-ink); border-right:1px solid var(--accent-ink);
+      transform: translateY(-50%) rotate(45deg); background: transparent;
+    }
+    .btn-ghost{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--line-2);
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-family: "Space Mono", monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+    }
+    .btn-ghost:hover{ border-color: var(--text-primary); }
+
+    /* Social row */
+    .socials{
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .socials .label{
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-disabled);
+      margin-right: 8px;
+    }
+    .ico{
+      width: 38px; height: 38px;
+      border: 1px solid var(--line-2);
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease), transform var(--dur) var(--ease);
+      text-decoration: none;
+    }
+    .ico:hover{
+      border-color: var(--text-primary);
+      color: var(--text-primary);
+      transform: translateY(-1px);
+    }
+    .ico svg{ width: 16px; height: 16px; display: block; }
+
+    /* Hero photo frame */
+    .hero-photo{
+      position: relative;
+      align-self: stretch;
+    }
+    .photo-frame{
+      position: relative;
+      border: 1px solid var(--line-2);
+      background: #0A0A0A;
+      aspect-ratio: 1 / 1;
+      width: 100%;
+      overflow: hidden;
+    }
+    .photo-frame img{
+      display: block;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: grayscale(0%) contrast(1.02);
+    }
+    .photo-meta{
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding-top: 12px;
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-disabled);
+    }
+    .photo-meta .accent{ color: var(--accent); }
+
+    /* ============================================================
+       STATS STRIP
+       ============================================================ */
+    section.stats{
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 64px 0;
+      background: var(--bg-0);
+    }
+    .stats-grid{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .stat{
+      padding: 0 24px;
+      border-right: 1px solid var(--line);
+    }
+    .stat:last-child{ border-right: 0; }
+    .stat:first-child{ padding-left: 0; }
+    .stat-k{
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-disabled);
+      margin-bottom: 24px;
+    }
+    .stat-v{
+      font-family: "Space Mono", monospace;
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-display);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-u{
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    /* ============================================================
+       SECTION HEAD (shared)
+       ============================================================ */
+    .section-head{
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 48px;
+      align-items: start;
+      margin-bottom: 64px;
+    }
+    .section-head .idx{
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-disabled);
+      padding-top: 8px;
+    }
+    .section-head h2{
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 300;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin: 0;
+      color: var(--text-display);
+      max-width: 760px;
+    }
+    .section-head h2 .em{ color: var(--text-secondary); }
+
+    section.about{ padding: 120px 0; }
+    .about-grid{
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .about-lead{
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 300;
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+      max-width: 560px;
+    }
+    .about-lead em{ font-style: normal; color: var(--text-primary); }
+    .about-points{
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .about-point .num{
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--text-disabled);
+      margin-bottom: 10px;
+    }
+    .about-point h3{
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 500;
+      font-size: 20px;
+      letter-spacing: -0.01em;
+      margin: 0 0 8px;
+      color: var(--text-display);
+    }
+    .about-point p{
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    /* ============================================================
+       PORTFOLIO - card grid (3 cols, hairline borders)
+       ============================================================ */
+    section.portfolio{
+      padding: 120px 0;
+      border-top: 1px solid var(--line);
+    }
+    .pf-grid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+    .pf-card{
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 28px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      min-height: 280px;
+      gap: 12px;
+      position: relative;
+      transition: background var(--dur) var(--ease);
+      text-decoration: none;
+      color: inherit;
+    }
+    .pf-card:hover{ background: var(--bg-2); }
+    .pf-card .pf-idx{
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--text-disabled);
+    }
+    .pf-card .thumb{
+      flex: 1;
+      min-height: 140px;
+      aspect-ratio: 16 / 10;
+      background:
+        linear-gradient(135deg, #111 0%, #0A0A0A 100%);
+      border: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+    }
+    .pf-card .thumb img{
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform var(--dur) var(--ease);
+    }
+    .pf-card:hover .thumb img{ transform: scale(1.02); }
+    .pf-card .thumb.placeholder::after{
+      content: "";
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 14px 14px, 14px 14px;
+      mix-blend-mode: screen;
+    }
+    .pf-card .thumb .stamp{
+      position: absolute;
+      left: 12px; top: 12px;
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-disabled);
+      z-index: 2;
+      mix-blend-mode: difference;
+    }
+    .pf-card .thumb .stamp .dot{
+      display: inline-block;
+      width: 5px; height: 5px; border-radius: 999px;
+      background: var(--accent);
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+    .pf-card .pf-arrow{
+      position: absolute;
+      top: 28px; right: 24px;
+      width: 22px; height: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-disabled);
+      font-family: "Space Mono", monospace;
+      font-size: 14px;
+      transition: color var(--dur) var(--ease), transform var(--dur) var(--ease);
+    }
+    .pf-card:hover .pf-arrow{ color: var(--accent); transform: translateX(2px); }
+    .pf-card h3{
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 500;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+      margin: 0;
+      color: var(--text-primary);
+    }
+    .pf-card p{
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 300;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+    .pf-tags{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .pf-tag{
+      font-family: "Space Mono", monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-disabled);
+      border: 1px solid var(--line);
+      padding: 4px 8px;
+      border-radius: 999px;
+    }
+
+    /* Wrapping helper - keep "term ·" pairs glued so a · never starts a line */
+    .np{ white-space: nowrap; }
+
+    /* Secondary hero tag (AI / code-first emphasis) */
+    .hero-tag-2{
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 300;
+      font-size: clamp(15px, 1.2vw, 17px);
+      line-height: 1.55;
+      color: var(--text-secondary);
+      max-width: 580px;
+      margin: -24px 0 40px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+    .hero-tag-2 em{ font-style: normal; color: var(--text-primary); }
+    .hero-tag-2 .stack{
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .hero-tag-2 .stack .chip{
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      border: 1px solid var(--line-2);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    /* Hide brand-name overlay stamps on portfolio covers - they collide with screenshots */
+    .pf-card .thumb .stamp{ display: none; }
+
+    /* SOON state for portfolio cards that don't have real content yet */
+    .pf-card.is-soon{
+      cursor: default;
+      opacity: 0.55;
+    }
+    .pf-card.is-soon:hover{ background: transparent; }
+    .pf-card.is-soon:hover .thumb img{ transform: none; }
+    .pf-card.is-soon .pf-arrow{ display: none; }
+    .pf-card .thumb .soon{
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--text-disabled);
+      border: 1px solid var(--line-2);
+      padding: 8px 18px;
+      border-radius: 999px;
+      z-index: 2;
+    }
+
+    /* ============================================================
+       PRODUCTS - 2 large cards
+       ============================================================ */
+    section.products{
+      padding: 120px 0;
+      border-top: 1px solid var(--line);
+    }
+    .prod-grid{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+    .prod-card{
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 48px 40px;
+      display: flex;
+      flex-direction: column;
+      min-height: 380px;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      transition: background var(--dur) var(--ease);
+    }
+    .prod-card:hover{ background: var(--bg-2); }
+    .prod-tag{
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-disabled);
+      margin-bottom: 32px;
+    }
+    .prod-card h3{
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 500;
+      font-size: clamp(24px, 2.6vw, 32px);
+      letter-spacing: -0.02em;
+      margin: 0 0 12px;
+      color: var(--text-display);
+    }
+    .prod-card .sub{
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+      margin: 0 0 32px;
+      max-width: 420px;
+    }
+    .prod-meta{
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-disabled);
+    }
+    .prod-meta .arr{
+      width: 20px; height: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      transition: color var(--dur) var(--ease), transform var(--dur) var(--ease);
+    }
+    .prod-card:hover .prod-meta .arr{
+      color: var(--accent);
+      transform: translateX(2px);
+    }
+
+    /* ============================================================
+       COURSES - 2 cards (similar to products but with language tag)
+       ============================================================ */
+    section.courses{
+      padding: 120px 0;
+      border-top: 1px solid var(--line);
+    }
+    .crs-grid{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+    .crs-card{
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      min-height: 280px;
+      text-decoration: none;
+      color: inherit;
+      transition: background var(--dur) var(--ease);
+    }
+    .crs-card:hover{ background: var(--bg-2); }
+    .crs-head{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .crs-tag{
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-disabled);
+    }
+    .crs-lang{
+      font-family: "Space Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent-ring);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .crs-card h3{
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 500;
+      font-size: 22px;
+      letter-spacing: -0.01em;
+      margin: 0 0 12px;
+      color: var(--text-display);
+    }
+    .crs-card p{
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+      margin: 0 0 24px;
+      max-width: 420px;
+    }
+    .crs-meta{
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+    .crs-card:hover .crs-meta .arr{ color: var(--accent); transform: translateX(2px); }
+    .crs-meta .arr{
+      transition: color var(--dur) var(--ease), transform var(--dur) var(--ease);
+    }
+
+    /* ============================================================
+       FINAL CTA
+       ============================================================ */
+    section.cta{
+      padding: 160px 0 140px;
+      border-top: 1px solid var(--line);
+      text-align: left;
+    }
+    .cta-mark{
+      font-family: "Doto", monospace;
+      font-weight: 700;
+      font-size: clamp(64px, 12vw, 160px);
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      color: var(--text-display);
+      margin: 0 0 32px;
+    }
+    .cta-line{
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 300;
+      font-size: clamp(18px, 1.8vw, 22px);
+      line-height: 1.4;
+      color: var(--text-secondary);
+      max-width: 620px;
+      margin: 0 0 40px;
+    }
+    .cta-line em{ font-style: normal; color: var(--text-primary); }
+    .cta-actions{
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer.foot{
+      border-top: 1px solid var(--line);
+      padding: 40px 0 56px;
+    }
+    .foot-inner{
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+    }
+    .foot-left{
+      display: flex; align-items: center; gap: 14px;
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-disabled);
+    }
+    .foot-left .hair{
+      display: inline-block; width: 40px; height: 1px; background: var(--line-2);
+    }
+    .foot-right{ display: flex; gap: 20px; align-items: center; }
+    .foot-right a{
+      font-family: "Space Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+    .foot-right a:hover{ color: var(--text-primary); }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 960px){
+      .nav-inner{ grid-template-columns: auto 1fr auto; }
+      .nav-links{ display: none; }
+      .hero-grid{ grid-template-columns: 1fr; gap: 40px; }
+      .hero-photo{ order: -1; max-width: 360px; }
+      .hero-actions{ gap: 10px; }
+      .stats-grid{ grid-template-columns: 1fr 1fr; }
+      .stat{ padding: 24px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+      .stat:first-child{ padding-left: 0; }
+      .stat:nth-child(2){ border-right: 0; padding-right: 0; }
+      .stat:nth-child(3){ padding-left: 0; border-bottom: 0; }
+      .stat:nth-child(4){ border-right: 0; border-bottom: 0; padding-right: 0; }
+      .section-head{ grid-template-columns: 1fr; gap: 16px; }
+      .about-grid{ grid-template-columns: 1fr; gap: 48px; }
+      .pf-grid{ grid-template-columns: 1fr 1fr; }
+      .prod-grid, .crs-grid{ grid-template-columns: 1fr; }
+      .prod-card, .crs-card{ min-height: 0; }
+    }
+    @media (max-width: 560px){
+      .pf-grid{ grid-template-columns: 1fr; }
+      section.hero{ padding: 56px 0 56px; }
+      section.about, section.portfolio, section.products, section.courses{ padding: 80px 0; }
+      section.cta{ padding: 100px 0 80px; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{ transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAV
+       ============================================================ -->
+  <nav class="top">
+    <div class="nav-inner">
+      <a href="#top" class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        SHAIN
+      </a>
+
+      <div class="nav-links" role="menubar">
+        <a href="#about" role="menuitem" data-i18n="nav.about">About</a>
+        <a href="#portfolio" role="menuitem" data-i18n="nav.portfolio">Portfolio</a>
+
+        <div class="has-menu" role="none">
+          <button class="menu-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+            <span data-i18n="nav.products">Products</span> <span class="caret" aria-hidden="true"></span>
+          </button>
+          <div class="menu" role="menu">
+            <a href="shainbox.html" target="_blank" rel="noopener noreferrer" role="menuitem">
+              <span class="idx">P/01</span>
+              <span class="ttl">ShainBox</span>
+              <span class="arr">↗</span>
+              <span class="sub" data-i18n="nav.products.shainbox.sub">Desktop · Design refs</span>
+            </a>
+            <a href="https://github.com/Dishain/Shain-Design-System-Skill" target="_blank" rel="noopener noreferrer" role="menuitem">
+              <span class="idx">P/02</span>
+              <span class="ttl">Design Architect</span>
+              <span class="arr">↗</span>
+              <span class="sub" data-i18n="nav.products.architect.sub">Claude Skill · GitHub</span>
+            </a>
+            <a href="https://dishain.github.io/ai-designers/" target="_blank" rel="noopener noreferrer" role="menuitem">
+              <span class="idx">P/03</span>
+              <span class="ttl">AI for Designers</span>
+              <span class="arr">↗</span>
+              <span class="sub" data-i18n="nav.courses.ua.sub">Ukrainian · Self-paced</span>
+            </a>
+            <a href="https://dishain.github.io/ai-for-designers-en/" target="_blank" rel="noopener noreferrer" role="menuitem">
+              <span class="idx">P/04</span>
+              <span class="ttl">AI for Designers</span>
+              <span class="arr">↗</span>
+              <span class="sub" data-i18n="nav.courses.en.sub">English · Self-paced</span>
+            </a>
+          </div>
+        </div>
+
+        <a href="blog/index.html" role="menuitem" data-i18n="nav.blog">Blog</a>
+        <a href="#contacts" role="menuitem" data-i18n="nav.contacts">Contacts</a>
+      </div>
+
+      <div class="nav-right" style="display:inline-flex;align-items:center;gap:8px;justify-self:end;">
+        <div class="tools" aria-label="Site preferences">
+          <button class="tool-btn" type="button" data-theme-btn aria-label="Toggle color theme">
+            <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          </button>
+          <button class="tool-btn lang-btn" type="button" data-lang-btn aria-label="Switch language">
+            <span class="lang-current">EN</span><span class="lang-sep">/</span><span class="lang-other">UA</span>
+          </button>
+        </div>
+        <a href="mailto:web.shain@gmail.com" class="nav-cta">
+          <span class="dot" aria-hidden="true"></span>
+          <span data-i18n="nav.email_cta">Email me</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="hero-kicker">
+        <span class="idx" data-i18n="hero.kicker.idx">00 /</span>
+        <span class="lbl" data-i18n="hero.kicker.lbl">Dmytro Shain</span>
+        <span class="hair" aria-hidden="true"></span>
+        <span class="mono-sm" data-i18n="hero.kicker.tag">PORTFOLIO</span>
+      </div>
+
+      <div class="hero-grid">
+        <div>
+          <h1 class="hero-mark">SHAIN.</h1>
+
+          <p class="hero-tag" data-i18n="hero.tag.full">
+            <em>Product Design Lead.</em>
+            <span class="np">B2B&nbsp;·</span>
+            <span class="np">SaaS&nbsp;·</span>
+            <span class="np">Complex UX flows&nbsp;·</span>
+            <span class="np">Design systems&nbsp;·</span>
+            <span class="np">AI-powered UX.</span>
+            7+ years in web &amp; mobile UI/UX.
+          </p>
+
+          <!-- Code-first emphasis (hidden for now - uncomment to bring back)
+          <p class="hero-tag-2">
+            <em>Designing in code, not after it.</em>
+            Shipping with Claude Code, Cursor, and Codex - direct GitHub commits, real PRs, paired with engineering instead of handed-off PNGs.
+            <span class="stack" aria-label="Code stack">
+              <span class="chip">Claude Code</span>
+              <span class="chip">Cursor</span>
+              <span class="chip">Codex</span>
+              <span class="chip">GitHub</span>
+              <span class="chip">Figma</span>
+            </span>
+          </p>
+          -->
+
+          <div class="hero-actions">
+            <a href="mailto:web.shain@gmail.com" class="btn-primary">
+              <span data-i18n="hero.cta.email">Email me</span>
+              <span class="arrow" aria-hidden="true"></span>
+            </a>
+          </div>
+
+          <div class="socials" aria-label="Social links">
+            <span class="label" data-i18n="hero.socials.label">Follow</span>
+            <a class="ico" href="https://www.linkedin.com/in/dmytro-shain/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8.06h4.55V24H.22zM8.34 8.06h4.36v2.18h.06c.61-1.16 2.1-2.38 4.32-2.38 4.62 0 5.47 3.04 5.47 7v9.14h-4.55V15.7c0-1.7-.03-3.9-2.38-3.9-2.38 0-2.74 1.86-2.74 3.78V24H8.34z"/></svg>
+            </a>
+            <a class="ico" href="https://x.com/DimaShain" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a class="ico" href="https://github.com/Dishain/Shain-Design-System-Skill" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-1.96c-3.2.69-3.87-1.54-3.87-1.54-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.17a10.97 10.97 0 0 1 5.74 0c2.19-1.48 3.15-1.17 3.15-1.17.62 1.59.23 2.76.11 3.05.74.8 1.18 1.82 1.18 3.08 0 4.42-2.7 5.39-5.27 5.68.41.36.78 1.06.78 2.14v3.18c0 .31.21.67.8.55C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-photo">
+          <div class="photo-frame" role="img" aria-label="Photo of Dmytro Shain">
+            <img src="assets/photo.jpeg"
+                 onerror="this.onerror=null; this.src='assets/photo-placeholder.svg'"
+                 alt="Dmytro Shain" />
+          </div>
+          <div class="photo-meta">
+            <span><span class="accent">●</span>&nbsp;&nbsp;<span data-i18n="hero.photo.designer">DESIGNER</span></span>
+            <span data-i18n="hero.photo.location">REMOTE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       STATS STRIP
+       ============================================================ -->
+  <section class="stats" aria-label="At a glance">
+    <div class="wrap">
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-k" data-i18n="stats.01.k">01 · Experience</div>
+          <div class="stat-v">7+</div>
+          <div class="stat-u" data-i18n="stats.01.u">Years in product</div>
+        </div>
+        <div class="stat">
+          <div class="stat-k" data-i18n="stats.02.k">02 · Shipped</div>
+          <div class="stat-v">13</div>
+          <div class="stat-u" data-i18n="stats.02.u">Cases · web &amp; mobile</div>
+        </div>
+        <div class="stat">
+          <div class="stat-k" data-i18n="stats.03.k">03 · Products</div>
+          <div class="stat-v">02</div>
+          <div class="stat-u" data-i18n="stats.03.u">Self-built &amp; live</div>
+        </div>
+        <div class="stat">
+          <div class="stat-k" data-i18n="stats.04.k">04 · Courses</div>
+          <div class="stat-v">02</div>
+          <div class="stat-u" data-i18n="stats.04.u">Authored · UA &amp; EN</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ABOUT
+       ============================================================ -->
+  <section class="about" id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="idx" data-i18n="about.idx">§ 01 · About</div>
+        <h2 data-i18n="about.h2">
+          A product designer who ships in code.
+          <span class="em">Comfortable in B2B SaaS, design systems, and the messy edges where AI meets UX.</span>
+        </h2>
+      </div>
+
+      <div class="about-grid">
+        <p class="about-lead" data-i18n="about.lead">
+          <em>I lead product design from problem to release - including the part where it ships.</em>
+          For seven years across CRMs, dashboards, mobile apps, marketplaces, and AI-agent tools. I care about systems more than screens, and about the second release more than the first.
+        </p>
+
+        <div class="about-points">
+          <div class="about-point">
+            <div class="num" data-i18n="about.p1.num">01 / DESIGN IN CODE</div>
+            <h3 data-i18n="about.p1.h">Claude Code, Cursor, Codex - daily.</h3>
+            <p data-i18n="about.p1.p">I don't stop at Figma. I design directly in the codebase - components, states, interactions - using Claude Code, Cursor, and Codex as collaborators. Direct commits to GitHub, real PRs, paired with engineering instead of handed-off PNGs.</p>
+          </div>
+          <div class="about-point">
+            <div class="num" data-i18n="about.p2.num">02 / DESIGN SYSTEMS</div>
+            <h3 data-i18n="about.p2.h">Tokens, components, governance.</h3>
+            <p data-i18n="about.p2.p">Dark-first, accessible, well-documented. I build the system as a product itself - versioned, reviewed, and used by engineering without translation.</p>
+          </div>
+          <div class="about-point">
+            <div class="num" data-i18n="about.p3.num">03 / B2B &amp; SAAS</div>
+            <h3 data-i18n="about.p3.h">Complex flows, simple feel.</h3>
+            <p data-i18n="about.p3.p">Investor dashboards, CRMs, internal tools - interfaces that hide their complexity behind an obvious next step.</p>
+          </div>
+          <div class="about-point">
+            <div class="num" data-i18n="about.p4.num">04 / AI-POWERED UX</div>
+            <h3 data-i18n="about.p4.h">Designing with the model in the room.</h3>
+            <p data-i18n="about.p4.p">From AI agent management to transcription tools and design-system skills for Claude Code - practical interfaces that let a model do real work.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PORTFOLIO
+       ============================================================ -->
+  <section class="portfolio" id="portfolio">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="idx" data-i18n="portfolio.idx">§ 02 · Portfolio</div>
+        <h2 data-i18n="portfolio.h2">
+          Selected work, 2018 - 2026.
+          <span class="em">Product, web, and mobile interfaces shipped across thirteen cases.</span>
+        </h2>
+      </div>
+
+      <div class="pf-grid">
+        <a class="pf-card" href="case/nexoball.html">
+          <div class="pf-idx">P / 01</div>
+          <span class="pf-arrow" aria-hidden="true">→</span>
+          <div class="thumb">
+            <img src="assets/portfolio/nexoball/01.png" alt="NexoBall - Companies Feed dashboard" />
+            <div class="stamp"><span class="dot"></span>NEXOBALL</div>
+          </div>
+          <h3>NexoBall - VC Fund CRM</h3>
+          <p>An end-to-end CRM for a venture fund: deal flow, portfolio, and reporting across web, macOS, and iOS.</p>
+          <div class="pf-tags">
+            <span class="pf-tag">Product</span><span class="pf-tag">Web</span><span class="pf-tag">macOS</span><span class="pf-tag">iOS</span>
+          </div>
+        </a>
+
+        <a class="pf-card" href="case/nexo-dashboard.html">
+          <div class="pf-idx">P / 02</div>
+          <span class="pf-arrow" aria-hidden="true">→</span>
+          <div class="thumb">
+            <img src="assets/portfolio/nexo-dashboard/01.png" alt="Nexo Dashboard cover" />
+            <div class="stamp"><span class="dot"></span>NEXO DASHBOARD</div>
+          </div>
+          <h3>Nexo Dashboard - VC Fund</h3>
+          <p>Investor-facing dashboard for live portfolio metrics, weekly digests, and capital calls.</p>
+          <div class="pf-tags">
+            <span class="pf-tag">Product</span><span class="pf-tag">iOS</span><span class="pf-tag">Web</span>
+          </div>
+        </a>
+
+        <a class="pf-card" href="case/vibecode-adn.html">
+          <div class="pf-idx">P / 03</div>
+          <span class="pf-arrow" aria-hidden="true">→</span>
+          <div class="thumb">
+            <img src="assets/portfolio/vibecode-adn/01.png" alt="Vibecode Adn cover" />
+            <div class="stamp"><span class="dot"></span>VIBECODE ADN</div>
+          </div>
+          <h3>VibeCode - ADN Dashboard</h3>
+          <p>A management interface for AI agents: routing, observability, and approvals - built with VibeCode.</p>
+          <div class="pf-tags">
+            <span class="pf-tag">Product</span><span class="pf-tag">VibeCode</span>
+          </div>
+        </a>
+
+        <a class="pf-card" href="case/nexovoice.html">
+          <div class="pf-idx">P / 04</div>
+          <span class="pf-arrow" aria-hidden="true">→</span>
+          <div class="thumb">
+            <img src="assets/portfolio/nexovoice/01.png" alt="Nexovoice cover" />
+            <div class="stamp"><span class="dot"></span>NEXOVOICE</div>
+          </div>
+          <h3>NexoVoice</h3>
+          <p>Meeting recording and transcription for macOS, paired with an Expo companion app.</p>
+          <div class="pf-tags">
+            <span class="pf-tag">Product</span><span class="pf-tag">macOS</span><span class="pf-tag">Expo</span>
+          </div>
+        </a>
+
+        <div class="pf-card is-soon" aria-disabled="true">
+          <div class="pf-idx">P / 05</div>
+          <div class="thumb placeholder">
+            <div class="soon">Soon</div>
+          </div>
+          <h3>NexoBackup</h3>
+          <p>WhatsApp chat backup utility for macOS - search, archive, and export without losing media.</p>
+          <div class="pf-tags">
+            <span class="pf-tag">Product</span><span class="pf-tag">macOS</span>
+          </div>
+        </div>
+
+        <div class="pf-card is-soon" aria-disabled="true">
+          <div class="pf-idx">P / 06</div>
+          <div class="thumb placeholder">
+            <div class="soon">Soon</div>
+          </div>
+          <h3>NexoMC</h3>
+          <p>Internal product surface for the Nexo suite - admin tools, configuration, and operations.</p>
+          <div class="pf-tags">
+            <span class="pf-tag">Product</span><span class="pf-tag">Web</span>
+          </div>
+        </div>
+
+        <a class="pf-card" href="case/adbear.html">
+          <div class="pf-idx">P / 07</div>
+          <span class="pf-arrow" aria-hidden="true">→</span>
+          <div class="thumb">
+            <img src="assets/portfolio/adbear/01.jpg" alt="Adbear cover" />
+            <div class="stamp"><span class="dot"></span>ADBEAR</div>
+          </div>
+          <h3>ADBear - CPA Network</h3>
+          <p>Web app and marketing site for a performance-marketing network: offers, payouts, dashboards.</p>
+          <div class="pf-tags">
+            <span class="pf-tag">Web</span><span class="pf-tag">Landing</span>
+          </div>
+        </a>
+
+        <a class="pf-card" href="case/memodremo.html">
+          <div class="pf-idx">P / 08</div>
+          <span class="pf-arrow" aria-hidden="true">→</span>
+          <div class="thumb">
+            <img src="assets/portfolio/memodremo/01.png" alt="Memodremo cover" />
+            <div class="stamp"><span class="dot"></span>MEMODREMO</div>
+          </div>
+          <h3>MemoDremo</h3>
+          <p>A mobile memorization app for iOS and Android - spaced-repetition with a softer onboarding curve.</p>
+          <div class="pf-tags">
+            <span class="pf-tag">Android</span><span class="pf-tag">iOS</span>
+          </div>
+        </a>
+
+        <a class="pf-card" href="case/ukrzoloto.html">
+          <div class="pf-idx">P / 09</div>
+          <span class="pf-arrow" aria-hidden="true">→</span>
+          <div class="thumb">
+            <img src="assets/portfolio/ukrzoloto/01.png" alt="Ukrzoloto cover" />
+            <div class="stamp"><span class="dot"></span>UKRZOLOTO</div>
+          </div>
+          <h3>UkrZoloto</h3>
+          <p>Jewellery e-commerce - mobile app and storefront for one of the largest chains in the country.</p>
+          <div class="pf-tags">
+            <span class="pf-tag">Product</span><span class="pf-tag">iOS</span><span class="pf-tag">Website</span>
+          </div>
+        </a>
+
+        <a class="pf-card" href="case/telegram-list.html">
+          <div class="pf-idx">P / 10</div>
+          <span class="pf-arrow" aria-hidden="true">→</span>
+          <div class="thumb">
+            <img src="assets/portfolio/telegram-list/01.jpg" alt="Telegram List cover" />
+            <div class="stamp"><span class="dot"></span>TELEGRAM LIST</div>
+          </div>
+          <h3>Telegram List iOS</h3>
+          <p>An iOS discovery client for browsing and curating Telegram channels.</p>
+          <div class="pf-tags">
+            <span class="pf-tag">iOS</span>
+          </div>
+        </a>
+
+        <a class="pf-card" href="case/gig-radar.html">
+          <div class="pf-idx">P / 11</div>
+          <span class="pf-arrow" aria-hidden="true">→</span>
+          <div class="thumb">
+            <img src="assets/portfolio/gig-radar/01.jpg" alt="Gig Radar cover" />
+            <div class="stamp"><span class="dot"></span>GIG RADAR</div>
+          </div>
+          <h3>Gig Radar iOS</h3>
+          <p>Find live gigs nearby - location-first listings with quick filters and reminders.</p>
+          <div class="pf-tags">
+            <span class="pf-tag">iOS</span>
+          </div>
+        </a>
+
+        <a class="pf-card" href="case/carbimba.html">
+          <div class="pf-idx">P / 12</div>
+          <span class="pf-arrow" aria-hidden="true">→</span>
+          <div class="thumb">
+            <img src="assets/portfolio/carbimba/01.png" alt="Carbimba cover" />
+            <div class="stamp"><span class="dot"></span>CARBIMBA</div>
+          </div>
+          <h3>Carbimba</h3>
+          <p>A car-finder service - web app and marketing site to surface the right car for the right driver.</p>
+          <div class="pf-tags">
+            <span class="pf-tag">Web</span><span class="pf-tag">Website</span>
+          </div>
+        </a>
+
+        <a class="pf-card" href="case/wattabuy.html">
+          <div class="pf-idx">P / 13</div>
+          <span class="pf-arrow" aria-hidden="true">→</span>
+          <div class="thumb">
+            <img src="assets/portfolio/wattabuy/01.jpg" alt="Wattabuy cover" />
+            <div class="stamp"><span class="dot"></span>WATTABUY</div>
+          </div>
+          <h3>Wattabuy - Virtual Broker</h3>
+          <p>A consumer-facing site for a virtual broker - onboarding, education, and quote flow.</p>
+          <div class="pf-tags">
+            <span class="pf-tag">Website</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PRODUCTS
+       ============================================================ -->
+  <section class="products" id="products">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="idx" data-i18n="products.idx">§ 03 · Products</div>
+        <h2 data-i18n="products.h2">
+          Built &amp; shipped on my own time.
+          <span class="em">Two products and two courses I've put in the world - alongside day-to-day code-shipping inside client teams under NDA.</span>
+        </h2>
+      </div>
+
+      <div class="prod-grid">
+        <a class="prod-card" href="shainbox.html" target="_blank" rel="noopener noreferrer">
+          <div class="prod-tag" data-i18n="products.shainbox.tag">P / 01 · Desktop app</div>
+          <h3>ShainBox</h3>
+          <p class="sub" data-i18n="products.shainbox.sub">A desktop library for design references, stored as folders. No accounts. No cloud lock-in. Your files, on disk, on any machine.</p>
+          <div class="prod-meta">
+            <span data-i18n="products.shainbox.meta">macOS · Windows</span>
+            <span class="arr">↗</span>
+          </div>
+        </a>
+
+        <a class="prod-card" href="https://github.com/Dishain/Shain-Design-System-Skill" target="_blank" rel="noopener noreferrer">
+          <div class="prod-tag" data-i18n="products.architect.tag">P / 02 · Claude Code skill</div>
+          <h3>Design Architect</h3>
+          <p class="sub" data-i18n="products.architect.sub">A Claude Code skill that scaffolds and reasons about design systems - tokens, components, and governance - directly from your terminal.</p>
+          <div class="prod-meta">
+            <span data-i18n="products.architect.meta">GitHub · Open source</span>
+            <span class="arr">↗</span>
+          </div>
+        </a>
+
+        <a class="prod-card" href="https://dishain.github.io/ai-designers/" target="_blank" rel="noopener noreferrer">
+          <div class="prod-tag" data-i18n="products.course-ua.tag">P / 03 · Course · UA</div>
+          <h3 data-i18n="courses.ua.title">AI for Designers · Ukrainian</h3>
+          <p class="sub" data-i18n="courses.ua.p">Hands-on workflows for using AI inside the product-design loop - prompts, tools, and review patterns. In Ukrainian.</p>
+          <div class="prod-meta">
+            <span data-i18n="courses.meta.self">Self-paced</span>
+            <span class="arr">↗</span>
+          </div>
+        </a>
+
+        <a class="prod-card" href="https://dishain.github.io/ai-for-designers-en/" target="_blank" rel="noopener noreferrer">
+          <div class="prod-tag" data-i18n="products.course-en.tag">P / 04 · Course · EN</div>
+          <h3 data-i18n="courses.en.title">AI for Designers · English</h3>
+          <p class="sub" data-i18n="courses.en.p">The same playbook in English - pragmatic, designer-first, and built around real product work.</p>
+          <div class="prod-meta">
+            <span data-i18n="courses.meta.self">Self-paced</span>
+            <span class="arr">↗</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FINAL CTA · CONTACTS
+       ============================================================ -->
+  <section class="cta" id="contacts">
+    <div class="wrap">
+      <div class="hero-kicker" style="margin-bottom: 48px;">
+        <span class="idx" data-i18n="cta.kicker.idx">END /</span>
+        <span class="lbl" data-i18n="cta.kicker.lbl">Get in touch</span>
+        <span class="hair" aria-hidden="true"></span>
+        <span class="mono-sm" data-i18n="cta.kicker.tag">UA · REMOTE-FRIENDLY</span>
+      </div>
+
+      <h2 class="cta-mark">TALK.</h2>
+
+      <p class="cta-line" data-i18n="cta.line">
+        <em>Open to product design lead roles, design-system audits, and AI/UX advisory.</em>
+        Best way to reach me is email - I usually reply within a day.
+      </p>
+
+      <div class="cta-actions">
+        <a href="mailto:web.shain@gmail.com" class="btn-primary">
+          <span>web.shain@gmail.com</span>
+          <span class="arrow" aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div class="socials" aria-label="Social links">
+        <span class="label" data-i18n="cta.socials.label">Elsewhere</span>
+        <a class="ico" href="https://www.linkedin.com/in/dmytro-shain/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8.06h4.55V24H.22zM8.34 8.06h4.36v2.18h.06c.61-1.16 2.1-2.38 4.32-2.38 4.62 0 5.47 3.04 5.47 7v9.14h-4.55V15.7c0-1.7-.03-3.9-2.38-3.9-2.38 0-2.74 1.86-2.74 3.78V24H8.34z"/></svg>
+        </a>
+        <a class="ico" href="https://x.com/DimaShain" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a class="ico" href="https://github.com/Dishain/Shain-Design-System-Skill" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-1.96c-3.2.69-3.87-1.54-3.87-1.54-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.17a10.97 10.97 0 0 1 5.74 0c2.19-1.48 3.15-1.17 3.15-1.17.62 1.59.23 2.76.11 3.05.74.8 1.18 1.82 1.18 3.08 0 4.42-2.7 5.39-5.27 5.68.41.36.78 1.06.78 2.14v3.18c0 .31.21.67.8.55C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="foot">
+    <div class="wrap">
+      <div class="foot-inner">
+        <div class="foot-left">
+          <span>SHAIN</span>
+          <span class="hair" aria-hidden="true"></span>
+          <span data-i18n="footer.copyright">© 2026 · Dmytro Shain</span>
+        </div>
+        <div class="foot-right">
+          <a href="#about" data-i18n="nav.about">About</a>
+          <a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a>
+          <a href="#products" data-i18n="nav.products">Products</a>
+          <a href="blog/index.html" data-i18n="nav.blog">Blog</a>
+          <a href="#contacts" data-i18n="nav.contacts">Contacts</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Helper - release focus from any link inside dropdown menus.
+    // Needed because target="_blank" keeps focus after click → :focus-within
+    // would otherwise keep the dropdown open when the user returns and hovers
+    // a different dropdown, making two menus overlap.
+    const releaseMenuFocus = () => {
+      const a = document.activeElement;
+      if (a && a.closest && a.closest('.menu')) a.blur();
+    };
+
+    // Toggle aria-expanded on hover-revealed dropdowns for screen readers.
+    const groups = document.querySelectorAll('.has-menu');
+    groups.forEach(group => {
+      const trigger = group.querySelector('.menu-trigger');
+      if (!trigger) return;
+      const setExpanded = (v) => trigger.setAttribute('aria-expanded', v ? 'true' : 'false');
+
+      group.addEventListener('mouseenter', () => {
+        // Close any sibling dropdown that's still focused from a previous click.
+        groups.forEach(other => {
+          if (other !== group && other.contains(document.activeElement)) {
+            document.activeElement.blur();
+          }
+        });
+        setExpanded(true);
+      });
+      group.addEventListener('mouseleave', () => setExpanded(false));
+      group.addEventListener('focusin', () => setExpanded(true));
+      group.addEventListener('focusout', (e) => {
+        if (!group.contains(e.relatedTarget)) setExpanded(false);
+      });
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        const open = trigger.getAttribute('aria-expanded') === 'true';
+        setExpanded(!open);
+      });
+    });
+
+    // After a menu link is clicked (opens new tab), release focus so the
+    // dropdown closes when the cursor leaves.
+    document.querySelectorAll('.menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        setTimeout(() => link.blur(), 0);
+      });
+    });
+
+    // When user returns from an external tab, release any stuck menu focus.
+    window.addEventListener('focus', releaseMenuFocus);
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') releaseMenuFocus();
+    });
+  </script>
+
+</body>
+</html>

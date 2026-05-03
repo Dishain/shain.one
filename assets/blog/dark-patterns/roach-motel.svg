@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="Roach motel cancel funnel">
+  <rect width="960" height="540" fill="#0A0A0A"/>
+  <rect x="48" y="48" width="864" height="444" fill="none" stroke="#2A2A2A"/>
+
+  <text x="80" y="100" fill="rgba(255,255,255,0.86)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="16" font-weight="500">Cancel subscription</text>
+  <text x="80" y="124" fill="rgba(255,255,255,0.36)" font-family="ui-monospace,'Space Mono',monospace" font-size="10" letter-spacing="2" font-weight="700">STEP-BY-STEP DETERRENCE</text>
+
+  <!-- 7 steps as a chain -->
+  <g font-family="ui-monospace,'Space Mono',monospace" font-size="11">
+    <rect x="80"  y="170" width="100" height="60" fill="#111111" stroke="#2A2A2A"/>
+    <text x="130" y="195" text-anchor="middle" fill="rgba(255,255,255,0.55)">STEP 01</text>
+    <text x="130" y="215" text-anchor="middle" fill="rgba(255,255,255,0.86)">Settings</text>
+
+    <rect x="200" y="170" width="100" height="60" fill="#111111" stroke="#2A2A2A"/>
+    <text x="250" y="195" text-anchor="middle" fill="rgba(255,255,255,0.55)">STEP 02</text>
+    <text x="250" y="215" text-anchor="middle" fill="rgba(255,255,255,0.86)">Membership</text>
+
+    <rect x="320" y="170" width="100" height="60" fill="#111111" stroke="#2A2A2A"/>
+    <text x="370" y="195" text-anchor="middle" fill="rgba(255,255,255,0.55)">STEP 03</text>
+    <text x="370" y="215" text-anchor="middle" fill="rgba(255,255,255,0.86)">Manage</text>
+
+    <rect x="440" y="170" width="100" height="60" fill="#111111" stroke="#2A2A2A"/>
+    <text x="490" y="195" text-anchor="middle" fill="rgba(255,255,255,0.55)">STEP 04</text>
+    <text x="490" y="215" text-anchor="middle" fill="rgba(255,255,255,0.86)">"Are you sure?"</text>
+
+    <rect x="560" y="170" width="100" height="60" fill="#111111" stroke="#2A2A2A"/>
+    <text x="610" y="195" text-anchor="middle" fill="rgba(255,255,255,0.55)">STEP 05</text>
+    <text x="610" y="215" text-anchor="middle" fill="rgba(255,255,255,0.86)">Bonus offer</text>
+
+    <rect x="680" y="170" width="100" height="60" fill="#111111" stroke="#2A2A2A"/>
+    <text x="730" y="195" text-anchor="middle" fill="rgba(255,255,255,0.55)">STEP 06</text>
+    <text x="730" y="215" text-anchor="middle" fill="rgba(255,255,255,0.86)">Confirm reason</text>
+
+    <rect x="800" y="170" width="100" height="60" fill="#111111" stroke="#FF7849" stroke-width="1.5"/>
+    <text x="850" y="195" text-anchor="middle" fill="#FF7849">STEP 07</text>
+    <text x="850" y="215" text-anchor="middle" fill="rgba(255,255,255,0.86)">Final confirm</text>
+
+    <!-- Arrows between -->
+    <g stroke="#2A2A2A" stroke-width="1" fill="none">
+      <line x1="180" y1="200" x2="200" y2="200"/>
+      <line x1="300" y1="200" x2="320" y2="200"/>
+      <line x1="420" y1="200" x2="440" y2="200"/>
+      <line x1="540" y1="200" x2="560" y2="200"/>
+      <line x1="660" y1="200" x2="680" y2="200"/>
+      <line x1="780" y1="200" x2="800" y2="200"/>
+    </g>
+  </g>
+
+  <text x="80" y="320" fill="rgba(255,255,255,0.55)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="14">Subscribe in 3 clicks. Cancel in 7 screens.</text>
+  <text x="80" y="345" fill="rgba(255,255,255,0.36)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="12">Each step adds friction: a confirm, a "wait, here's a deal", a survey, a chat handoff.</text>
+
+  <text x="64" y="476" fill="rgba(255,255,255,0.36)" font-family="ui-monospace,'Space Mono',monospace" font-size="10" letter-spacing="2" font-weight="700">ROACH MOTEL · ASYMMETRIC ENTRY VS EXIT</text>
+</svg>

@@ -1,0 +1,491 @@
+/* ============================================================
+   THEME OVERRIDES + MOTION REFINEMENTS
+   - Light theme via html[data-theme="light"]
+   - Stronger easing curves (per Emil Kowalski)
+   - :active press feedback
+   - Hover gated behind (hover: hover)
+   - Reduced-motion keeps opacity, kills movement
+   ============================================================ */
+
+/* Stronger easing curves --------------------------------------- */
+:root{
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* Keep --dur for compat, add semantic durations */
+  --dur-fast: 140ms;
+  --dur-base: 200ms;
+  --dur-slow: 280ms;
+}
+
+/* ============================================================
+   THEME-AWARE ACCENT
+   - Dark mode (default):  signal yellow (#F4D700) - matches the
+     Telegram channel's dark+yellow brand pair.
+   - Light mode:            soft orange (#FF7849) - yellow lacks
+     contrast on light backgrounds (1.6:1, fails WCAG AA).
+
+   Specificity html:root (0,1,1) wins over inline :root (0,1,0).
+   ============================================================ */
+html:root{
+  --accent:      #F4D700;
+  --accent-hi:   #FFE500;
+  --accent-ink:  #0A0A0A;
+  --accent-wash: rgba(244, 215, 0, 0.12);
+  --accent-ring: rgba(244, 215, 0, 0.45);
+}
+
+/* ============================================================
+   LIGHT THEME
+   Nothing-style printed-paper feel: off-white background,
+   black ink, accents preserved (signal yellow + white on yellow).
+   ============================================================ */
+html[data-theme="light"]{
+  --bg-0: #F2F2F2;
+  --bg-1: #EDEDED;
+  --bg-2: #FFFFFF;
+  --line: #E2E2E2;
+  --line-2: #CFCFCF;
+
+  --text-display:   rgba(0, 0, 0, 1);
+  --text-primary:   rgba(0, 0, 0, 0.86);
+  --text-secondary: rgba(0, 0, 0, 0.55);
+  --text-disabled:  rgba(0, 0, 0, 0.36);
+  --text-muted:     rgba(0, 0, 0, 0.18);
+
+  /* Light-mode accent: soft orange (yellow fails contrast on white) */
+  --accent:      #FF7849;
+  --accent-hi:   #FF8A60;
+  --accent-ink:  #0A0A0A;
+  --accent-wash: rgba(255, 120, 73, 0.12);
+  --accent-ring: rgba(255, 120, 73, 0.45);
+}
+
+/* Light: tweak portfolio thumb gradient (was dark-only) */
+html[data-theme="light"] .pf-card .thumb{
+  background: linear-gradient(135deg, #F7F7F7 0%, #ECECEC 100%);
+}
+html[data-theme="light"] .pf-card .thumb.placeholder::after{
+  background-image:
+    linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
+  background-size: 14px 14px, 14px 14px;
+  mix-blend-mode: multiply;
+}
+
+/* Light: photo-frame background (was #0A0A0A) */
+html[data-theme="light"] .photo-frame{
+  background: #FFFFFF;
+}
+
+/* Light: case stamps use difference blend in dark, flip strategy */
+html[data-theme="light"] .pf-card .thumb .stamp{
+  mix-blend-mode: normal;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+/* ============================================================
+   THEME + LANG TOGGLES (live in nav)
+   ============================================================ */
+.tools{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 10px;
+}
+.tool-btn{
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0;
+  transition:
+    border-color var(--dur-base) var(--ease-out-strong),
+    color var(--dur-base) var(--ease-out-strong),
+    transform var(--dur-fast) var(--ease-out-strong);
+}
+.tool-btn:focus-visible{
+  outline: 2px solid var(--accent-ring);
+  outline-offset: 2px;
+}
+.tool-btn .ico-sun,
+.tool-btn .ico-moon{
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+.tool-btn .ico-sun{ display: none; }
+html[data-theme="light"] .tool-btn .ico-sun{ display: block; }
+html[data-theme="light"] .tool-btn .ico-moon{ display: none; }
+
+.lang-btn{
+  width: auto;
+  padding: 0 10px;
+  min-width: 44px;
+  letter-spacing: 0.18em;
+}
+.lang-btn .lang-current{ color: var(--text-primary); }
+.lang-btn .lang-sep{ opacity: 0.35; margin: 0 3px; }
+.lang-btn .lang-other{ color: var(--text-disabled); }
+
+/* Hover only on real cursors --------------------------------- */
+@media (hover: hover) and (pointer: fine){
+  .tool-btn:hover{
+    border-color: var(--text-primary);
+    color: var(--text-primary);
+  }
+}
+
+/* Press feedback ---------------------------------------------- */
+.tool-btn:active{ transform: scale(0.94); }
+
+/* ============================================================
+   PRESS FEEDBACK on existing buttons / cards
+   (additive - original styles untouched)
+   ============================================================ */
+.btn-primary, .btn-ghost, .nav-cta{
+  transition:
+    transform var(--dur-fast) var(--ease-out-strong),
+    background var(--dur-base) var(--ease-out-strong),
+    border-color var(--dur-base) var(--ease-out-strong),
+    color var(--dur-base) var(--ease-out-strong);
+}
+.btn-primary:active, .btn-ghost:active, .nav-cta:active{
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine){
+  .pf-card{
+    transition: background var(--dur-base) var(--ease-out-strong);
+  }
+}
+.pf-card:not(.is-soon):active{
+  transform: scale(0.995);
+  transition-duration: var(--dur-fast);
+}
+
+/* ============================================================
+   STAGGERED ENTRY ANIMATIONS
+   - Portfolio cards fade-up in sequence on first paint
+   - Section heads fade once when scrolled into view (via JS)
+   ============================================================ */
+.pf-grid .pf-card{
+  opacity: 0;
+  transform: translateY(8px);
+  animation: fadeUp 380ms var(--ease-out-strong) forwards;
+}
+.pf-grid .pf-card:nth-child(1){ animation-delay: 60ms; }
+.pf-grid .pf-card:nth-child(2){ animation-delay: 110ms; }
+.pf-grid .pf-card:nth-child(3){ animation-delay: 160ms; }
+.pf-grid .pf-card:nth-child(4){ animation-delay: 210ms; }
+.pf-grid .pf-card:nth-child(5){ animation-delay: 260ms; }
+.pf-grid .pf-card:nth-child(6){ animation-delay: 310ms; }
+.pf-grid .pf-card:nth-child(7){ animation-delay: 360ms; }
+.pf-grid .pf-card:nth-child(8){ animation-delay: 410ms; }
+.pf-grid .pf-card:nth-child(9){ animation-delay: 460ms; }
+.pf-grid .pf-card:nth-child(10){ animation-delay: 510ms; }
+.pf-grid .pf-card:nth-child(11){ animation-delay: 560ms; }
+.pf-grid .pf-card:nth-child(12){ animation-delay: 610ms; }
+.pf-grid .pf-card:nth-child(13){ animation-delay: 660ms; }
+
+@keyframes fadeUp{
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero entry - once, on load */
+.hero .hero-mark,
+.hero .hero-tag,
+.hero .hero-actions,
+.hero .socials,
+.hero .hero-photo,
+.hero .hero-kicker{
+  opacity: 0;
+  animation: heroIn 600ms var(--ease-out-strong) forwards;
+}
+.hero .hero-kicker  { animation-delay:  40ms; }
+.hero .hero-mark    { animation-delay: 120ms; }
+.hero .hero-tag     { animation-delay: 220ms; }
+.hero .hero-actions { animation-delay: 320ms; }
+.hero .socials      { animation-delay: 400ms; }
+.hero .hero-photo   { animation-delay: 180ms; }
+
+@keyframes heroIn{
+  from{
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Theme transition: when toggling, fade colors smoothly */
+html.theme-transition,
+html.theme-transition body,
+html.theme-transition *{
+  transition:
+    background-color var(--dur-base) var(--ease-out-strong),
+    border-color var(--dur-base) var(--ease-out-strong),
+    color var(--dur-base) var(--ease-out-strong) !important;
+}
+
+/* ============================================================
+   REDUCED MOTION
+   Per Emil: keep opacity (aids comprehension), kill movement.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce){
+  *,
+  *::before,
+  *::after{
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .pf-grid .pf-card,
+  .hero .hero-mark,
+  .hero .hero-tag,
+  .hero .hero-actions,
+  .hero .socials,
+  .hero .hero-photo,
+  .hero .hero-kicker{
+    opacity: 1;
+    transform: none;
+  }
+  .pf-card:hover .thumb img{ transform: none; }
+  .btn-primary:hover{ transform: none; }
+}
+
+/* ============================================================
+   BLOG-SPECIFIC (also used on case pages where applicable)
+   ============================================================ */
+.article-shell{
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 64px 24px 96px;
+}
+.article-shell h1{
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 300;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-display);
+  margin: 0 0 16px;
+}
+.article-meta{
+  font-family: "Space Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-disabled);
+  margin: 0 0 48px;
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.article-meta .accent{ color: var(--accent); }
+.article-shell h2{
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  letter-spacing: -0.01em;
+  color: var(--text-display);
+  margin: 56px 0 16px;
+}
+.article-shell h3{
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--text-primary);
+  margin: 40px 0 12px;
+}
+.article-shell p{
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--text-primary);
+  margin: 0 0 20px;
+  max-width: 68ch;
+}
+.article-shell p:has(+ p){ margin-bottom: 16px; }
+.article-shell blockquote{
+  border-left: 2px solid var(--accent);
+  padding: 4px 0 4px 18px;
+  margin: 28px 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+.article-shell code{
+  font-family: "Space Mono", monospace;
+  font-size: 13px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: var(--text-primary);
+}
+.article-shell pre{
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  padding: 18px 20px;
+  overflow-x: auto;
+  font-family: "Space Mono", monospace;
+  font-size: 13px;
+  line-height: 1.55;
+  margin: 24px 0;
+}
+.article-shell pre code{
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+.article-shell figure{ margin: 32px 0; }
+.article-shell figure img{
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+}
+.article-shell figcaption{
+  font-family: "Space Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-disabled);
+  margin-top: 10px;
+  text-align: left;
+}
+.article-shell ul, .article-shell ol{
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--text-primary);
+  margin: 0 0 24px;
+  padding-left: 22px;
+}
+.article-shell li{ margin-bottom: 6px; }
+.article-shell hr{
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 48px 0;
+}
+.article-shell a{
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--accent-ring);
+  text-underline-offset: 4px;
+  transition: text-decoration-color var(--dur-base) var(--ease-out-strong);
+}
+.article-shell a:hover{ text-decoration-color: var(--accent); }
+
+/* ============================================================
+   TELEGRAM CTA (reusable end-of-article block)
+   ============================================================ */
+.tg-cta{
+  margin: 64px 0 0;
+  padding: 32px 28px;
+  border: 1px solid var(--line-2);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+}
+.tg-cta::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--accent);
+}
+.tg-cta-tag{
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.tg-cta-tag::before{
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--accent);
+  display: inline-block;
+}
+.tg-cta-h{
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  color: var(--text-display);
+  margin: 0;
+}
+.tg-cta-sub{
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: 56ch;
+}
+.tg-cta-btn{
+  margin-top: 14px;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--accent);
+  color: var(--accent-ink) !important;
+  border: 1px solid var(--accent);
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  transition:
+    transform var(--dur-fast) var(--ease-out-strong),
+    background var(--dur-base) var(--ease-out-strong),
+    border-color var(--dur-base) var(--ease-out-strong);
+}
+@media (hover: hover) and (pointer: fine){
+  .tg-cta-btn:hover{
+    background: var(--accent-hi);
+    border-color: var(--accent-hi);
+  }
+}
+.tg-cta-btn:active{ transform: scale(0.97); }
+.tg-cta-btn .arr{
+  font-family: "Space Mono", monospace;
+  font-size: 13px;
+  line-height: 1;
+}

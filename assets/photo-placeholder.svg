@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <pattern id="dot" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="1" fill="rgba(255,255,255,0.10)"/>
+    </pattern>
+    <pattern id="grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- canvas -->
+  <rect width="640" height="640" fill="#0A0A0A"/>
+  <rect width="640" height="640" fill="url(#grid)"/>
+  <rect width="640" height="640" fill="url(#dot)"/>
+
+  <!-- corner ticks -->
+  <g stroke="rgba(255,255,255,0.40)" stroke-width="1" fill="none">
+    <path d="M 16 16 L 16 40 M 16 16 L 40 16"/>
+    <path d="M 624 16 L 624 40 M 624 16 L 600 16"/>
+    <path d="M 16 624 L 16 600 M 16 624 L 40 624"/>
+    <path d="M 624 624 L 624 600 M 624 624 L 600 624"/>
+  </g>
+
+  <!-- centered figure silhouette (very simplified, low opacity) -->
+  <g fill="rgba(255,255,255,0.18)">
+    <!-- head -->
+    <circle cx="320" cy="248" r="62"/>
+    <!-- shoulders / torso -->
+    <path d="M 200 480 Q 200 360 320 360 Q 440 360 440 480 L 440 540 L 200 540 Z"/>
+  </g>
+
+  <!-- accent dot -->
+  <circle cx="40" cy="600" r="3" fill="#F4D700"/>
+
+  <!-- mono labels -->
+  <g font-family="ui-monospace, 'Space Mono', monospace" fill="rgba(255,255,255,0.60)" font-size="11" letter-spacing="2">
+    <text x="56" y="604">FIG. 01 · OPERATOR</text>
+    <text x="500" y="604" text-anchor="end" fill="rgba(255,255,255,0.40)">PHOTO PENDING</text>
+  </g>
+</svg>

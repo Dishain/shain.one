@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="Privacy maze - settings scattered across many menus">
+  <rect width="960" height="540" fill="#0A0A0A"/>
+  <rect x="48" y="48" width="864" height="444" fill="none" stroke="#2A2A2A"/>
+
+  <text x="80" y="100" fill="rgba(255,255,255,0.36)" font-family="ui-monospace,'Space Mono',monospace" font-size="10" letter-spacing="2" font-weight="700">FIND YOUR DATA OPT-OUTS</text>
+
+  <!-- Six tab menus -->
+  <g font-family="ui-sans-serif,'Space Grotesk',system-ui">
+    <rect x="80"  y="130" width="120" height="48" fill="#111111" stroke="#2A2A2A"/>
+    <text x="140" y="160" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="13">Account</text>
+
+    <rect x="220" y="130" width="120" height="48" fill="#111111" stroke="#2A2A2A"/>
+    <text x="280" y="160" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="13">Ads</text>
+
+    <rect x="360" y="130" width="120" height="48" fill="#111111" stroke="#2A2A2A"/>
+    <text x="420" y="160" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="13">Apps</text>
+
+    <rect x="500" y="130" width="160" height="48" fill="#111111" stroke="#2A2A2A"/>
+    <text x="580" y="160" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="13">Notifications</text>
+
+    <rect x="680" y="130" width="180" height="48" fill="#111111" stroke="#2A2A2A"/>
+    <text x="770" y="160" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="13">Personalization</text>
+
+    <rect x="80"  y="200" width="120" height="48" fill="#111111" stroke="#FF7849"/>
+    <text x="140" y="230" text-anchor="middle" fill="#FF7849" font-size="13" font-weight="700">Activity</text>
+  </g>
+
+  <!-- Submenu under Activity -->
+  <g font-family="ui-sans-serif,'Space Grotesk',system-ui">
+    <rect x="220" y="200" width="640" height="48" fill="#070707" stroke="#2A2A2A"/>
+    <text x="240" y="230" fill="rgba(255,255,255,0.55)" font-size="13">→ History → Permissions → Third-party access → Inference data → Hidden tab</text>
+  </g>
+
+  <text x="80" y="290" fill="rgba(255,255,255,0.55)" font-family="ui-sans-serif,'Space Grotesk',system-ui" font-size="13">Each tab has its own opt-out. Each opt-out has nested sub-toggles. Most users quit at tab 2.</text>
+
+  <text x="80" y="340" fill="rgba(255,255,255,0.36)" font-family="ui-monospace,'Space Mono',monospace" font-size="11" letter-spacing="1.5">CLICKS TO FULLY OPT OUT: 47</text>
+  <text x="80" y="360" fill="rgba(255,255,255,0.36)" font-family="ui-monospace,'Space Mono',monospace" font-size="11" letter-spacing="1.5">CLICKS TO ACCEPT ALL: 1</text>
+
+  <text x="64" y="476" fill="rgba(255,255,255,0.36)" font-family="ui-monospace,'Space Mono',monospace" font-size="10" letter-spacing="2" font-weight="700">PRIVACY MAZE · DROP-OFF BY DESIGN</text>
+</svg>

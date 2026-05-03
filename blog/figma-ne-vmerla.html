@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Figma не вмерла. Не зовсім. - Shain</title>
+  <meta name="description" content="Чому Figma все ще потрібна, навіть якщо ти шипиш дизайн прямо в коді через Claude Code. Реальний кейс з PR і токенами." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=Space+Mono:wght@400;700&family=Doto:wght@700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../assets/theme.css" />
+  <script src="../assets/i18n.shell.js" defer></script>
+  <script src="../assets/theme.js" defer></script>
+
+  <style>
+    :root{
+      --bg-0:#000; --bg-1:#070707; --bg-2:#0E0E0E;
+      --line:#1A1A1A; --line-2:#2A2A2A;
+      --text-display:rgba(255,255,255,1);
+      --text-primary:rgba(255,255,255,0.90);
+      --text-secondary:rgba(255,255,255,0.60);
+      --text-disabled:rgba(255,255,255,0.40);
+      --text-muted:rgba(255,255,255,0.24);
+      --accent:#F4D700; --accent-hi:#FFE500; --accent-ink:#0A0A0A;
+      --accent-wash:rgba(244,215,0,0.12); --accent-ring:rgba(244,215,0,0.40);
+      --dur:140ms; --ease:cubic-bezier(.2,.7,.2,1);
+      --maxw:1200px; --gutter:24px;
+    }
+    *{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    html,body{margin:0;padding:0;background:var(--bg-0);color:var(--text-primary);}
+    body{
+      font-family:"Space Grotesk",ui-sans-serif,system-ui,sans-serif;
+      font-weight:400;font-size:16px;line-height:1.5;
+      -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+      overflow-x:hidden;
+    }
+    ::selection{background:var(--accent);color:var(--accent-ink);}
+    a{color:inherit;}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter);position:relative;}
+
+    /* NAV */
+    nav.top{position:sticky;top:0;z-index:50;background:var(--bg-0);border-bottom:1px solid var(--line);}
+    .nav-inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:56px;padding:0 var(--gutter);max-width:var(--maxw);margin:0 auto;gap:24px;}
+    .brand{font-family:"Space Mono",monospace;font-size:12px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-primary);text-decoration:none;display:inline-flex;align-items:center;gap:10px;justify-self:start;}
+    .brand .dot{width:6px;height:6px;border-radius:999px;background:var(--accent);}
+    .nav-links{display:flex;gap:28px;align-items:center;justify-self:center;}
+    .nav-links > a{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-secondary);text-decoration:none;padding:18px 0;transition:color var(--dur) var(--ease);}
+    .nav-links > a:hover{color:var(--text-primary);}
+    .nav-links > a.active{color:var(--text-primary);}
+    .nav-cta{font-family:"Space Mono",monospace;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-primary);text-decoration:none;border:1px solid var(--line-2);padding:8px 14px;border-radius:999px;transition:border-color var(--dur) var(--ease);display:inline-flex;align-items:center;gap:8px;}
+    .nav-cta:hover{border-color:var(--text-primary);}
+    .nav-cta .dot{width:5px;height:5px;border-radius:999px;background:var(--accent);}
+
+    /* BACK BAR */
+    .back-bar{padding:24px 0 0;}
+    .back{display:inline-flex;align-items:center;gap:10px;font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-secondary);text-decoration:none;transition:color var(--dur) var(--ease);}
+    .back:hover{color:var(--text-primary);}
+    .back .arr{display:inline-block;width:16px;height:1px;background:currentColor;position:relative;}
+    .back .arr::before{content:"";position:absolute;left:0;top:-3px;width:6px;height:6px;border-left:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg);}
+
+    /* HERO */
+    section.article-hero{padding:48px 0 32px;}
+    .article-kicker{display:flex;align-items:center;gap:12px;margin-bottom:32px;}
+    .article-kicker .idx{font-family:"Space Mono",monospace;font-size:10px;color:var(--text-disabled);letter-spacing:0.18em;}
+    .article-kicker .lbl{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-secondary);}
+    .article-kicker .hair{flex:1;height:1px;background:var(--line);}
+    .article-kicker .mono-sm{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-disabled);}
+
+    .cover{
+      width:100%;border:1px solid var(--line-2);background:#0A0A0A;
+      aspect-ratio:16/9;overflow:hidden;margin:32px 0 0;
+    }
+    .cover img{display:block;width:100%;height:100%;object-fit:cover;}
+
+    /* FOOTER */
+    footer.foot{border-top:1px solid var(--line);padding:40px 0 56px;margin-top:64px;}
+    .foot-inner{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;}
+    .foot-left{display:flex;align-items:center;gap:14px;font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-disabled);}
+    .foot-left .hair{display:inline-block;width:40px;height:1px;background:var(--line-2);}
+    .foot-right{display:flex;gap:20px;align-items:center;}
+    .foot-right a{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-secondary);text-decoration:none;}
+    .foot-right a:hover{color:var(--text-primary);}
+
+    @media (max-width:960px){
+      .nav-inner{grid-template-columns:auto 1fr auto;}
+      .nav-links{display:none;}
+    }
+    @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
+  </style>
+</head>
+<body>
+
+  <nav class="top">
+    <div class="nav-inner">
+      <a href="../index.html" class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        SHAIN
+      </a>
+      <div class="nav-links">
+        <a href="../index.html#about" data-i18n="nav.about">About</a>
+        <a href="../index.html#portfolio" data-i18n="nav.portfolio">Portfolio</a>
+        <a href="../index.html#products" data-i18n="nav.products">Products</a>
+        <a href="../blog/index.html" class="active" data-i18n="nav.blog">Blog</a>
+        <a href="../index.html#contacts" data-i18n="nav.contacts">Contacts</a>
+      </div>
+      <div class="nav-right" style="display:inline-flex;align-items:center;gap:8px;justify-self:end;">
+        <div class="tools" aria-label="Site preferences">
+          <button class="tool-btn" type="button" data-theme-btn aria-label="Toggle color theme">
+            <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          </button>
+          <button class="tool-btn lang-btn" type="button" data-lang-btn aria-label="Switch language">
+            <span class="lang-current">EN</span><span class="lang-sep">/</span><span class="lang-other">UA</span>
+          </button>
+        </div>
+        <a href="mailto:web.shain@gmail.com" class="nav-cta">
+          <span class="dot" aria-hidden="true"></span>
+          <span data-i18n="nav.email_cta">Email me</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="back-bar">
+    <div class="wrap">
+      <a class="back" href="index.html">
+        <span class="arr" aria-hidden="true"></span>
+        <span data-i18n="nav.back_to_blog">Back to blog</span>
+      </a>
+    </div>
+  </div>
+
+  <section class="article-hero">
+    <div class="wrap">
+      <div class="article-kicker">
+        <span class="idx">B / 01</span>
+        <span class="lbl">Design · Code · Workflow</span>
+        <span class="hair" aria-hidden="true"></span>
+        <span class="mono-sm">2026 · APR</span>
+      </div>
+    </div>
+  </section>
+
+  <article class="article-shell">
+    <h1>Figma не вмерла. Не зовсім.</h1>
+    <div class="article-meta">
+      <span><span class="accent">●</span>&nbsp;&nbsp;DMYTRO SHAIN</span>
+      <span>2026 · 04 · 29</span>
+      <span>5 MIN READ</span>
+    </div>
+
+    <figure>
+      <img src="../assets/blog/figma-ne-vmerla/cover.svg" alt="Figma vs Code - блог-обкладинка" />
+    </figure>
+
+    <p>Цього тижня вкотре чую: навіщо Figma, якщо є Claude Code.</p>
+
+    <p>Не зовсім.</p>
+
+    <p>Figma жива, поки треба думати. Як тільки переходиш у фазу шипінгу - вона стає бутилкою, в яку наливаєш дизайн перед тим, як перелити в код. Зайвий крок.</p>
+
+    <p>В мене зараз так. Скетчу в Figma. Як тільки розумію форму - йду в Claude Code, відкриваю компонент, переписую state, передивляюсь у браузері. Через 20 хвилин у мене PR на ревью, де engineer бачить не моки, а живі дифи в дизайн-системі. Він пингує "слухай, тут хеш від токена не сходиться з продом". Я перевіряю - дійсно, поплив <code>--bg-2</code> після останнього merge.</p>
+
+    <figure>
+      <img src="../assets/blog/figma-ne-vmerla/01.svg" alt="PR diff - один тред, один merge" />
+      <figcaption>Раніше це було б розмазано на тиждень. Тепер - один PR, один thread, один merge.</figcaption>
+    </figure>
+
+    <p>Що я НЕ роблю в коді. Не починаю проєкт у браузері. Не кидаю команді 800 рядків CSS і "нумо рев'юйте". Не граю в інженера. Я лишаюсь дизайнером, просто працюю там, де живуть мої артефакти.</p>
+
+    <h2>А де ж тоді PMs з їхньою Claude Design</h2>
+
+    <p>PMs які ставлять Figma на пенсію через AI - роблять помилку. Ось мій сусід-PM минулого тижня скинув мені дизайн з Claude Design. Круто ж, ПМ сам задизайнив, я не витрачаю час на міні-таску.</p>
+
+    <p>Але... в цьому дизайні вся логіка розвалюється. Ти видаляєш товар - дані просто стираються з бази в один клік, без можливості повернути. Тупо mismatch між тим, як виглядає UI, і тим, що відбувається в системі.</p>
+
+    <p>ПМ не став дизайнером. Навіть з роками "надивленості" на продукти. Людина далека від ІТ - тим паче. І це нормально.</p>
+
+    <h2>Висновок</h2>
+
+    <p>Figma не зайва. Зайвий - сам процес здавання PNG. Інструмент важливий лише там, де приймається рішення. Решта - має жити в коді.</p>
+
+    <p>Шипи там, де зростає продукт. Не там, де зручно показати скрін.</p>
+
+    <aside class="tg-cta" aria-label="Telegram channel">
+      <div class="tg-cta-tag" data-i18n="cta.tg.tag">TELEGRAM</div>
+      <p class="tg-cta-h" data-i18n="cta.tg.title">Більше такого - у Telegram.</p>
+      <p class="tg-cta-sub" data-i18n="cta.tg.body">Коротше, частіше, без штампів. Пости, які сюди не доходять.</p>
+      <a class="tg-cta-btn" href="https://t.me/+WhImivUyzWs1YTBi" target="_blank" rel="noopener noreferrer">
+        <span data-i18n="cta.tg.btn">Відкрити канал</span>
+        <span class="arr" aria-hidden="true">↗</span>
+      </a>
+    </aside>
+  </article>
+
+  <footer class="foot">
+    <div class="wrap">
+      <div class="foot-inner">
+        <div class="foot-left">
+          <span>SHAIN</span>
+          <span class="hair" aria-hidden="true"></span>
+          <span>© 2026 · Dmytro Shain</span>
+        </div>
+        <div class="foot-right">
+          <a href="../index.html#about" data-i18n="nav.about">About</a>
+          <a href="../index.html#portfolio" data-i18n="nav.portfolio">Portfolio</a>
+          <a href="./" data-i18n="nav.blog">Blog</a>
+          <a href="../index.html#contacts" data-i18n="nav.contacts">Contacts</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

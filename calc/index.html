@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#FFFDF5">
+<meta name="description" content="Скільки спеціалістів реально відповідає твоїм критеріям? І скільки компаній - твоїм мріям? Реальні дані DOU.ua, Djinni, Stack Overflow.">
+<meta property="og:title" content="Калькулятор ілюзій найму 🇺🇦">
+<meta property="og:description" content="Скільки таких насправді існує? І трохи правди для HR-ів та кандидатів.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shain.one/calc/">
+<meta property="og:site_name" content="shain.one">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@DimaShain">
+<link rel="canonical" href="https://shain.one/calc/">
+<title>Калькулятор ілюзій найму - IT Україна</title>
+
+<!-- Microsoft Clarity (inherits shain.one analytics setup) -->
+<script src="/assets/analytics.js" defer></script>
+
+<!-- Brutalism favicon: yellow square with black border + % -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' fill='%23FFD93D' stroke='%230A0A0A' stroke-width='6'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-family='monospace' font-size='38' font-weight='900' fill='%230A0A0A'%3E%25%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23FFD93D'/%3E%3Crect x='6' y='6' width='52' height='52' fill='none' stroke='%230A0A0A' stroke-width='6'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-family='monospace' font-size='38' font-weight='900' fill='%230A0A0A'%3E%25%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFDF5;
+    --fg: #0A0A0A;
+    --paper: #FFFFFF;
+    --paper-2: #FFF6D9;
+    --muted: #5b5b5b;
+    --border: #0A0A0A;
+    --shadow: #0A0A0A;
+    --yellow: #FFD93D;
+    --pink: #FF3EA5;
+    --red: #FF6B6B;
+    --lime: #C6FF00;
+    --cyan: #00E5FF;
+    --violet: #C7B8FF;
+    --bw: 4px;             /* border width */
+    --sh: 6px;             /* shadow offset */
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: -1px -1px;
+    background-attachment: fixed;
+    background-blend-mode: normal;
+  }
+  /* tone down grid */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    opacity: 0.94;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 28px 22px 100px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* HEADER */
+  header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 48px;
+    gap: 12px;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--yellow);
+    color: var(--fg);
+    border: var(--bw) solid var(--border);
+    padding: 8px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    box-shadow: var(--sh) var(--sh) 0 var(--shadow);
+    transform: rotate(-1.5deg);
+  }
+
+  /* BADGE */
+  .badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--fg);
+    background: var(--lime);
+    padding: 8px 14px;
+    border: var(--bw) solid var(--border);
+    margin-bottom: 28px;
+    box-shadow: 4px 4px 0 var(--shadow);
+    transform: rotate(0.6deg);
+  }
+
+  /* HERO */
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(48px, 11vw, 104px);
+    font-weight: 700;
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  h1 em {
+    font-style: normal;
+    background: var(--pink);
+    color: var(--bg);
+    padding: 0 16px;
+    display: inline-block;
+    border: var(--bw) solid var(--border);
+    box-shadow: var(--sh) var(--sh) 0 var(--shadow);
+    transform: rotate(-1deg);
+    margin-top: 8px;
+  }
+  .subtitle {
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--fg);
+    max-width: 580px;
+    margin-bottom: 10px;
+  }
+  .subtitle-emoji {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 44px;
+    font-weight: 500;
+  }
+
+  /* TABS */
+  .tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .tab {
+    background: var(--paper);
+    border: var(--bw) solid var(--border);
+    padding: 18px 16px;
+    cursor: pointer;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--fg);
+    text-align: left;
+    box-shadow: var(--sh) var(--sh) 0 var(--shadow);
+    transition: transform 120ms, box-shadow 120ms, background 120ms;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+  }
+  .tab:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: calc(var(--sh) + 2px) calc(var(--sh) + 2px) 0 var(--shadow);
+  }
+  .tab.active {
+    background: var(--cyan);
+    transform: translate(var(--sh), var(--sh));
+    box-shadow: 0 0 0 var(--shadow);
+  }
+
+  /* CARD */
+  .card {
+    background: var(--paper);
+    border: var(--bw) solid var(--border);
+    padding: 28px 26px;
+    margin-bottom: 22px;
+    box-shadow: var(--sh) var(--sh) 0 var(--shadow);
+  }
+  .field { margin-bottom: 26px; }
+  .field:last-child { margin-bottom: 0; }
+  .label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--fg);
+    margin-bottom: 12px;
+  }
+  .label-value {
+    float: right;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--fg);
+    font-weight: 800;
+    background: var(--yellow);
+    padding: 2px 8px;
+    border: 2px solid var(--border);
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  /* SELECT */
+  select {
+    width: 100%;
+    padding: 14px 16px;
+    background: var(--bg);
+    border: var(--bw) solid var(--border);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--fg);
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='10' viewBox='0 0 14 10'%3E%3Cpath fill='black' d='M7 10L0 0h14z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    box-shadow: 3px 3px 0 var(--shadow);
+    transition: transform 120ms, box-shadow 120ms;
+  }
+  select:focus {
+    outline: none;
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 var(--shadow);
+  }
+
+  /* PILLS */
+  .pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .pill {
+    background: var(--paper);
+    border: 3px solid var(--border);
+    padding: 10px 16px;
+    cursor: pointer;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--fg);
+    box-shadow: 3px 3px 0 var(--shadow);
+    transition: transform 120ms, box-shadow 120ms, background 120ms;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .pill:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 var(--shadow);
+  }
+  .pill.active {
+    background: var(--yellow);
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 var(--shadow);
+  }
+
+  /* RANGE */
+  input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    margin: 8px 0 2px;
+    height: 28px;
+  }
+  input[type="range"]::-webkit-slider-runnable-track {
+    background: var(--paper);
+    border: 3px solid var(--border);
+    height: 14px;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background: var(--pink);
+    height: 28px;
+    width: 28px;
+    margin-top: -10px;
+    border: 3px solid var(--border);
+    box-shadow: 3px 3px 0 var(--shadow);
+  }
+  input[type="range"]::-moz-range-track {
+    background: var(--paper);
+    border: 3px solid var(--border);
+    height: 14px;
+  }
+  input[type="range"]::-moz-range-thumb {
+    background: var(--pink);
+    height: 28px;
+    width: 28px;
+    border: 3px solid var(--border);
+    box-shadow: 3px 3px 0 var(--shadow);
+  }
+
+  /* TOGGLES */
+  .toggles {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .toggle {
+    background: var(--paper);
+    border: 3px solid var(--border);
+    padding: 9px 14px;
+    cursor: pointer;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--fg);
+    box-shadow: 3px 3px 0 var(--shadow);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: transform 120ms, box-shadow 120ms, background 120ms;
+  }
+  .toggle:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 var(--shadow);
+  }
+  .toggle.active {
+    background: var(--lime);
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 var(--shadow);
+  }
+  .toggle.active::before {
+    content: "✕";
+    font-weight: 900;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* RESULT */
+  .result-card {
+    background: var(--paper);
+    border: var(--bw) solid var(--border);
+    padding: 0;
+    margin-top: 8px;
+    box-shadow: 10px 10px 0 var(--shadow);
+    position: relative;
+    overflow: hidden;
+    transform: rotate(-0.4deg);
+  }
+  .result-percent-wrap {
+    background: var(--yellow);
+    border-bottom: var(--bw) solid var(--border);
+    padding: 28px 26px 22px;
+    text-align: center;
+    position: relative;
+  }
+  .result-percent-wrap::before {
+    content: "RESULT";
+    position: absolute;
+    top: 10px;
+    left: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    color: var(--fg);
+    opacity: 0.6;
+  }
+  .percent {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(72px, 18vw, 144px);
+    font-weight: 800;
+    color: var(--fg);
+    letter-spacing: -0.05em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    word-break: break-all;
+  }
+  .result-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--fg);
+    max-width: 440px;
+    margin: 14px auto 0;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .result-body { padding: 26px 26px 24px; text-align: center; }
+  .result-absolute {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--fg);
+    background: var(--bg);
+    border: 3px solid var(--border);
+    display: inline-block;
+    padding: 8px 14px;
+    margin-bottom: 22px;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+  .quip {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(16px, 3.4vw, 22px);
+    line-height: 1.25;
+    color: var(--fg);
+    max-width: 520px;
+    margin: 0 auto;
+    padding-top: 22px;
+    border-top: 3px dashed var(--border);
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+  }
+  .data-note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-top: 20px;
+  }
+
+  /* FOOTER */
+  footer {
+    margin-top: 72px;
+    padding-top: 36px;
+    border-top: var(--bw) solid var(--border);
+  }
+  footer h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin-bottom: 22px;
+    display: inline-block;
+    background: var(--violet);
+    color: var(--fg);
+    padding: 4px 14px;
+    border: var(--bw) solid var(--border);
+    box-shadow: 5px 5px 0 var(--shadow);
+    transform: rotate(-0.8deg);
+  }
+  footer .badge {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    margin-top: 4px;
+    margin-bottom: 28px;
+  }
+  .sources {
+    list-style: none;
+    margin-bottom: 36px;
+    display: grid;
+    gap: 10px;
+  }
+  .sources li {
+    background: var(--paper);
+    border: 3px solid var(--border);
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--fg);
+    box-shadow: 4px 4px 0 var(--shadow);
+    transition: transform 120ms, box-shadow 120ms;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .sources li:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px 0 var(--shadow);
+  }
+  .sources a {
+    color: var(--fg);
+    text-decoration: none;
+    flex: 1;
+    min-width: 0;
+  }
+  .sources a:hover { text-decoration: underline; }
+  .sources .year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--fg);
+    background: var(--cyan);
+    padding: 3px 8px;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+  }
+  .footer-note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.7;
+    font-weight: 500;
+  }
+  .footer-note .heart { color: var(--pink); font-size: 14px; }
+
+  .disclaimer {
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 2px dashed var(--border);
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .disclaimer-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .disclaimer-label::before,
+  .disclaimer-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    opacity: 0.3;
+    max-width: 60px;
+  }
+  .disclaimer p {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--muted);
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .disclaimer p:last-child { margin-bottom: 0; }
+  .disclaimer p b { color: var(--fg); font-weight: 700; }
+
+  [hidden] { display: none !important; }
+
+  /* ============================================================
+     SOCIAL DOCK - vertical floating, brutalism
+     ============================================================ */
+  .dock {
+    position: fixed;
+    right: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .dock-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    background: var(--paper);
+    border: 3px solid var(--border);
+    box-shadow: 4px 4px 0 var(--shadow);
+    color: var(--fg);
+    text-decoration: none;
+    transition: transform 120ms, box-shadow 120ms, background 120ms, color 120ms;
+  }
+  .dock-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--shadow);
+  }
+  .dock-btn:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 var(--shadow);
+  }
+  .dock-btn svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+    fill: currentColor;
+  }
+  .dock-btn[data-acc="cyan"]:hover   { background: var(--cyan); }
+  .dock-btn[data-acc="pink"]:hover   { background: var(--pink); color: var(--bg); }
+  .dock-btn[data-acc="lime"]:hover   { background: var(--lime); }
+  .dock-btn[data-acc="yellow"]:hover { background: var(--yellow); }
+
+  /* Tooltip on hover (desktop only) */
+  .dock-tip {
+    position: absolute;
+    right: calc(100% + 12px);
+    top: 50%;
+    transform: translateY(-50%) translateX(6px);
+    background: var(--fg);
+    color: var(--bg);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 6px 10px;
+    border: 2px solid var(--border);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 120ms ease, transform 120ms ease;
+  }
+  .dock-btn:hover .dock-tip {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+  .dock-tip::after {
+    content: "";
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    margin-top: -4px;
+    border: 4px solid transparent;
+    border-left-color: var(--fg);
+  }
+
+  /* TABLET - shrink dock so it doesn't crowd content */
+  @media (max-width: 1024px) {
+    .dock { right: 14px; gap: 8px; }
+    .dock-btn { width: 46px; height: 46px; }
+    .dock-btn svg { width: 19px; height: 19px; }
+  }
+
+  /* MOBILE - tablets and small laptops */
+  @media (max-width: 600px) {
+    :root { --sh: 5px; --bw: 3px; }
+    .container { padding: 22px 14px 100px; }
+    .card { padding: 22px 18px; }
+    h1 { font-size: clamp(40px, 11vw, 56px); }
+    .tabs { grid-template-columns: 1fr; gap: 10px; }
+    .tab { padding: 16px 14px; font-size: 15px; }
+    .brand { font-size: 11px; padding: 6px 10px; letter-spacing: 0; }
+    .result-percent-wrap { padding: 24px 18px 18px; }
+    .result-body { padding: 22px 18px 22px; }
+    footer { margin-top: 56px; padding-top: 28px; }
+    footer h3 { font-size: 24px; }
+    .sources li { flex-wrap: wrap; padding: 12px 14px; }
+    .label { font-size: 10px; letter-spacing: 0.08em; }
+    .label-value { font-size: 12px; padding: 2px 6px; }
+    .field { margin-bottom: 22px; }
+    .quip { padding-top: 18px; }
+    .data-note { font-size: 9px; letter-spacing: 0.08em; }
+
+    /* Dock -> horizontal floating bar at bottom */
+    .dock {
+      right: 50%;
+      top: auto;
+      bottom: 14px;
+      transform: translateX(50%);
+      flex-direction: row;
+      background: var(--paper);
+      border: 3px solid var(--border);
+      padding: 6px;
+      gap: 6px;
+      box-shadow: 5px 5px 0 var(--shadow);
+    }
+    .dock-btn {
+      width: 42px;
+      height: 42px;
+      box-shadow: none;
+      border-width: 2px;
+    }
+    .dock-btn:hover, .dock-btn:active {
+      transform: none;
+      box-shadow: none;
+    }
+    .dock-tip { display: none; }
+  }
+
+  /* MOBILE - small phones (iPhone SE / Galaxy S8) */
+  @media (max-width: 380px) {
+    .container { padding: 18px 12px 90px; }
+    .dock { padding: 5px; gap: 5px; }
+    .dock-btn { width: 38px; height: 38px; }
+    .dock-btn svg { width: 17px; height: 17px; }
+    .card { padding: 18px 14px; }
+    h1 { font-size: 38px; line-height: 0.95; margin-bottom: 18px; }
+    h1 em { padding: 0 12px; margin-top: 6px; }
+    .subtitle { font-size: 17px; }
+    .subtitle-emoji { font-size: 14px; margin-bottom: 32px; }
+    .tab { padding: 14px 12px; font-size: 14px; }
+    .pill { padding: 8px 12px; font-size: 12px; }
+    .toggle { padding: 7px 11px; font-size: 12px; }
+    .percent { font-size: clamp(56px, 17vw, 84px); }
+    .result-label { font-size: 12px; }
+    .result-absolute { font-size: 12px; padding: 6px 10px; }
+    .quip { font-size: 15px; padding-top: 16px; }
+    .badge { font-size: 10px; padding: 6px 10px; }
+    .brand { font-size: 10px; padding: 5px 9px; }
+    footer h3 { font-size: 20px; }
+    .sources li { font-size: 13px; padding: 10px 12px; }
+    .sources .year { font-size: 11px; padding: 2px 6px; }
+  }
+
+  /* REDUCED MOTION */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      transition: none !important;
+    }
+    .brand, .badge, h1 em, .result-card, footer h3 { transform: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     SOCIAL DOCK
+============================================================ -->
+<aside class="dock" aria-label="Соцмережі">
+  <a href="https://t.me/+N-hwT9yTdyVjZjAy" target="_blank" rel="noopener" class="dock-btn" data-acc="cyan" aria-label="Telegram для дизайнерів">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.94 4.55L18.6 20.45c-.26 1.1-.91 1.38-1.82.87l-4.87-3.59-2.36 2.28c-.24.24-.45.46-.94.46l.34-4.9 8.9-8.05c.38-.35-.09-.54-.6-.19l-11 6.93-4.75-1.48c-1.04-.32-1.06-1.03.22-1.53L20.59 3.96c.86-.34 1.62.17 1.35.59z"/></svg>
+    <span class="dock-tip">TG / Дизайнерам</span>
+  </a>
+  <a href="https://x.com/DimaShain" target="_blank" rel="noopener" class="dock-btn" data-acc="pink" aria-label="X / Twitter">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.451-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+    <span class="dock-tip">@DimaShain</span>
+  </a>
+  <a href="https://www.linkedin.com/in/dmytro-shain/" target="_blank" rel="noopener" class="dock-btn" data-acc="lime" aria-label="LinkedIn">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43c-1.14 0-2.07-.93-2.07-2.07s.93-2.07 2.07-2.07 2.07.93 2.07 2.07-.93 2.07-2.07 2.07zM7.12 20.45H3.55V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .78 0 1.74v20.52C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0z"/></svg>
+    <span class="dock-tip">LinkedIn</span>
+  </a>
+  <a href="https://shain.one" target="_blank" rel="noopener" class="dock-btn" data-acc="yellow" aria-label="shain.one">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 3.8 9 14 14 0 0 1-3.8 9 14 14 0 0 1-3.8-9 14 14 0 0 1 3.8-9z"/></svg>
+    <span class="dock-tip">shain.one</span>
+  </a>
+</aside>
+
+<div class="container">
+
+  <header>
+    <span class="brand">🇺🇦 HiringCalc / IT UA</span>
+  </header>
+
+  <h1>Калькулятор<br><em>ілюзій найму</em></h1>
+  <p class="subtitle">Скільки таких спеціалістів реально існує? Скільки компаній відповідає твоїм мріям?</p>
+  <p class="subtitle-emoji">Реальні дані ринку - і трохи правди, яку ніхто не хоче чути.</p>
+
+  <div class="tabs" role="tablist">
+    <button class="tab active" data-tab="hr">🏢 Шукаю кандидата</button>
+    <button class="tab" data-tab="candidate">🧑‍💻 Шукаю роботу</button>
+  </div>
+
+  <!-- HR TAB -->
+  <section id="tab-hr">
+    <div class="card">
+
+      <div class="field">
+        <label class="label">Кого шукаєш</label>
+        <select id="hr-role">
+          <option value="frontend">Frontend Developer</option>
+          <option value="backend">Backend Developer</option>
+          <option value="fullstack">Fullstack Developer</option>
+          <option value="uxui">UI/UX Designer</option>
+          <option value="product">Product Designer</option>
+          <option value="graphic">Graphic / Motion Designer</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label class="label">Грейд</label>
+        <div class="pills" id="hr-grade">
+          <button class="pill" data-value="junior">Junior</button>
+          <button class="pill active" data-value="middle">Middle</button>
+          <button class="pill" data-value="senior">Senior</button>
+          <button class="pill" data-value="lead">Lead / Principal</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">
+          Бюджет (нетто, $/міс)
+          <span class="label-value" id="hr-salary-val">$2000</span>
+        </label>
+        <input type="range" id="hr-salary" min="300" max="8000" step="50" value="2000">
+      </div>
+
+      <div class="field">
+        <label class="label">Англійська</label>
+        <div class="pills" id="hr-english">
+          <button class="pill" data-value="any">Будь-яка</button>
+          <button class="pill active" data-value="upper">Upper-Intermediate+</button>
+          <button class="pill" data-value="advanced">Advanced / Native</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Особисті якості</label>
+        <div class="toggles" id="hr-soft"></div>
+      </div>
+
+      <div class="field">
+        <label class="label" id="hr-stack-label">Стек і експертиза</label>
+        <div class="toggles" id="hr-stack"></div>
+      </div>
+
+    </div>
+
+    <div class="result-card">
+      <div class="result-percent-wrap">
+        <div class="percent" id="hr-percent">-</div>
+        <p class="result-label">українських спеціалістів відповідають критеріям</p>
+      </div>
+      <div class="result-body">
+        <p class="result-absolute" id="hr-absolute">-</p>
+        <p class="quip" id="hr-quip">Налаштуй критерії - побачимо, чи існує така людина</p>
+        <p class="data-note" id="hr-source">DATA: DOU WINTER 2026</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CANDIDATE TAB -->
+  <section id="tab-candidate" hidden>
+    <div class="card">
+
+      <div class="field">
+        <label class="label">Ти хто</label>
+        <select id="cd-role">
+          <option value="frontend">Frontend Developer</option>
+          <option value="backend">Backend Developer</option>
+          <option value="fullstack">Fullstack Developer</option>
+          <option value="uxui">UI/UX Designer</option>
+          <option value="product">Product Designer</option>
+          <option value="graphic">Graphic / Motion Designer</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label class="label">Твій грейд</label>
+        <div class="pills" id="cd-grade">
+          <button class="pill" data-value="junior">Junior</button>
+          <button class="pill active" data-value="middle">Middle</button>
+          <button class="pill" data-value="senior">Senior</button>
+          <button class="pill" data-value="lead">Lead / Principal</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">
+          Хочу від (нетто, $/міс)
+          <span class="label-value" id="cd-salary-val">$3500</span>
+        </label>
+        <input type="range" id="cd-salary" min="500" max="10000" step="100" value="3500">
+      </div>
+
+      <div class="field">
+        <label class="label">А ще щоб компанія...</label>
+        <div class="toggles" id="cd-extras">
+          <button class="toggle" data-key="full_remote">100% віддалена робота</button>
+          <button class="toggle" data-key="no_oncall">Без on-call</button>
+          <button class="toggle" data-key="modern_stack">Без legacy у стеку</button>
+          <button class="toggle" data-key="stock">Опціон / equity</button>
+          <button class="toggle" data-key="eng_team">Англомовна команда</button>
+          <button class="toggle" data-key="flex_hours">Гнучкий графік</button>
+          <button class="toggle" data-key="no_overtime">Без переробок</button>
+          <button class="toggle" data-key="no_microman">Без мікроменеджменту</button>
+          <button class="toggle" data-key="four_day">4-денний тиждень</button>
+          <button class="toggle" data-key="paid_education">Оплачує навчання</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="result-card">
+      <div class="result-percent-wrap">
+        <div class="percent" id="cd-percent">-</div>
+        <p class="result-label">українських IT-компаній відповідають критеріям</p>
+      </div>
+      <div class="result-body">
+        <p class="result-absolute" id="cd-absolute">-</p>
+        <p class="quip" id="cd-quip">Постав свої побажання - побачимо скільки таких компаній існує</p>
+        <p class="data-note">DATA: ~5000 IT COMPANIES UA</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <h3>Джерела даних</h3>
+    <span class="badge">DOU · Djinni · Stack Overflow · Figma AI · 2025</span>
+    <ul class="sources">
+      <li><a href="https://dou.ua/lenta/articles/salary-report-devs-winter-2026/" target="_blank" rel="noopener">DOU - Зарплати українських розробників, зима 2026</a><span class="year">2025-26</span></li>
+      <li><a href="https://dou.ua/lenta/articles/salary-report-non-tech-winter-2026/" target="_blank" rel="noopener">DOU - Зарплати дизайнерів та нетехнічних фахівців, зима 2026</a><span class="year">2025-26</span></li>
+      <li><a href="https://djinni.co/salaries/" target="_blank" rel="noopener">Djinni - статистика зарплат та активних кандидатів</a><span class="year">2025</span></li>
+      <li><a href="https://blog.djinni.co/post/frontend-market-2025" target="_blank" rel="noopener">Djinni - ринок праці для JavaScript-розробників (12k кандидатів / 300 вакансій)</a><span class="year">2025</span></li>
+      <li><a href="https://survey.stackoverflow.co/2025/ai/" target="_blank" rel="noopener">Stack Overflow Developer Survey - AI tools adoption</a><span class="year">2025</span></li>
+      <li><a href="https://www.figma.com/blog/figma-2025-ai-report-perspectives/" target="_blank" rel="noopener">Figma AI Report - designers' AI adoption (31% in core work)</a><span class="year">2025</span></li>
+    </ul>
+    <p class="footer-note">
+      Зроблено з <span class="heart">♥</span> та легкої іронії · Дані для розваги, не для звільнень<br>
+      Цифри - апроксимації на основі публічних звітів. Розкид зарплат береться як медіана + квартилі.
+    </p>
+
+    <div class="disclaimer">
+      <div class="disclaimer-label">Disclaimer · Privacy</div>
+      <p>Цей сайт - <b>сатиричний side-project</b>, створений виключно для розваги. Не є дослідженням, оцінкою ринку, кар'єрною порадою чи рекомендацією щодо найму, звільнення або зарплат.</p>
+      <p>Бренди <b>DOU.ua, Djinni, Stack Overflow, Figma, GitHub, Cursor</b> та інші згадані тут належать їх власникам. Посилання на джерела використано виключно з метою цитування першоджерел. Жодних партнерств або афіляцій немає.</p>
+      <p>Сайт використовує <b>Microsoft Clarity</b> для анонімної аналітики поведінки (heatmaps, session replays без PII). Шрифти підвантажуються з <b>Google Fonts</b> - Google може логувати IP за своєю політикою. Жодних форм, реєстрації чи персональних даних калькулятор не збирає і не зберігає.</p>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+// ============ DATA ============
+// All salary numbers in USD (net), based on DOU winter 2026
+const ROLES = {
+  frontend: {
+    label: "Frontend",
+    poolUA: 25000,
+    gradeDistribution: { junior: 0.20, middle: 0.42, senior: 0.30, lead: 0.08 },
+    salary: {
+      junior: { p25: 650, p50: 900, p75: 1200 },
+      middle: { p25: 2000, p50: 2500, p75: 3100 },
+      senior: { p25: 3500, p50: 4400, p75: 5500 },
+      lead:   { p25: 5000, p50: 6000, p75: 7500 }
+    },
+    aiDaily: 0.51,
+    aiFiveTools: 0.10,
+    english: { upper: 0.62, advanced: 0.18 }
+  },
+  backend: {
+    label: "Backend",
+    poolUA: 38000,
+    gradeDistribution: { junior: 0.15, middle: 0.40, senior: 0.35, lead: 0.10 },
+    salary: {
+      junior: { p25: 750, p50: 1000, p75: 1350 },
+      middle: { p25: 2100, p50: 2550, p75: 3200 },
+      senior: { p25: 3800, p50: 4800, p75: 6000 },
+      lead:   { p25: 5200, p50: 6300, p75: 8000 }
+    },
+    aiDaily: 0.51, aiFiveTools: 0.10,
+    english: { upper: 0.62, advanced: 0.18 }
+  },
+  fullstack: {
+    label: "Fullstack",
+    poolUA: 18000,
+    gradeDistribution: { junior: 0.18, middle: 0.42, senior: 0.30, lead: 0.10 },
+    salary: {
+      junior: { p25: 700, p50: 950, p75: 1300 },
+      middle: { p25: 2050, p50: 2500, p75: 3200 },
+      senior: { p25: 3600, p50: 4500, p75: 5700 },
+      lead:   { p25: 5100, p50: 6100, p75: 7700 }
+    },
+    aiDaily: 0.55, aiFiveTools: 0.12,
+    english: { upper: 0.60, advanced: 0.18 }
+  },
+  uxui: {
+    label: "UI/UX Designer",
+    poolUA: 8500,
+    gradeDistribution: { junior: 0.25, middle: 0.40, senior: 0.28, lead: 0.07 },
+    salary: {
+      junior: { p25: 600, p50: 800, p75: 1100 },
+      middle: { p25: 1400, p50: 1730, p75: 2200 },
+      senior: { p25: 2600, p50: 3300, p75: 4000 },
+      lead:   { p25: 3500, p50: 4500, p75: 6000 }
+    },
+    aiDaily: 0.31,
+    aiFiveTools: 0.07,
+    english: { upper: 0.55, advanced: 0.15 }
+  },
+  product: {
+    label: "Product Designer",
+    poolUA: 6000,
+    gradeDistribution: { junior: 0.10, middle: 0.35, senior: 0.42, lead: 0.13 },
+    salary: {
+      junior: { p25: 900, p50: 1200, p75: 1600 },
+      middle: { p25: 1900, p50: 2350, p75: 3000 },
+      senior: { p25: 2800, p50: 3500, p75: 4500 },
+      lead:   { p25: 4000, p50: 5000, p75: 6500 }
+    },
+    aiDaily: 0.40, aiFiveTools: 0.12,
+    english: { upper: 0.73, advanced: 0.25 }
+  },
+  graphic: {
+    label: "Graphic / Motion Designer",
+    poolUA: 3500,
+    gradeDistribution: { junior: 0.31, middle: 0.40, senior: 0.24, lead: 0.05 },
+    salary: {
+      junior: { p25: 500, p50: 700, p75: 950 },
+      middle: { p25: 1200, p50: 1570, p75: 2100 },
+      senior: { p25: 2000, p50: 2600, p75: 3400 },
+      lead:   { p25: 3000, p50: 3800, p75: 5000 }
+    },
+    aiDaily: 0.50,
+    aiFiveTools: 0.18,
+    english: { upper: 0.40, advanced: 0.10 }
+  }
+};
+
+// ============ EXTRAS — split into common "soft" + role-specific "stack" ============
+// Probabilities are calibrated estimates: % of UA market candidates per role
+// matching each criterion. Sources: Djinni stack stats (React 65%, TS 42%),
+// SO Survey 2025 (AI daily 51%), Figma AI Report (31% designers core AI work).
+
+const SOFT_EXTRAS = [
+  { key: "ai_daily",      label: "AI у дейлі-роботі",          p: r => r.aiDaily },
+  { key: "ai_5tools",     label: "Знає 5+ AI-інструментів",    p: r => r.aiFiveTools },
+  { key: "no_burnout",    label: "Не вигорів",                 p: () => 0.40 },
+  { key: "available_now", label: "Готовий вийти за 2 тижні",   p: () => 0.25 }
+];
+
+const STACK_EXTRAS = {
+  frontend: [
+    { key: "react",          label: "React на проді",                         p: () => 0.65 },
+    { key: "typescript",     label: "TypeScript на проді",                    p: () => 0.42 },
+    { key: "next_app",       label: "Next.js (App Router)",                   p: () => 0.22 },
+    { key: "react_native",   label: "+ React Native",                         p: () => 0.10 },
+    { key: "tests",          label: "Пише тести (Jest/Playwright)",           p: () => 0.28 },
+    { key: "design_sense",   label: "Має дизайн-сенс",                        p: () => 0.18 },
+    { key: "perf",           label: "Performance / Core Web Vitals expert",   p: () => 0.15 }
+  ],
+  backend: [
+    { key: "nodejs",         label: "Node.js на проді",                       p: () => 0.32 },
+    { key: "python",         label: "Python на проді",                        p: () => 0.30 },
+    { key: "go_rust",        label: "Go або Rust",                            p: () => 0.12 },
+    { key: "microservices",  label: "Мікросервіси 2+ роки",                   p: () => 0.38 },
+    { key: "k8s",            label: "Kubernetes на проді",                    p: () => 0.22 },
+    { key: "system_design",  label: "System Design Senior+",                  p: () => 0.30 },
+    { key: "sql_nosql",      label: "Sql + NoSql обидва",                     p: () => 0.45 }
+  ],
+  fullstack: [
+    { key: "react_node",     label: "React + Node на одному проєкті",         p: () => 0.35 },
+    { key: "next_fs",        label: "Next.js full-stack (Server Actions)",    p: () => 0.18 },
+    { key: "ts_e2e",         label: "TypeScript end-to-end",                  p: () => 0.32 },
+    { key: "devops",         label: "Docker / CI / основи DevOps",            p: () => 0.30 },
+    { key: "solo_deploy",    label: "Деплоїв продакшн соло",                  p: () => 0.22 },
+    { key: "db_design",      label: "Проєктує БД з нуля",                     p: () => 0.30 }
+  ],
+  uxui: [
+    { key: "figma_pro",      label: "Figma на pro (variables / AL / components)", p: () => 0.38 },
+    { key: "design_systems", label: "Будував DS",                             p: () => 0.22 },
+    { key: "research",       label: "Робив user research",                    p: () => 0.30 },
+    { key: "prototype",      label: "Прототипи у Framer",                     p: () => 0.20 },
+    { key: "design_eng",     label: "Design engineer (HTML / CSS / React)",   p: () => 0.10 },
+    { key: "cursor_design",  label: "Юзає Cursor / Claude Code",              p: () => 0.08 },
+    { key: "management",     label: "Лідив команду 2+ дизайнерів",            p: () => 0.15 }
+  ],
+  product: [
+    { key: "figma_pro",      label: "Figma на pro",                           p: () => 0.55 },
+    { key: "discovery",      label: "Discovery + delivery з нуля",            p: () => 0.40 },
+    { key: "data_driven",    label: "Юзає Amplitude / Mixpanel",              p: () => 0.32 },
+    { key: "b2b_saas",       label: "B2B / SaaS досвід 3+ роки",              p: () => 0.45 },
+    { key: "design_eng",     label: "Design engineer (vibe-кодить прототипи)", p: () => 0.12 },
+    { key: "cursor_design",  label: "Юзає Cursor / Claude Code",              p: () => 0.10 },
+    { key: "management",     label: "Менторив 3+ дизайнерів",                 p: () => 0.22 }
+  ],
+  graphic: [
+    { key: "ae_pro",         label: "After Effects advanced",                 p: () => 0.45 },
+    { key: "3d",             label: "3D (Blender / C4D)",                     p: () => 0.18 },
+    { key: "gen_ai",         label: "Midjourney / SD / Runway щодня",         p: () => 0.55 },
+    { key: "branding",       label: "Брендинг від А до Я",                    p: () => 0.30 },
+    { key: "illustration",   label: "Сильна ілюстрація",                      p: () => 0.25 },
+    { key: "typography",     label: "Advanced типографіка",                   p: () => 0.30 }
+  ]
+};
+
+function getHRExtraP(roleKey, key) {
+  const role = ROLES[roleKey];
+  const all = [...SOFT_EXTRAS, ...STACK_EXTRAS[roleKey]];
+  const x = all.find(e => e.key === key);
+  return x ? x.p(role) : 1;
+}
+
+const COMPANY_POOL = 5000;
+
+const COMPANY_EXTRAS = {
+  full_remote:    0.55,
+  no_oncall:      0.45,
+  modern_stack:   0.30,
+  stock:          0.08,
+  eng_team:       0.40,
+  flex_hours:     0.68,
+  no_overtime:    0.50,
+  no_microman:    0.55,
+  four_day:       0.04,
+  paid_education: 0.45
+};
+
+function pCompanySalary(role, grade, wanted) {
+  const s = role.salary[grade];
+  if (wanted <= s.p25 * 0.7) return 0.97;
+  if (wanted <= s.p25) return 0.97 - 0.22 * (wanted - s.p25 * 0.7) / Math.max(1, s.p25 * 0.3);
+  if (wanted <= s.p50) return 0.75 - 0.25 * (wanted - s.p25) / Math.max(1, s.p50 - s.p25);
+  if (wanted <= s.p75) return 0.50 - 0.25 * (wanted - s.p50) / Math.max(1, s.p75 - s.p50);
+  if (wanted <= s.p75 * 1.4) return 0.25 - 0.22 * (wanted - s.p75) / Math.max(1, s.p75 * 0.4);
+  return 0.02;
+}
+
+function pCandidateAccept(role, grade, offered) {
+  const s = role.salary[grade];
+  if (offered >= s.p75 * 1.25) return 0.97;
+  if (offered >= s.p75)      return 0.75 + 0.22 * (offered - s.p75) / Math.max(1, s.p75 * 0.25);
+  if (offered >= s.p50)      return 0.50 + 0.25 * (offered - s.p50) / Math.max(1, s.p75 - s.p50);
+  if (offered >= s.p25)      return 0.25 + 0.25 * (offered - s.p25) / Math.max(1, s.p50 - s.p25);
+  if (offered >= s.p25 * 0.6) return 0.05 + 0.20 * (offered - s.p25 * 0.6) / Math.max(1, s.p25 * 0.4);
+  return 0.01;
+}
+
+function pEnglish(role, level) {
+  if (level === "any") return 1;
+  if (level === "upper") return role.english.upper;
+  if (level === "advanced") return role.english.advanced;
+  return 1;
+}
+
+const state = {
+  hr: { role: "frontend", grade: "middle", salary: 2000, english: "upper", extras: new Set() },
+  cd: { role: "frontend", grade: "middle", salary: 3500, extras: new Set() }
+};
+
+function calcHR() {
+  const r = ROLES[state.hr.role];
+  const gradeShare = r.gradeDistribution[state.hr.grade];
+  const pSal = pCandidateAccept(r, state.hr.grade, state.hr.salary);
+  const pEng = pEnglish(r, state.hr.english);
+  let pExtras = 1;
+  state.hr.extras.forEach(k => { pExtras *= getHRExtraP(state.hr.role, k); });
+  const fraction = gradeShare * pSal * pEng * pExtras;
+  const absolute = Math.round(r.poolUA * fraction);
+  return { fraction, absolute, poolUA: r.poolUA, role: r };
+}
+
+// ============ DYNAMIC EXTRAS RENDER ============
+function makeToggleHTML(e) {
+  const isActive = state.hr.extras.has(e.key);
+  return `<button class="toggle${isActive ? " active" : ""}" data-key="${e.key}">${e.label}</button>`;
+}
+
+function renderHRExtras() {
+  document.getElementById("hr-soft").innerHTML  = SOFT_EXTRAS.map(makeToggleHTML).join("");
+  document.getElementById("hr-stack").innerHTML = STACK_EXTRAS[state.hr.role].map(makeToggleHTML).join("");
+
+  // Adapt stack label to role
+  const isDev = ["frontend","backend","fullstack"].includes(state.hr.role);
+  const isDesigner = ["uxui","product","graphic"].includes(state.hr.role);
+  const lbl = document.getElementById("hr-stack-label");
+  if (isDev) lbl.textContent = "Стек і експертиза";
+  else if (isDesigner) lbl.textContent = "Інструменти і експертиза";
+  else lbl.textContent = "Стек і експертиза";
+}
+
+function calcCandidate() {
+  const r = ROLES[state.cd.role];
+  const gradeShare = r.gradeDistribution[state.cd.grade];
+  const roleCompanyShare = gradeShare;
+  const pSal = pCompanySalary(r, state.cd.grade, state.cd.salary);
+  let pExtras = 1;
+  state.cd.extras.forEach(k => { pExtras *= COMPANY_EXTRAS[k]; });
+  const fraction = 0.30 * roleCompanyShare * pSal * pExtras;
+  const absolute = Math.round(COMPANY_POOL * fraction);
+  return { fraction, absolute, role: r };
+}
+
+function formatPercent(f) {
+  const p = f * 100;
+  if (p >= 1)   return p.toFixed(1) + "%";
+  if (p >= 0.1) return p.toFixed(2) + "%";
+  if (p >= 0.01) return p.toFixed(3) + "%";
+  if (p > 0)    return "<0.01%";
+  return "0%";
+}
+
+function hrQuip(absolute, role, grade) {
+  if (absolute === 0) return `Таких людей не існує. Серйозно. Перевір припущення.`;
+  if (absolute === 1) return `Знайшли одного. Він уже в FAANG і не відповість на твоє повідомлення.`;
+  if (absolute < 5)   return `${absolute} людини на всю Україну. Усі вже зайняті. Підвищуй бюджет або зменшуй wishlist.`;
+  if (absolute < 20)  return `Реалістично знайти - за 6 місяців і пошук через знайомих.`;
+  if (absolute < 100) return `Кандидати є, але доведеться боротися з 3 іншими офертами.`;
+  if (absolute < 500) return `Цілком жива вакансія. Запости й чекай на 50 відгуків за тиждень.`;
+  return `Ринок повний таких людей. Чого ти ще не закрив цю вакансію? 🤔`;
+}
+
+function cdQuip(absolute, salary, role, grade) {
+  if (absolute === 0) return `Таких компаній в Україні немає. Шукай у Кремнієвій долині (туди теж не візьмуть).`;
+  if (absolute === 1) return `Одна компанія. Вже не наймає. Sorry.`;
+  if (absolute < 5)   return `${absolute} компаній. Усі вже заповнили позицію цього кварталу.`;
+  if (absolute < 20)  return `Шанс є. Підпиши усе на Djinni, оновлюй CV щотижня - за 4 місяці знайдеш.`;
+  if (absolute < 100) return `Реалістично. Готуй сильне портфоліо й англійську Upper+.`;
+  if (absolute < 500) return `Ринок твій. Чого ще не на офері?`;
+  return `Та ти просто хороший Middle, не вигадуй вимог. Шукай уже.`;
+}
+
+function renderHR() {
+  const { fraction, absolute, poolUA, role } = calcHR();
+  document.getElementById("hr-percent").textContent = formatPercent(fraction);
+  document.getElementById("hr-absolute").textContent =
+    `≈ ${absolute.toLocaleString("uk-UA")} людей з ${poolUA.toLocaleString("uk-UA")} ${role.label} в Україні`;
+  document.getElementById("hr-quip").textContent = hrQuip(absolute, role, state.hr.grade);
+  document.getElementById("hr-source").textContent = `база: DOU зима 2026 · ${role.label}`;
+  document.getElementById("hr-salary-val").textContent = "$" + state.hr.salary.toLocaleString("uk-UA");
+}
+
+function renderCD() {
+  const { fraction, absolute, role } = calcCandidate();
+  document.getElementById("cd-percent").textContent = formatPercent(fraction);
+  document.getElementById("cd-absolute").textContent =
+    `≈ ${absolute.toLocaleString("uk-UA")} компаній з ~${COMPANY_POOL.toLocaleString("uk-UA")} в IT-секторі України`;
+  document.getElementById("cd-quip").textContent = cdQuip(absolute, state.cd.salary, role, state.cd.grade);
+  document.getElementById("cd-salary-val").textContent = "$" + state.cd.salary.toLocaleString("uk-UA");
+}
+
+function bindPills(containerId, key, side, onChange) {
+  const c = document.getElementById(containerId);
+  c.addEventListener("click", e => {
+    const btn = e.target.closest(".pill");
+    if (!btn) return;
+    c.querySelectorAll(".pill").forEach(p => p.classList.remove("active"));
+    btn.classList.add("active");
+    state[side][key] = btn.dataset.value;
+    onChange();
+  });
+}
+
+function bindToggles(containerId, side, onChange) {
+  const c = document.getElementById(containerId);
+  c.addEventListener("click", e => {
+    const btn = e.target.closest(".toggle");
+    if (!btn) return;
+    const k = btn.dataset.key;
+    if (state[side].extras.has(k)) { state[side].extras.delete(k); btn.classList.remove("active"); }
+    else                            { state[side].extras.add(k);    btn.classList.add("active"); }
+    onChange();
+  });
+}
+
+// HR bindings
+document.getElementById("hr-role").addEventListener("change", e => {
+  state.hr.role = e.target.value;
+  const r = ROLES[state.hr.role];
+  const maxSal = Math.round(r.salary.lead.p75 * 1.4 / 100) * 100;
+  document.getElementById("hr-salary").max = maxSal;
+  if (state.hr.salary > maxSal) state.hr.salary = maxSal;
+  // Stack extras differ per role -> clear and rebuild
+  state.hr.extras.clear();
+  renderHRExtras();
+  renderHR();
+});
+bindPills("hr-grade", "grade", "hr", renderHR);
+bindPills("hr-english", "english", "hr", renderHR);
+bindToggles("hr-soft",  "hr", renderHR);
+bindToggles("hr-stack", "hr", renderHR);
+document.getElementById("hr-salary").addEventListener("input", e => {
+  state.hr.salary = +e.target.value;
+  renderHR();
+});
+
+// Candidate bindings
+document.getElementById("cd-role").addEventListener("change", e => {
+  state.cd.role = e.target.value;
+  const r = ROLES[state.cd.role];
+  const maxSal = Math.round(r.salary.lead.p75 * 1.6 / 100) * 100;
+  document.getElementById("cd-salary").max = maxSal;
+  renderCD();
+});
+bindPills("cd-grade", "grade", "cd", renderCD);
+bindToggles("cd-extras", "cd", renderCD);
+document.getElementById("cd-salary").addEventListener("input", e => {
+  state.cd.salary = +e.target.value;
+  renderCD();
+});
+
+// Tabs
+document.querySelectorAll(".tab").forEach(t => {
+  t.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
+    t.classList.add("active");
+    const tab = t.dataset.tab;
+    document.getElementById("tab-hr").hidden = tab !== "hr";
+    document.getElementById("tab-candidate").hidden = tab !== "candidate";
+  });
+});
+
+// First render
+renderHRExtras();
+renderHR();
+renderCD();
+</script>
+</body>
+</html>

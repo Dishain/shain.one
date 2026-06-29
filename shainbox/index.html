@@ -820,46 +820,120 @@
       border-top: 1px solid var(--line);
     }
     .price-block{
+      position: relative;
       border: 1px solid var(--line);
       background: var(--surface);
-      border-radius: var(--r-hero);
-      box-shadow: var(--shadow-card);
-      padding: 56px 48px;
+      border-radius: 28px;
+      box-shadow: var(--shadow-hero);
       display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 48px;
-      align-items: center;
+      grid-template-columns: 0.95fr 1.05fr;
+      overflow: hidden;
+      isolation: isolate;
     }
-    .price-num{
-      font-family: "Inter", ui-monospace, monospace;
-      font-size: clamp(72px, 9vw, 120px);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: var(--accent);
-      line-height: 0.9;
-      margin: 0 0 12px;
+    /* Left: gradient "aura" panel (price + CTA). Aura is inset ~4px on
+       top/left/bottom so a thin white frame shows, and fades to the right
+       into the white feature column. */
+    .price-left{
+      position: relative;
+      padding: 48px 44px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
-    .price-num .cents{
-      color: var(--text-secondary);
-      font-size: 0.4em;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-left: 10px;
-      vertical-align: middle;
+    .price-aura{
+      position: absolute;
+      top: 4px; left: 4px; bottom: 4px; right: 0;
+      border-radius: 22px 0 0 22px;
+      background:
+        radial-gradient(70% 50% at 26% 6%, rgba(122,150,255,0.55), transparent 60%),
+        radial-gradient(78% 56% at 34% 50%, rgba(255,193,120,0.62), transparent 62%),
+        radial-gradient(66% 48% at 30% 72%, rgba(255,138,158,0.45), transparent 66%);
+      background-size: 160% 160%;
+      background-repeat: no-repeat;
+      -webkit-mask-image: linear-gradient(90deg, #000 58%, transparent 100%);
+              mask-image: linear-gradient(90deg, #000 58%, transparent 100%);
+      z-index: 0;
+      pointer-events: none;
+      /* Gentle living shimmer — medium pace, eases back and forth. */
+      animation: auraDrift 12s ease-in-out infinite alternate;
+      will-change: background-position, filter;
     }
+    @keyframes auraDrift{
+      0%   { background-position:  8%   0%; filter: hue-rotate(-6deg) saturate(104%); }
+      100% { background-position: 92% 100%; filter: hue-rotate(10deg) saturate(116%); }
+    }
+    .price-left > :not(.price-aura){ position: relative; z-index: 1; }
     .price-tag{
       font-family: "Inter", ui-monospace, monospace;
       font-size: 11px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--text-disabled);
-      margin-bottom: 16px;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+    }
+    .price-num{
+      font-family: "Inter", ui-monospace, monospace;
+      font-size: clamp(56px, 6.5vw, 84px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text-display);
+      line-height: 0.92;
+      margin: 0 0 10px;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .price-num .cents{
+      color: var(--text-secondary);
+      font-size: 0.22em;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .price-sub{
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--text-primary);
+      margin: 0 0 28px;
+      max-width: 300px;
+    }
+    .price-cta{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 60px;
+      background: var(--ink-black);
+      color: var(--on-black);
+      border-radius: 16px;
+      text-decoration: none;
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+      transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+    }
+    .price-cta:hover{ transform: translateY(-1px); box-shadow: 0 14px 32px rgba(0,0,0,0.26); }
+    .price-foot{
+      margin-top: 16px;
+      align-self: center;
+      font-family: "Inter", ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--text-secondary);
+    }
+    /* Right: feature list on white */
+    .price-right{
+      padding: 44px 44px 44px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     .price-list{
       list-style: none;
       padding: 0;
       margin: 0;
-      border-top: 1px solid var(--line);
     }
     .price-list li{
       display: flex;
@@ -872,19 +946,12 @@
       font-size: 15px;
       color: var(--text-primary);
     }
+    .price-list li:last-child{ border-bottom: 0; }
     .price-list li .bul{
-      width: 5px; height: 5px;
+      width: 6px; height: 6px;
       border-radius: 999px;
       background: var(--accent);
       flex-shrink: 0;
-    }
-    .price-foot{
-      margin-top: 24px;
-      font-family: "Inter", ui-monospace, monospace;
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-disabled);
     }
 
     /* ============================================================
@@ -1175,7 +1242,15 @@
         padding: 48px 0;
       }
 
-      .price-block{ grid-template-columns: 1fr; padding: 36px 24px; gap: 32px; }
+      .price-block{ grid-template-columns: 1fr; }
+      .price-left{ padding: 36px 28px; }
+      .price-right{ padding: 8px 28px 36px; }
+      .price-aura{
+        top: 4px; left: 4px; right: 4px; bottom: auto; height: 62%;
+        border-radius: 22px 22px 0 0;
+        -webkit-mask-image: linear-gradient(180deg, #000 58%, transparent 100%);
+                mask-image: linear-gradient(180deg, #000 58%, transparent 100%);
+      }
       .wl-radios{ grid-template-columns: 1fr; }
       .foot-inner{ grid-template-columns: 1fr; }
       .foot-right{ flex-wrap: wrap; }
@@ -1338,20 +1413,23 @@
       </div>
 
       <div class="price-block">
-        <div>
-          <div class="price-tag" data-i18n="pricing.tag">P / LIFETIME</div>
-          <div class="price-num">
-            $29<span class="cents" data-i18n="pricing.cents">USD · once</span>
-          </div>
-          <div class="price-foot" data-i18n="pricing.foot">14-DAY FREE TRIAL · NO CARD REQUIRED</div>
+        <div class="price-left">
+          <div class="price-aura" aria-hidden="true"></div>
+          <div class="price-tag" data-i18n="pricing.tag">Lifetime license</div>
+          <div class="price-num">$29<span class="cents" data-i18n="pricing.cents">once</span></div>
+          <div class="price-sub" data-i18n="pricing.sub">Yours forever. Every future update included.</div>
+          <a href="#download" class="price-cta" data-i18n="pricing.cta">Get ShainBox</a>
+          <div class="price-foot" data-i18n="pricing.foot">14-day free trial · no card</div>
         </div>
-        <ul class="price-list">
-          <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f1">Full app for macOS &amp; Windows</span></li>
-          <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f2">Unlimited boards &amp; references</span></li>
-          <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f3">Local AI search &amp; auto-sort</span></li>
-          <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f4">All future updates included</span></li>
-          <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f5">Open formats. No vendor lock-in</span></li>
-        </ul>
+        <div class="price-right">
+          <ul class="price-list">
+            <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f1">Full app for macOS &amp; Windows</span></li>
+            <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f2">Unlimited boards &amp; references</span></li>
+            <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f3">Local AI search &amp; auto-sort</span></li>
+            <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f4">All future updates included</span></li>
+            <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f5">Open formats. No vendor lock-in</span></li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -1465,9 +1543,11 @@
 
         'pricing.idx': '§ 03 · Pricing',
         'pricing.h2': 'One price. <span class="em">No subscription. No tiers.</span>',
-        'pricing.tag': 'P / LIFETIME',
-        'pricing.cents': 'USD · once',
-        'pricing.foot': '14-DAY FREE TRIAL · NO CARD REQUIRED',
+        'pricing.tag': 'Lifetime license',
+        'pricing.cents': 'once',
+        'pricing.sub': 'Yours forever. Every future update included.',
+        'pricing.cta': 'Get ShainBox',
+        'pricing.foot': '14-day free trial · no card',
         'pricing.f1': 'Full app for macOS & Windows',
         'pricing.f2': 'Unlimited boards & references',
         'pricing.f3': 'Local AI search & auto-sort',
@@ -1547,9 +1627,11 @@
 
         'pricing.idx': '§ 03 · Ціна',
         'pricing.h2': 'Одна ціна. <span class="em">Без підписки. Без тарифів.</span>',
-        'pricing.tag': 'P / LIFETIME',
-        'pricing.cents': 'USD · один раз',
-        'pricing.foot': '14 ДНІВ БЕЗКОШТОВНО · БЕЗ КАРТИ',
+        'pricing.tag': 'Довічна ліцензія',
+        'pricing.cents': 'одноразово',
+        'pricing.sub': 'Назавжди твоє. Усі майбутні оновлення включено.',
+        'pricing.cta': 'Завантажити ShainBox',
+        'pricing.foot': '14 днів безкоштовно · без карти',
         'pricing.f1': 'Повний застосунок для macOS і Windows',
         'pricing.f2': 'Необмежено бордів і референсів',
         'pricing.f3': 'Локальний AI-пошук та auto-sort',

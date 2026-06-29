@@ -194,7 +194,7 @@
        HERO
        ============================================================ */
     section.hero{
-      padding: 88px 0 88px;
+      padding: 96px 0 48px;
       position: relative;
       overflow: hidden;
     }
@@ -480,6 +480,127 @@
       font-size: 15px;
       color: var(--text-primary);
     }
+
+    /* ============================================================
+       CENTERED HERO + PRODUCT SHOWCASE  (briefberry-style)
+       ============================================================ */
+    .hero-center{
+      max-width: 820px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-center .hero-mark{
+      font-weight: 700;
+      font-size: clamp(40px, 5.6vw, 72px);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+      margin: 0 0 22px;
+    }
+    .hero-center .hero-mark .lead{ white-space: normal; }
+    .hero-center .hero-mark em{ color: var(--text-secondary); }
+    .hero-center .hero-tag{
+      font-weight: 400;
+      font-size: clamp(17px, 1.5vw, 20px);
+      line-height: 1.5;
+      color: var(--text-secondary);
+      max-width: 540px;
+      margin: 0 auto 36px;
+    }
+    .hero-center .hero-actions{ justify-content: center; margin: 0; }
+    .hero-reassure{
+      margin-top: 20px;
+      font-family: "Inter", ui-monospace, monospace;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      color: var(--text-disabled);
+    }
+
+    /* Faint vertical column guides behind the hero */
+    .hero-guides{
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .hero-guides span{
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: var(--line);
+    }
+    .hero-guides span:nth-child(1){ left: calc(50% - 430px); }
+    .hero-guides span:nth-child(2){ left: calc(50% - 195px); }
+    .hero-guides span:nth-child(3){ left: calc(50% + 195px); }
+    .hero-guides span:nth-child(4){ left: calc(50% + 430px); }
+
+    /* Product showcase stage */
+    section.showcase{ padding: 8px 0 72px; position: relative; }
+    .showcase-stage{
+      position: relative;
+      border-radius: 32px;
+      background: var(--bg-2);
+      border: 1px solid var(--line);
+      padding: clamp(36px, 5vw, 64px) clamp(20px, 6vw, 80px) 0;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .showcase-stage .glow{
+      position: absolute;
+      width: 40%;
+      height: 46%;
+      bottom: -12%;
+      filter: blur(52px);
+      opacity: 0.5;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .glow-warm{ left: -6%; background: radial-gradient(closest-side, rgba(255,176,110,0.75), rgba(255,206,150,0.2), transparent 70%); }
+    .glow-pink{ right: -6%; background: radial-gradient(closest-side, rgba(255,140,185,0.7), rgba(220,150,255,0.2), transparent 70%); }
+    /* subtle film grain over the gradients */
+    .showcase-stage::after{
+      content: "";
+      position: absolute; inset: 0; z-index: 1;
+      pointer-events: none;
+      opacity: 0.05;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .showcase-shot{
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
+      border-radius: 16px 16px 0 0;
+      overflow: hidden;
+      box-shadow: var(--shadow-hero);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-bottom: 0;
+    }
+    .showcase-shot img{ width: 100%; height: auto; display: block; }
+
+    /* Social / trust row under the showcase */
+    .social{ text-align: center; padding: 36px 0 0; }
+    .social-label{ font-size: 13px; color: var(--text-disabled); margin: 0 0 16px; }
+    .social-chips{ display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .social-chips .chip{
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: "Inter", ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      background: var(--surface);
+      border: 1px solid var(--line-2);
+      border-radius: 999px;
+      padding: 8px 14px;
+    }
+    .social-chips .chip .dot{ width: 5px; height: 5px; border-radius: 999px; background: var(--accent); }
 
     /* ============================================================
        SECTION HEAD (shared)
@@ -1006,7 +1127,10 @@
     @media (max-width: 900px){
       .hero-grid{ grid-template-columns: 1fr; gap: 36px; }
       .hero-media-col{ order: -1; }
-      section.hero{ padding: 56px 0 72px; }
+      section.hero{ padding: 56px 0 0; }
+      .hero-guides{ display: none; }
+      section.showcase{ padding: 24px 0 56px; }
+      .showcase-stage{ border-radius: 22px; }
       .hero-mark .lead{ white-space: normal; }
       .hero-meta{ grid-template-columns: 1fr; }
       .hero-meta > div{ border-right: 0; padding-left: 0; padding-right: 0; border-bottom: 1px solid var(--line); padding: 16px 0; }
@@ -1067,8 +1191,9 @@
        HERO
        ============================================================ -->
   <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-col">
+    <div class="hero-guides" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    <div class="wrap">
+      <div class="hero-center">
         <h1 class="hero-mark" data-i18n="hero.head"><span class="lead">A design reference library,</span> <em>stored as folders.</em></h1>
 
         <p class="hero-tag" data-i18n="hero.tag">
@@ -1087,20 +1212,20 @@
           </a>
         </div>
 
-        <div class="hero-meta">
-          <div>
-            <div class="k" data-i18n="hero.meta1_k">Pricing</div>
-            <div class="v" data-i18n="hero.meta1_v">$29. One-time. Yours forever.</div>
-          </div>
-          <div>
-            <div class="k" data-i18n="hero.meta2_k">Trial</div>
-            <div class="v" data-i18n="hero.meta2_v">14 days free. No card.</div>
-          </div>
-        </div>
+        <p class="hero-reassure" data-i18n="hero.reassure">$29 once · 14-day free trial · no card</p>
       </div>
+    </div>
+  </section>
 
-      <div class="hero-media-col">
-        <div class="shot has-image">
+  <!-- ============================================================
+       SHOWCASE — product screenshot in a soft stage
+       ============================================================ -->
+  <section class="showcase">
+    <div class="wrap">
+      <div class="showcase-stage">
+        <div class="glow glow-warm" aria-hidden="true"></div>
+        <div class="glow glow-pink" aria-hidden="true"></div>
+        <div class="showcase-shot">
           <picture>
             <source srcset="screenshots/main.webp" type="image/webp" />
             <img src="screenshots/main.png"
@@ -1110,13 +1235,17 @@
           </picture>
         </div>
       </div>
+
+      <div class="social">
+        <p class="social-label" data-i18n="social.label">Made for designers who keep their references close</p>
+        <div class="social-chips">
+          <span class="chip"><span class="dot"></span><span data-i18n="social.a">Local-first</span></span>
+          <span class="chip"><span class="dot"></span><span data-i18n="social.b">No account</span></span>
+          <span class="chip"><span class="dot"></span><span data-i18n="social.c">Open formats</span></span>
+        </div>
+      </div>
     </div>
   </section>
-
-  <!-- ============================================================
-       SHOWCASE — Main screenshot
-       ============================================================ -->
-  <!-- §01 showcase removed — screenshot moved into the hero. -->
 
   <!-- ============================================================
        WHY — alternating video + text
@@ -1276,6 +1405,11 @@
         'hero.meta1_v': '$29. One-time. Yours forever.',
         'hero.meta2_k': 'Trial',
         'hero.meta2_v': '14 days free. No card.',
+        'hero.reassure': '$29 once · 14-day free trial · no card',
+        'social.label': 'Made for designers who keep their references close',
+        'social.a': 'Local-first',
+        'social.b': 'No account',
+        'social.c': 'Open formats',
 
         'showcase.idx': '§ 01 · The app',
         'showcase.h2': 'Accent on what matters. <span class="em">Nothing extra. No clutter.</span>',
@@ -1347,6 +1481,11 @@
         'hero.meta1_v': '$29. Один платіж. Назавжди твоє.',
         'hero.meta2_k': 'Тріал',
         'hero.meta2_v': '14 днів безкоштовно. Без карти.',
+        'hero.reassure': '$29 одноразово · 14 днів безкоштовно · без карти',
+        'social.label': 'Зроблено для дизайнерів, які тримають референси під рукою',
+        'social.a': 'Локально',
+        'social.b': 'Без акаунта',
+        'social.c': 'Відкриті формати',
 
         'showcase.idx': '§ 01 · Застосунок',
         'showcase.h2': 'Акцент на головному. <span class="em">Нічого зайвого.</span>',

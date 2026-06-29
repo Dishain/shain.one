@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title data-i18n="meta.title">SHAINBOX — A design reference library, stored as folders.</title>
-  <meta name="description" data-i18n-attr="content|meta.description" content="ShainBox is a desktop library for design references. Stored as folders. Local AI search by content. Your files, on your machine. Join the waitlist." />
+  <title data-i18n="meta.title">SHAINBOX — Organize design references &amp; assets, with local AI search.</title>
+  <meta name="description" data-i18n-attr="content|meta.description" content="ShainBox is a desktop app for organizing design references and assets. Local AI search by content — find anything even if you never tagged it. Your files stay as plain folders on your disk." />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
@@ -602,6 +602,30 @@
     }
     .social-chips .chip .dot{ width: 5px; height: 5px; border-radius: 999px; background: var(--accent); }
 
+    /* Three value props under the showcase (formats / AI search / local) */
+    .values{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(24px, 4vw, 56px);
+      padding: clamp(40px, 5vw, 64px) 8px 0;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .value h3{
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 17px;
+      letter-spacing: -0.01em;
+      color: var(--text-display);
+      margin: 0 0 8px;
+    }
+    .value p{
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
     /* ============================================================
        SECTION HEAD (shared)
        ============================================================ */
@@ -1131,6 +1155,7 @@
       .hero-guides{ display: none; }
       section.showcase{ padding: 24px 0 56px; }
       .showcase-stage{ border-radius: 22px; }
+      .values{ grid-template-columns: 1fr; gap: 28px; text-align: center; }
       .hero-mark .lead{ white-space: normal; }
       .hero-meta{ grid-template-columns: 1fr; }
       .hero-meta > div{ border-right: 0; padding-left: 0; padding-right: 0; border-bottom: 1px solid var(--line); padding: 16px 0; }
@@ -1194,10 +1219,10 @@
     <div class="hero-guides" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
     <div class="wrap">
       <div class="hero-center">
-        <h1 class="hero-mark" data-i18n="hero.head"><span class="lead">A design reference library,</span> <em>stored as folders.</em></h1>
+        <h1 class="hero-mark" data-i18n="hero.head"><span class="lead">Collect references. Find them by content.</span> <em>All on your disk.</em></h1>
 
         <p class="hero-tag" data-i18n="hero.tag">
-          Local AI search by content. Your files, on your machine.
+          A desktop app for references and design assets, with local AI search.
         </p>
 
         <!-- Download CTAs. TODO: point href to the real release files. -->
@@ -1236,12 +1261,18 @@
         </div>
       </div>
 
-      <div class="social">
-        <p class="social-label" data-i18n="social.label">Made for designers who keep their references close</p>
-        <div class="social-chips">
-          <span class="chip"><span class="dot"></span><span data-i18n="social.a">Local-first</span></span>
-          <span class="chip"><span class="dot"></span><span data-i18n="social.b">No account</span></span>
-          <span class="chip"><span class="dot"></span><span data-i18n="social.c">Open formats</span></span>
+      <div class="values">
+        <div class="value">
+          <h3 data-i18n="val.1_h">AI search by content</h3>
+          <p data-i18n="val.1_p">Type “blue gradient onboarding” and find the shot — even if you never tagged it.</p>
+        </div>
+        <div class="value">
+          <h3 data-i18n="val.2_h">Any visual format</h3>
+          <p data-i18n="val.2_p">PNG, JPG, WebP, SVG, GIF, HEIC and MP4 / MOV video — one home for the whole collection.</p>
+        </div>
+        <div class="value">
+          <h3 data-i18n="val.3_h">Your files, local</h3>
+          <p data-i18n="val.3_p">Boards are plain folders on your disk. No account, no cloud, no vendor lock-in.</p>
         </div>
       </div>
     </div>
@@ -1385,15 +1416,15 @@
        ============================================================ */
     const i18n = {
       en: {
-        'meta.title': 'SHAINBOX — A design reference library, stored as folders.',
-        'meta.description': 'ShainBox is a desktop library for design references. Stored as folders. Local AI search by content. Your files, on your machine. Join the waitlist.',
+        'meta.title': 'SHAINBOX — Organize design references & assets, with local AI search.',
+        'meta.description': 'ShainBox is a desktop app for organizing design references and assets. Local AI search by content — find anything even if you never tagged it. Your files stay as plain folders on your disk.',
 
         'nav.cta': 'Download',
 
         'hero.kicker': 'A desktop library for design references',
         'hero.status': 'Public beta · macOS + Windows',
-        'hero.head': '<span class="lead">A design reference library,</span> <em>stored as folders.</em>',
-        'hero.tag': 'Local AI search by content. Your files, on your machine.',
+        'hero.head': '<span class="lead">Collect references. Find them by content.</span> <em>All on your disk.</em>',
+        'hero.tag': 'A desktop app for references and design assets, with local AI search.',
         'hero.cta_primary': 'Join waitlist',
         'hero.dl_mac': 'Download for macOS',
         'hero.dl_win': 'Download for Windows',
@@ -1410,6 +1441,12 @@
         'social.a': 'Local-first',
         'social.b': 'No account',
         'social.c': 'Open formats',
+        'val.1_h': 'AI search by content',
+        'val.1_p': 'Type “blue gradient onboarding” and find the shot — even if you never tagged it.',
+        'val.2_h': 'Any visual format',
+        'val.2_p': 'PNG, JPG, WebP, SVG, GIF, HEIC and MP4 / MOV video — one home for the whole collection.',
+        'val.3_h': 'Your files, local',
+        'val.3_p': 'Boards are plain folders on your disk. No account, no cloud, no vendor lock-in.',
 
         'showcase.idx': '§ 01 · The app',
         'showcase.h2': 'Accent on what matters. <span class="em">Nothing extra. No clutter.</span>',
@@ -1417,10 +1454,10 @@
         'why.idx': '§ 02 · Why',
         'why.h2': 'Built for capture, not collection management. <span class="em">Every pixel earns its place.</span>',
         'why.r1_num': '01 / CAPTURE',
-        'why.r1_h': 'Drag, drop, or shortcut.',
+        'why.r1_h': 'Add a reference in a second.',
         'why.r1_p': 'Global hotkey grabs a file from the clipboard or a drop zone. Automatic deduplication via content hash — the same reference never gets saved twice.',
         'why.r2_num': '02 / STORE',
-        'why.r2_h': 'Files, not a database.',
+        'why.r2_h': 'Your files, not someone\'s database.',
         'why.r2_p': 'Boards are folders on your disk. Create a board in the app — a folder appears. Drop a file into the folder — it shows up in the app. Want it on another computer? Put your library inside Google Drive, Dropbox, or iCloud. Optional. Not required.',
         'why.r3_num': '03 / FIND',
         'why.r3_h': 'Search what you remember, not what you tagged.',
@@ -1461,15 +1498,15 @@
         'foot.contact': 'Contact'
       },
       uk: {
-        'meta.title': 'SHAINBOX — Бібліотека дизайн-референсів. Просто папки на диску.',
-        'meta.description': 'ShainBox — десктоп-бібліотека для дизайн-референсів. Збережено як папки. Локальний AI-пошук за змістом. Твої файли — на твоєму диску. Приєднуйся до waitlist.',
+        'meta.title': 'SHAINBOX — Організовуй референси й дизайн-асети з локальним AI-пошуком.',
+        'meta.description': 'ShainBox — десктоп-застосунок для організації референсів і дизайн-асетів. Локальний AI-пошук за змістом — знаходь будь-що, навіть без тегів. Твої файли лишаються звичайними папками на диску.',
 
         'nav.cta': 'Завантажити',
 
         'hero.kicker': 'Десктоп-бібліотека для дизайн-референсів',
         'hero.status': 'Бета · macOS + Windows',
-        'hero.head': '<span class="lead">Бібліотека референсів,</span> <em>збережена як звичайні папки.</em>',
-        'hero.tag': 'Локальний AI-пошук за змістом. Твої файли — на твоєму диску.',
+        'hero.head': '<span class="lead">Збирай референси. Знаходь за змістом.</span> <em>Усе на твоєму диску.</em>',
+        'hero.tag': 'Десктоп-застосунок для референсів і дизайн-асетів із AI-пошуком.',
         'hero.cta_primary': 'Приєднатися',
         'hero.dl_mac': 'Завантажити для macOS',
         'hero.dl_win': 'Завантажити для Windows',
@@ -1486,6 +1523,12 @@
         'social.a': 'Локально',
         'social.b': 'Без акаунта',
         'social.c': 'Відкриті формати',
+        'val.1_h': 'AI-пошук за змістом',
+        'val.1_p': 'Введи «синій градієнтний онбординг» — і знайдеш кадр, навіть якщо не тегав.',
+        'val.2_h': 'Будь-який візуальний формат',
+        'val.2_p': 'PNG, JPG, WebP, SVG, GIF, HEIC і відео MP4 / MOV — уся добірка в одному місці.',
+        'val.3_h': 'Твої файли, локально',
+        'val.3_p': 'Дошки — це звичайні папки на диску. Без акаунта, без хмари, без замку.',
 
         'showcase.idx': '§ 01 · Застосунок',
         'showcase.h2': 'Акцент на головному. <span class="em">Нічого зайвого.</span>',
@@ -1493,10 +1536,10 @@
         'why.idx': '§ 02 · Чому',
         'why.h2': 'Зроблено для захоплення, а не для управління колекцією. <span class="em">Кожен піксель заробляє своє місце.</span>',
         'why.r1_num': '01 / ЗБЕРЕЖЕННЯ',
-        'why.r1_h': 'Drag, drop або хоткей.',
+        'why.r1_h': 'Додавай за секунду.',
         'why.r1_p': 'Глобальна гаряча клавіша забирає файл з буфера або зони дропу. Автоматична дедуплікація за хешем — один і той самий референс не збережеться двічі.',
         'why.r2_num': '02 / ЗБЕРІГАННЯ',
-        'why.r2_h': 'Файли, а не база даних.',
+        'why.r2_h': 'Це твої файли, а не чужа база.',
         'why.r2_p': 'Борди — це папки на твоєму диску. Створюєш борд у застосунку — з\'являється папка. Кидаєш файл у папку — він з\'являється в застосунку. Потрібен синк між комп\'ютерами? Поклади бібліотеку в Google Drive, Dropbox чи iCloud. За бажанням. Не обов\'язково.',
         'why.r3_num': '03 / ПОШУК',
         'why.r3_h': 'Шукай те, що пам\'ятаєш, а не те, що протегав.',

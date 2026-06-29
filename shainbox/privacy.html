@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title data-i18n="meta.title">SHAINBOX — Privacy</title>
+  <meta name="description" data-i18n-attr="content|meta.description" content="What ShainBox collects on the waitlist landing, why, and your rights." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <!-- Microsoft Clarity analytics -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wib8ugoava");
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=Space+Mono:wght@400;700&family=Doto:wght@700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --bg-0:           #000000;
+      --bg-1:           #070707;
+      --bg-2:           #0E0E0E;
+      --line:           #1A1A1A;
+      --line-2:         #2A2A2A;
+      --text-display:   rgba(255,255,255,1.00);
+      --text-primary:   rgba(255,255,255,0.90);
+      --text-secondary: rgba(255,255,255,0.60);
+      --text-disabled:  rgba(255,255,255,0.40);
+      --text-muted:     rgba(255,255,255,0.24);
+      --accent:         #F4D700;
+      --accent-hi:      #FFE500;
+      --accent-ink:     #0A0A0A;
+      --accent-wash:    rgba(244,215,0,0.12);
+      --accent-ring:    rgba(244,215,0,0.40);
+      --dur:            140ms;
+      --ease:           cubic-bezier(.2,.7,.2,1);
+      --maxw:           880px;
+      --gutter:         24px;
+    }
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
+    html, body{ margin:0; padding:0; background: var(--bg-0); color: var(--text-primary); }
+    body{
+      font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    ::selection{ background: var(--accent); color: var(--accent-ink); }
+
+    .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+
+    /* NAV */
+    nav.top{
+      position: sticky; top: 0; z-index: 50;
+      background: var(--bg-0);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner{
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px; padding: 0 var(--gutter);
+      max-width: 1200px; margin: 0 auto; gap: 16px;
+    }
+    .brand{
+      font-family: "Space Mono", ui-monospace, monospace;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--text-primary); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .brand .dot{
+      width: 6px; height: 6px; border-radius: 999px;
+      background: var(--accent); display: inline-block;
+    }
+    .lang{
+      display: inline-flex; align-items: center;
+      border: 1px solid var(--line-2); border-radius: 999px; padding: 2px;
+      font-family: "Space Mono", monospace; font-size: 10px;
+      letter-spacing: 0.16em; text-transform: uppercase;
+    }
+    .lang-opt{
+      padding: 6px 10px; border-radius: 999px;
+      color: var(--text-disabled); cursor: pointer;
+      background: transparent; border: 0; font: inherit;
+      letter-spacing: inherit; text-transform: inherit;
+      transition: color var(--dur) var(--ease), background var(--dur) var(--ease);
+    }
+    .lang-opt:hover{ color: var(--text-primary); }
+    .lang-opt.active{ background: var(--text-primary); color: var(--accent-ink); }
+    .nav-back{
+      font-family: "Space Mono", monospace;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--text-secondary); text-decoration: none;
+      border: 1px solid var(--line-2); padding: 8px 14px; border-radius: 999px;
+      transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+    }
+    .nav-back:hover{ border-color: var(--text-primary); color: var(--text-primary); }
+
+    /* HERO */
+    section.hero{
+      padding: 80px 0 32px;
+    }
+    .hero-kicker{
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 32px; flex-wrap: wrap;
+    }
+    .hero-kicker .idx{
+      font-family: "Space Mono", monospace;
+      font-size: 10px; color: var(--text-disabled); letter-spacing: 0.18em;
+    }
+    .hero-kicker .lbl{
+      font-family: "Space Mono", monospace;
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+    .hero-kicker .hair{ flex: 1; height: 1px; background: var(--line); min-width: 24px; }
+    .hero-mark{
+      font-family: "Doto", monospace;
+      font-weight: 700;
+      font-size: clamp(56px, 12vw, 140px);
+      line-height: 0.88;
+      letter-spacing: -0.01em;
+      color: var(--text-display);
+      margin: 0 0 24px;
+    }
+    .hero-tag{
+      font-family: "Space Grotesk", sans-serif; font-weight: 300;
+      font-size: clamp(18px, 2vw, 22px); line-height: 1.45;
+      color: var(--text-secondary); margin: 0 0 8px; max-width: 620px;
+    }
+    .hero-meta{
+      margin-top: 24px;
+      font-family: "Space Mono", monospace;
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--text-disabled);
+    }
+
+    /* SECTIONS */
+    section.policy{
+      padding: 64px 0 100px;
+    }
+    .sec{
+      padding: 40px 0;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .sec:last-of-type{ border-bottom: 1px solid var(--line); }
+    .sec .idx{
+      font-family: "Space Mono", monospace;
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--text-disabled);
+      padding-top: 6px;
+    }
+    .sec h2{
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 400; font-size: clamp(22px, 2.6vw, 28px);
+      line-height: 1.2; letter-spacing: -0.01em;
+      margin: 0 0 16px; color: var(--text-display);
+    }
+    .sec p{
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 300; font-size: 15px; line-height: 1.65;
+      color: var(--text-secondary); margin: 0 0 14px;
+    }
+    .sec p:last-child{ margin-bottom: 0; }
+    .sec strong{ color: var(--text-primary); font-weight: 500; }
+    .sec a{
+      color: var(--text-primary); text-decoration: underline;
+      text-decoration-color: var(--accent-ring);
+      text-underline-offset: 3px;
+    }
+    .sec a:hover{ text-decoration-color: var(--accent); }
+
+    .sec-list{
+      list-style: none; padding: 0; margin: 0 0 14px;
+      border-top: 1px solid var(--line);
+    }
+    .sec-list li{
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 16px;
+      align-items: baseline;
+    }
+    .sec-list li .key{
+      font-family: "Space Mono", monospace;
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--text-disabled);
+    }
+    .sec-list li .val{
+      font-family: "Space Grotesk", sans-serif; font-weight: 400;
+      font-size: 15px; color: var(--text-primary); line-height: 1.5;
+    }
+    .sec-list li .val em{ color: var(--text-secondary); font-style: normal; }
+
+    /* FOOTER */
+    footer.foot{
+      border-top: 1px solid var(--line);
+      padding: 40px 0 56px;
+    }
+    .foot-inner{
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 var(--gutter);
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 24px; align-items: center;
+    }
+    .foot-left{
+      display: flex; align-items: center; gap: 14px;
+      font-family: "Space Mono", monospace;
+      font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--text-disabled);
+    }
+    .foot-left .hair{ display: inline-block; width: 40px; height: 1px; background: var(--line-2); }
+    .foot-right{ display: flex; gap: 24px; }
+    .foot-right a{
+      font-family: "Space Mono", monospace;
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--text-secondary); text-decoration: none;
+    }
+    .foot-right a:hover{ color: var(--text-primary); }
+
+    @media (max-width: 900px){
+      .sec{ grid-template-columns: 1fr; gap: 12px; }
+      .sec-list li{ grid-template-columns: 1fr; gap: 4px; }
+      .foot-inner{ grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      *{ transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="top">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        SHAINBOX
+      </a>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" class="lang-opt" data-lang="en" aria-label="English">EN</button>
+        <button type="button" class="lang-opt" data-lang="uk" aria-label="Українська">UA</button>
+      </div>
+      <a href="index.html" class="nav-back" data-i18n="nav.back">← Back</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-kicker">
+        <span class="idx">/§</span>
+        <span class="lbl" data-i18n="hero.kicker">Privacy &amp; data</span>
+        <span class="hair" aria-hidden="true"></span>
+      </div>
+      <h1 class="hero-mark">PRIVACY.</h1>
+      <p class="hero-tag" data-i18n="hero.tag">
+        Short version: we collect the minimum needed to run the waitlist and improve the landing page. No selling, no ads, no surprises.
+      </p>
+      <div class="hero-meta" data-i18n="hero.meta">LAST UPDATED · 2026-04-27</div>
+    </div>
+  </section>
+
+  <section class="policy">
+    <div class="wrap">
+
+      <div class="sec">
+        <div class="idx">§ 01</div>
+        <div>
+          <h2 data-i18n="s1.h">What we collect</h2>
+          <p data-i18n="s1.p1">When you submit the waitlist form, we collect:</p>
+          <ul class="sec-list">
+            <li>
+              <span class="key" data-i18n="s1.k1">EMAIL</span>
+              <span class="val" data-i18n="s1.v1">The address you typed in. <em>Required to email you when ShainBox ships.</em></span>
+            </li>
+            <li>
+              <span class="key" data-i18n="s1.k2">PLATFORM</span>
+              <span class="val" data-i18n="s1.v2">macOS Apple Silicon, macOS Intel, or Windows. <em>Helps us prioritize which build to ship first.</em></span>
+            </li>
+            <li>
+              <span class="key" data-i18n="s1.k3">CURRENT TOOL</span>
+              <span class="val" data-i18n="s1.v3">Optional free-text answer about what you use today. <em>Helps us understand the landscape.</em></span>
+            </li>
+          </ul>
+          <p data-i18n="s1.p2">When you visit the landing page, we record anonymized session analytics (page views, clicks, scroll depth, viewport size, country-level location). We do not record what you type into any input.</p>
+        </div>
+      </div>
+
+      <div class="sec">
+        <div class="idx">§ 02</div>
+        <div>
+          <h2 data-i18n="s2.h">Why we collect it</h2>
+          <p data-i18n="s2.p1"><strong>To run the waitlist.</strong> One email when ShainBox is ready. Maybe one or two product updates before that. That's it.</p>
+          <p data-i18n="s2.p2"><strong>To prioritize builds.</strong> If 80% of signups are on Apple Silicon, that's where we focus first.</p>
+          <p data-i18n="s2.p3"><strong>To improve the landing.</strong> Anonymized analytics tell us which sections work, where people drop off, and which devices to design for.</p>
+        </div>
+      </div>
+
+      <div class="sec">
+        <div class="idx">§ 03</div>
+        <div>
+          <h2 data-i18n="s3.h">Third-party services</h2>
+          <p data-i18n="s3.p1">Three companies help us run this page. They each see only what they need:</p>
+          <ul class="sec-list">
+            <li>
+              <span class="key">MAILERLITE</span>
+              <span class="val" data-i18n="s3.v1">Stores your email and waitlist details, sends the confirmation email. <em>Their <a href="https://www.mailerlite.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">privacy policy</a>.</em></span>
+            </li>
+            <li>
+              <span class="key">CLARITY</span>
+              <span class="val" data-i18n="s3.v2">Microsoft Clarity records anonymized session behavior on this page. No PII. <em>Their <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer">privacy statement</a>.</em></span>
+            </li>
+            <li>
+              <span class="key">GITHUB</span>
+              <span class="val" data-i18n="s3.v3">Hosts this page (GitHub Pages). Logs basic request data (IP, user agent) per their standard logging. <em>Their <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">privacy statement</a>.</em></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sec">
+        <div class="idx">§ 04</div>
+        <div>
+          <h2 data-i18n="s4.h">Your rights</h2>
+          <p data-i18n="s4.p1"><strong>Unsubscribe.</strong> Every email we send has a one-click unsubscribe link. Click it and you're out.</p>
+          <p data-i18n="s4.p2"><strong>Delete your data.</strong> Email <a href="mailto:dmitriy.legkov@wearevolt.com">dmitriy.legkov@wearevolt.com</a> with the subject "Delete my data" and we'll wipe your record from MailerLite within 7 days.</p>
+          <p data-i18n="s4.p3"><strong>Access or correct.</strong> Same email — we'll send you whatever we have on file or update it.</p>
+          <p data-i18n="s4.p4">If you're in the EU/EEA or UK, GDPR applies and these rights are legally yours. We treat everyone the same way regardless of location.</p>
+        </div>
+      </div>
+
+      <div class="sec">
+        <div class="idx">§ 05</div>
+        <div>
+          <h2 data-i18n="s5.h">Contact</h2>
+          <p data-i18n="s5.p1">Anything else — questions, bugs in this policy, requests, complaints — write to <a href="mailto:dmitriy.legkov@wearevolt.com">dmitriy.legkov@wearevolt.com</a>. A real human reads every email.</p>
+          <p data-i18n="s5.p2">ShainBox is a personal project by Dmytro Lehkov. There is no company entity behind it yet.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="foot-inner">
+      <div class="foot-left">
+        <span>SHAINBOX</span>
+        <span class="hair" aria-hidden="true"></span>
+        <span data-i18n="foot.tag">Made on disk</span>
+      </div>
+      <div class="foot-right">
+        <a href="privacy.html" data-i18n="foot.privacy">Privacy</a>
+        <a href="index.html" data-i18n="foot.product">Home</a>
+        <a href="mailto:dmitriy.legkov@wearevolt.com" data-i18n="foot.contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const i18n = {
+      en: {
+        'meta.title': 'SHAINBOX — Privacy',
+        'meta.description': 'What ShainBox collects on the waitlist landing, why, and your rights.',
+        'nav.back': '← Back',
+        'hero.kicker': 'Privacy & data',
+        'hero.tag': 'Short version: we collect the minimum needed to run the waitlist and improve the landing page. No selling, no ads, no surprises.',
+        'hero.meta': 'LAST UPDATED · 2026-04-27',
+        's1.h': 'What we collect',
+        's1.p1': 'When you submit the waitlist form, we collect:',
+        's1.k1': 'EMAIL',
+        's1.v1': 'The address you typed in. <em>Required to email you when ShainBox ships.</em>',
+        's1.k2': 'PLATFORM',
+        's1.v2': 'macOS Apple Silicon, macOS Intel, or Windows. <em>Helps us prioritize which build to ship first.</em>',
+        's1.k3': 'CURRENT TOOL',
+        's1.v3': 'Optional free-text answer about what you use today. <em>Helps us understand the landscape.</em>',
+        's1.p2': 'When you visit the landing page, we record anonymized session analytics (page views, clicks, scroll depth, viewport size, country-level location). We do not record what you type into any input.',
+        's2.h': 'Why we collect it',
+        's2.p1': '<strong>To run the waitlist.</strong> One email when ShainBox is ready. Maybe one or two product updates before that. That\'s it.',
+        's2.p2': '<strong>To prioritize builds.</strong> If 80% of signups are on Apple Silicon, that\'s where we focus first.',
+        's2.p3': '<strong>To improve the landing.</strong> Anonymized analytics tell us which sections work, where people drop off, and which devices to design for.',
+        's3.h': 'Third-party services',
+        's3.p1': 'Three companies help us run this page. They each see only what they need:',
+        's3.v1': 'Stores your email and waitlist details, sends the confirmation email. <em>Their <a href="https://www.mailerlite.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">privacy policy</a>.</em>',
+        's3.v2': 'Microsoft Clarity records anonymized session behavior on this page. No PII. <em>Their <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer">privacy statement</a>.</em>',
+        's3.v3': 'Hosts this page (GitHub Pages). Logs basic request data (IP, user agent) per their standard logging. <em>Their <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">privacy statement</a>.</em>',
+        's4.h': 'Your rights',
+        's4.p1': '<strong>Unsubscribe.</strong> Every email we send has a one-click unsubscribe link. Click it and you\'re out.',
+        's4.p2': '<strong>Delete your data.</strong> Email <a href="mailto:dmitriy.legkov@wearevolt.com">dmitriy.legkov@wearevolt.com</a> with the subject "Delete my data" and we\'ll wipe your record from MailerLite within 7 days.',
+        's4.p3': '<strong>Access or correct.</strong> Same email — we\'ll send you whatever we have on file or update it.',
+        's4.p4': 'If you\'re in the EU/EEA or UK, GDPR applies and these rights are legally yours. We treat everyone the same way regardless of location.',
+        's5.h': 'Contact',
+        's5.p1': 'Anything else — questions, bugs in this policy, requests, complaints — write to <a href="mailto:dmitriy.legkov@wearevolt.com">dmitriy.legkov@wearevolt.com</a>. A real human reads every email.',
+        's5.p2': 'ShainBox is a personal project by Dmytro Lehkov. There is no company entity behind it yet.',
+        'foot.tag': 'Made on disk',
+        'foot.privacy': 'Privacy',
+        'foot.product': 'Home',
+        'foot.contact': 'Contact'
+      },
+      uk: {
+        'meta.title': 'SHAINBOX — Конфіденційність',
+        'meta.description': 'Які дані ShainBox збирає на сторінці waitlist, навіщо, і твої права.',
+        'nav.back': '← Назад',
+        'hero.kicker': 'Конфіденційність та дані',
+        'hero.tag': 'Коротко: ми збираємо мінімум, потрібний для роботи waitlist і покращення лендингу. Жодного продажу даних, реклами чи сюрпризів.',
+        'hero.meta': 'ОНОВЛЕНО · 2026-04-27',
+        's1.h': 'Що ми збираємо',
+        's1.p1': 'Коли ти заповнюєш форму waitlist, ми збираємо:',
+        's1.k1': 'EMAIL',
+        's1.v1': 'Адреса, яку ти ввів. <em>Потрібна, щоб надіслати лист у день релізу ShainBox.</em>',
+        's1.k2': 'ПЛАТФОРМА',
+        's1.v2': 'macOS Apple Silicon, macOS Intel або Windows. <em>Допомагає визначити, з якої збірки починати.</em>',
+        's1.k3': 'ПОТОЧНИЙ ІНСТРУМЕНТ',
+        's1.v3': 'Необов\'язкова текстова відповідь про те, чим зараз користуєшся. <em>Допомагає нам зрозуміти ринок.</em>',
+        's1.p2': 'Коли ти заходиш на лендинг, ми зберігаємо знеособлену аналітику сесії (перегляди сторінки, кліки, глибина скролу, розмір вікна, країна). Ми НЕ записуємо те, що ти вводиш у поля форми.',
+        's2.h': 'Навіщо ми це збираємо',
+        's2.p1': '<strong>Щоб працював waitlist.</strong> Один лист — коли ShainBox буде готовий. Можливо, один-два анонси до релізу. Це все.',
+        's2.p2': '<strong>Щоб пріоритизувати збірки.</strong> Якщо 80% підписок з Apple Silicon — починаємо саме з неї.',
+        's2.p3': '<strong>Щоб покращити лендинг.</strong> Знеособлена аналітика показує, які секції працюють, де люди відпадають і під які пристрої проектувати.',
+        's3.h': 'Сторонні сервіси',
+        's3.p1': 'Три компанії допомагають нам тримати цю сторінку. Кожна бачить тільки те, що їй потрібно:',
+        's3.v1': 'Зберігає твій email та дані waitlist, надсилає лист-підтвердження. <em><a href="https://www.mailerlite.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Їхня політика</a>.</em>',
+        's3.v2': 'Microsoft Clarity записує знеособлену поведінку на цій сторінці. Без PII. <em><a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer">Їхня заява</a>.</em>',
+        's3.v3': 'Хостить цю сторінку (GitHub Pages). Логує базові дані запиту (IP, user agent) за стандартом. <em><a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">Їхня заява</a>.</em>',
+        's4.h': 'Твої права',
+        's4.p1': '<strong>Відписатися.</strong> У кожному листі — посилання на відписку в один клік. Тиснеш — і тебе немає у списку.',
+        's4.p2': '<strong>Видалити дані.</strong> Напиши на <a href="mailto:dmitriy.legkov@wearevolt.com">dmitriy.legkov@wearevolt.com</a> з темою "Delete my data" — за 7 днів видалимо твій запис з MailerLite.',
+        's4.p3': '<strong>Отримати або змінити.</strong> Той самий email — надішлемо все, що в нас є, або оновимо.',
+        's4.p4': 'Якщо ти в ЄС/ЄЕЗ або Великій Британії, GDPR застосовується і ці права у тебе за законом. Ми ставимося до всіх однаково незалежно від країни.',
+        's5.h': 'Контакт',
+        's5.p1': 'Щось інше — питання, помилки в політиці, запити, скарги — пиши на <a href="mailto:dmitriy.legkov@wearevolt.com">dmitriy.legkov@wearevolt.com</a>. Кожен лист читає жива людина.',
+        's5.p2': 'ShainBox — особистий проект Дмитра Легкова. Юридичної особи поки не існує.',
+        'foot.tag': 'Зроблено на диску',
+        'foot.privacy': 'Конфіденційність',
+        'foot.product': 'Головна',
+        'foot.contact': 'Контакт'
+      }
+    };
+
+    function detectLang(){
+      try {
+        const saved = localStorage.getItem('shainbox_lang');
+        if (saved && i18n[saved]) return saved;
+      } catch(e){}
+      const sys = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+      return sys.startsWith('uk') ? 'uk' : 'en';
+    }
+
+    function applyLang(lang){
+      if (!i18n[lang]) lang = 'en';
+      const dict = i18n[lang];
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key] !== undefined) el.innerHTML = dict[key];
+      });
+      document.querySelectorAll('[data-i18n-attr]').forEach(el => {
+        const [attr, key] = el.getAttribute('data-i18n-attr').split('|');
+        if (attr && key && dict[key] !== undefined) el.setAttribute(attr, dict[key]);
+      });
+      if (dict['meta.title']) document.title = dict['meta.title'];
+      document.querySelectorAll('.lang-opt').forEach(opt => {
+        opt.classList.toggle('active', opt.dataset.lang === lang);
+      });
+      try { localStorage.setItem('shainbox_lang', lang); } catch(e){}
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      applyLang(detectLang());
+      document.querySelectorAll('.lang-opt').forEach(opt => {
+        opt.addEventListener('click', () => applyLang(opt.dataset.lang));
+      });
+    });
+  </script>
+</body>
+</html>

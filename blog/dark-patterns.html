@@ -6,118 +6,27 @@
   <title>Dark patterns - Shain Blog</title>
   <meta name="description" content="Six dark patterns you bump into every week, with real cases from Amazon (FTC 2023), Booking (EU 2019), and the standard Brignull taxonomy." />
 
+
+  <!-- Set theme before first paint (theme.js re-applies + wires toggles) -->
+  <script>
+    (function(){
+      document.documentElement.classList.add("js");
+      try{
+        var t = localStorage.getItem("shain.theme")
+          || (window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        if (t === "light") document.documentElement.setAttribute("data-theme","light");
+      }catch(e){}
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=Space+Mono:wght@400;700&family=Doto:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Doto:wght@700&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="../assets/theme.css" />
+  <link rel="stylesheet" href="../assets/inner.css" />
   <script src="../assets/i18n.shell.js" defer></script>
   <script src="../assets/i18n.dark-patterns.js" defer></script>
   <script src="../assets/theme.js" defer></script>
 
-  <style>
-    :root{
-      --bg-0:#000; --bg-1:#070707; --bg-2:#0E0E0E;
-      --line:#1A1A1A; --line-2:#2A2A2A;
-      --text-display:rgba(255,255,255,1);
-      --text-primary:rgba(255,255,255,0.90);
-      --text-secondary:rgba(255,255,255,0.60);
-      --text-disabled:rgba(255,255,255,0.40);
-      --text-muted:rgba(255,255,255,0.24);
-      --accent:#F4D700; --accent-hi:#FFE500; --accent-ink:#0A0A0A;
-      --accent-wash:rgba(244,215,0,0.12); --accent-ring:rgba(244,215,0,0.40);
-      --dur:140ms; --ease:cubic-bezier(.2,.7,.2,1);
-      --maxw:1200px; --gutter:24px;
-    }
-    *{box-sizing:border-box;}
-    html{scroll-behavior:smooth;}
-    html,body{margin:0;padding:0;background:var(--bg-0);color:var(--text-primary);}
-    body{
-      font-family:"Space Grotesk",ui-sans-serif,system-ui,sans-serif;
-      font-weight:400;font-size:16px;line-height:1.5;
-      -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
-      overflow-x:hidden;
-    }
-    ::selection{background:var(--accent);color:var(--accent-ink);}
-    a{color:inherit;}
-    .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter);position:relative;}
-
-    /* NAV */
-    nav.top{position:sticky;top:0;z-index:50;background:var(--bg-0);border-bottom:1px solid var(--line);}
-    .nav-inner{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:56px;padding:0 var(--gutter);max-width:var(--maxw);margin:0 auto;gap:24px;}
-    .brand{font-family:"Space Mono",monospace;font-size:12px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-primary);text-decoration:none;display:inline-flex;align-items:center;gap:10px;justify-self:start;}
-    .brand .dot{width:6px;height:6px;border-radius:999px;background:var(--accent);}
-    .nav-links{display:flex;gap:28px;align-items:center;justify-self:center;}
-    .nav-links > a{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-secondary);text-decoration:none;padding:18px 0;transition:color var(--dur) var(--ease);}
-    .nav-links > a:hover{color:var(--text-primary);}
-    .nav-links > a.active{color:var(--text-primary);}
-    .nav-cta{font-family:"Space Mono",monospace;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-primary);text-decoration:none;border:1px solid var(--line-2);padding:8px 14px;border-radius:999px;transition:border-color var(--dur) var(--ease);display:inline-flex;align-items:center;gap:8px;}
-    .nav-cta:hover{border-color:var(--text-primary);}
-    .nav-cta .dot{width:5px;height:5px;border-radius:999px;background:var(--accent);}
-
-    /* BACK BAR */
-    .back-bar{padding:24px 0 0;}
-    .back{display:inline-flex;align-items:center;gap:10px;font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-secondary);text-decoration:none;transition:color var(--dur) var(--ease);}
-    .back:hover{color:var(--text-primary);}
-    .back .arr{display:inline-block;width:16px;height:1px;background:currentColor;position:relative;}
-    .back .arr::before{content:"";position:absolute;left:0;top:-3px;width:6px;height:6px;border-left:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg);}
-
-    /* HERO */
-    section.article-hero{padding:48px 0 32px;}
-    .article-kicker{display:flex;align-items:center;gap:12px;margin-bottom:32px;}
-    .article-kicker .idx{font-family:"Space Mono",monospace;font-size:10px;color:var(--text-disabled);letter-spacing:0.18em;}
-    .article-kicker .lbl{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-secondary);}
-    .article-kicker .hair{flex:1;height:1px;background:var(--line);}
-    .article-kicker .mono-sm{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-disabled);}
-
-    /* FOOTER */
-    footer.foot{border-top:1px solid var(--line);padding:40px 0 56px;margin-top:64px;}
-    .foot-inner{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;}
-    .foot-left{display:flex;align-items:center;gap:14px;font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-disabled);}
-    .foot-left .hair{display:inline-block;width:40px;height:1px;background:var(--line-2);}
-    .foot-right{display:flex;gap:20px;align-items:center;}
-    .foot-right a{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-secondary);text-decoration:none;}
-    .foot-right a:hover{color:var(--text-primary);}
-
-    @media (max-width:960px){
-      .nav-inner{grid-template-columns:auto 1fr auto;}
-      .nav-links{display:none;}
-    }
-    /* CATEGORY DIVIDER (used between groups of patterns) */
-    .dp-cat{
-      margin: 96px 0 24px;
-      padding-top: 32px;
-      border-top: 1px solid var(--accent-ring);
-    }
-    .dp-cat-num{
-      font-family: "Space Mono", monospace;
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 12px;
-    }
-    .dp-cat-h{
-      font-family: "Doto", monospace;
-      font-weight: 700;
-      font-size: clamp(40px, 6vw, 64px);
-      line-height: 1;
-      letter-spacing: -0.02em;
-      margin: 0 0 12px;
-      color: var(--text-display);
-      text-transform: uppercase;
-    }
-    .dp-cat-sub{
-      font-family: "Space Grotesk", sans-serif;
-      font-weight: 300;
-      font-size: 17px;
-      line-height: 1.45;
-      color: var(--text-secondary);
-      max-width: 60ch;
-      margin: 0;
-    }
-    @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
-  </style>
 <!-- SHAIN_SEO_BLOCK -->
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <link rel="canonical" href="https://shain.one/blog/dark-patterns.html" />

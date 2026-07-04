@@ -26,6 +26,7 @@
   <script src="../assets/gate.js"></script>
   <script src="../assets/i18n.shell.js" defer></script>
   <script src="../assets/theme.js" defer></script>
+  <script src="../assets/nav.js" defer></script>
 
 <!-- SHAIN_SEO_BLOCK -->
   <meta name="robots" content="index,follow,max-image-preview:large" />
@@ -94,7 +95,33 @@
       <div class="nav-links">
         <a href="../index.html#about" data-i18n="nav.about">About</a>
         <a href="../index.html#portfolio" class="active" data-i18n="nav.portfolio">Portfolio</a>
-        <a href="../index.html#products" data-i18n="nav.products">Products</a>
+        <div class="has-menu" role="none">
+          <button class="menu-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+            <span data-i18n="nav.products">Products</span> <span class="caret" aria-hidden="true"></span>
+          </button>
+          <div class="menu" role="menu">
+            <a href="/shainbox?utm_source=shain.one&amp;utm_medium=nav_dropdown&amp;utm_campaign=shainbox" target="_blank" rel="noopener noreferrer" role="menuitem">
+              <span class="ttl">ShainBox</span>
+              <span class="arr" aria-hidden="true">↗</span>
+              <span class="sub" data-i18n="nav.products.shainbox.sub">Desktop · Design refs</span>
+            </a>
+            <a href="https://github.com/Dishain/Shain-Design-System-Skill" target="_blank" rel="noopener noreferrer" role="menuitem">
+              <span class="ttl">Design Architect</span>
+              <span class="arr" aria-hidden="true">↗</span>
+              <span class="sub" data-i18n="nav.products.architect.sub">Claude Code skill · GitHub</span>
+            </a>
+            <a href="https://dishain.github.io/ai-designers/?utm_source=shain.one&amp;utm_medium=nav_dropdown&amp;utm_campaign=ai-for-designers-ua" target="_blank" rel="noopener noreferrer" role="menuitem">
+              <span class="ttl">AI for Designers</span>
+              <span class="arr" aria-hidden="true">↗</span>
+              <span class="sub" data-i18n="nav.courses.ua.sub">Ukrainian · Self-paced</span>
+            </a>
+            <a href="https://dishain.github.io/ai-for-designers-en/?utm_source=shain.one&amp;utm_medium=nav_dropdown&amp;utm_campaign=ai-for-designers-en" target="_blank" rel="noopener noreferrer" role="menuitem">
+              <span class="ttl">AI for Designers</span>
+              <span class="arr" aria-hidden="true">↗</span>
+              <span class="sub" data-i18n="nav.courses.en.sub">English · Self-paced</span>
+            </a>
+          </div>
+        </div>
         <a href="../blog/index.html" data-i18n="nav.blog">Blog</a>
         <a href="../index.html#contacts" data-i18n="nav.contacts">Contacts</a>
       </div>
@@ -127,7 +154,6 @@
   <section class="case-hero">
     <div class="wrap">
       <div class="case-kicker">
-        <span class="idx">P / 05</span>
         <span class="lbl">WhatsApp chat backup · macOS</span>
         <span class="hair" aria-hidden="true"></span>
         <span class="mono-sm">2025</span>

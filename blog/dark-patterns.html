@@ -26,6 +26,7 @@
   <script src="../assets/i18n.shell.js" defer></script>
   <script src="../assets/i18n.dark-patterns.js" defer></script>
   <script src="../assets/theme.js" defer></script>
+  <script src="../assets/nav.js" defer></script>
 
 <!-- SHAIN_SEO_BLOCK -->
   <meta name="robots" content="index,follow,max-image-preview:large" />
@@ -108,7 +109,33 @@
       <div class="nav-links">
         <a href="../index.html#about" data-i18n="nav.about">About</a>
         <a href="../index.html#portfolio" data-i18n="nav.portfolio">Portfolio</a>
-        <a href="../index.html#products" data-i18n="nav.products">Products</a>
+        <div class="has-menu" role="none">
+          <button class="menu-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+            <span data-i18n="nav.products">Products</span> <span class="caret" aria-hidden="true"></span>
+          </button>
+          <div class="menu" role="menu">
+            <a href="/shainbox?utm_source=shain.one&amp;utm_medium=nav_dropdown&amp;utm_campaign=shainbox" target="_blank" rel="noopener noreferrer" role="menuitem">
+              <span class="ttl">ShainBox</span>
+              <span class="arr" aria-hidden="true">↗</span>
+              <span class="sub" data-i18n="nav.products.shainbox.sub">Desktop · Design refs</span>
+            </a>
+            <a href="https://github.com/Dishain/Shain-Design-System-Skill" target="_blank" rel="noopener noreferrer" role="menuitem">
+              <span class="ttl">Design Architect</span>
+              <span class="arr" aria-hidden="true">↗</span>
+              <span class="sub" data-i18n="nav.products.architect.sub">Claude Code skill · GitHub</span>
+            </a>
+            <a href="https://dishain.github.io/ai-designers/?utm_source=shain.one&amp;utm_medium=nav_dropdown&amp;utm_campaign=ai-for-designers-ua" target="_blank" rel="noopener noreferrer" role="menuitem">
+              <span class="ttl">AI for Designers</span>
+              <span class="arr" aria-hidden="true">↗</span>
+              <span class="sub" data-i18n="nav.courses.ua.sub">Ukrainian · Self-paced</span>
+            </a>
+            <a href="https://dishain.github.io/ai-for-designers-en/?utm_source=shain.one&amp;utm_medium=nav_dropdown&amp;utm_campaign=ai-for-designers-en" target="_blank" rel="noopener noreferrer" role="menuitem">
+              <span class="ttl">AI for Designers</span>
+              <span class="arr" aria-hidden="true">↗</span>
+              <span class="sub" data-i18n="nav.courses.en.sub">English · Self-paced</span>
+            </a>
+          </div>
+        </div>
         <a href="../blog/index.html" class="active" data-i18n="nav.blog">Blog</a>
         <a href="../index.html#contacts" data-i18n="nav.contacts">Contacts</a>
       </div>
@@ -142,7 +169,6 @@
   <section class="article-hero">
     <div class="wrap">
       <div class="article-kicker">
-        <span class="idx">B / 02</span>
         <span class="lbl" data-i18n="dp.kicker.tag">DESIGN · ETHICS · PATTERNS</span>
         <span class="hair" aria-hidden="true"></span>
         <span class="mono-sm">2026 · APR</span>
@@ -169,7 +195,6 @@
 
     <!-- ========== SNEAKING ========== -->
     <div class="dp-cat">
-      <div class="dp-cat-num">FAMILY 01 / 05</div>
       <div class="dp-cat-h" data-i18n="dp.cat.sneak">Sneaking</div>
       <div class="dp-cat-sub" data-i18n="dp.cat.sneak.sub">Hiding information that would change your decision.</div>
     </div>
@@ -204,7 +229,6 @@
 
     <!-- ========== URGENCY ========== -->
     <div class="dp-cat">
-      <div class="dp-cat-num">FAMILY 02 / 05</div>
       <div class="dp-cat-h" data-i18n="dp.cat.urgency">Urgency</div>
       <div class="dp-cat-sub" data-i18n="dp.cat.urgency.sub">Pushing a decision before you're ready.</div>
     </div>
@@ -239,7 +263,6 @@
 
     <!-- ========== OBSTRUCTION ========== -->
     <div class="dp-cat">
-      <div class="dp-cat-num">FAMILY 03 / 05</div>
       <div class="dp-cat-h" data-i18n="dp.cat.obstruct">Obstruction</div>
       <div class="dp-cat-sub" data-i18n="dp.cat.obstruct.sub">Making it artificially hard to do what you want.</div>
     </div>
@@ -270,7 +293,6 @@
 
     <!-- ========== FORCED ACTION ========== -->
     <div class="dp-cat">
-      <div class="dp-cat-num">FAMILY 04 / 05</div>
       <div class="dp-cat-h" data-i18n="dp.cat.force">Forced action</div>
       <div class="dp-cat-sub" data-i18n="dp.cat.force.sub">Demanding more than the task requires.</div>
     </div>
@@ -293,7 +315,6 @@
 
     <!-- ========== MISDIRECTION ========== -->
     <div class="dp-cat">
-      <div class="dp-cat-num">FAMILY 05 / 05</div>
       <div class="dp-cat-h" data-i18n="dp.cat.misdir">Misdirection</div>
       <div class="dp-cat-sub" data-i18n="dp.cat.misdir.sub">Visual and verbal sleight of hand.</div>
     </div>

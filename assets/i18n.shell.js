@@ -11,6 +11,10 @@ window.I18N = {
     "nav.email_cta": "Email me",
     "nav.back_to_portfolio": "Back to portfolio",
     "nav.back_to_blog": "Back to blog",
+    "nav.products.shainbox.sub": "Desktop · Design refs",
+    "nav.products.architect.sub": "Claude Code skill · GitHub",
+    "nav.courses.ua.sub": "Ukrainian · Self-paced",
+    "nav.courses.en.sub": "English · Self-paced",
 
     "cta.tg.tag":   "TELEGRAM",
     "cta.tg.title": "More of this on Telegram.",
@@ -27,6 +31,10 @@ window.I18N = {
     "nav.email_cta": "Написати",
     "nav.back_to_portfolio": "До портфоліо",
     "nav.back_to_blog": "До блогу",
+    "nav.products.shainbox.sub": "Desktop · Дизайн-референси",
+    "nav.products.architect.sub": "Claude Code skill · GitHub",
+    "nav.courses.ua.sub": "Українською · У своєму темпі",
+    "nav.courses.en.sub": "English · У своєму темпі",
 
     "cta.tg.tag":   "TELEGRAM",
     "cta.tg.title": "Більше такого - у Telegram.",

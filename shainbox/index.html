@@ -18,10 +18,10 @@
     })(window, document, "clarity", "script", "xgaq94l7hn");
   </script>
 
-  <!-- Fonts: Inter (everything) + Doto (logo wordmark only) -->
+  <!-- Fonts: Inter (everything) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Doto:wght@500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
     /* ============================================================
@@ -125,21 +125,21 @@
       gap: 16px;
     }
     .brand{
-      font-family: "Doto", "Inter", monospace;
+      font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
       font-size: 17px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
+      font-weight: 800;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--text-primary);
       text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 9px;
     }
-    .brand .dot{
-      width: 6px; height: 6px; border-radius: 999px;
-      background: var(--accent);
+    .brand .brand-icon{
+      width: 24px; height: 24px;
       display: inline-block;
+      flex: none;
     }
 
     /* Language switcher */
@@ -499,7 +499,17 @@
       margin: 0 0 22px;
     }
     .hero-center .hero-mark .lead{ white-space: normal; }
-    .hero-center .hero-mark em{ color: var(--text-secondary); }
+    /* gray closing phrase always on its own line (line 3 on desktop) */
+    .hero-center .hero-mark em{ color: var(--text-secondary); display: block; }
+    /* app icon above the headline */
+    .hero-center .hero-appicon{
+      display: block;
+      width: clamp(104px, 12vw, 178px);
+      height: auto;
+      margin: 0 auto 20px;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
     .hero-center .hero-tag{
       font-weight: 400;
       font-size: clamp(17px, 1.5vw, 20px);
@@ -1273,7 +1283,7 @@
   <nav class="top">
     <div class="nav-inner">
       <a href="#" class="brand">
-        <span class="dot" aria-hidden="true"></span>
+        <img class="brand-icon" src="appicon.png" width="24" height="24" alt="" aria-hidden="true" decoding="async" />
         SHAINBOX
       </a>
 
@@ -1294,6 +1304,7 @@
     <div class="hero-guides" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
     <div class="wrap">
       <div class="hero-center">
+        <img class="hero-appicon" src="appicon.png" width="178" height="178" alt="ShainBox app icon" decoding="async" fetchpriority="high" />
         <h1 class="hero-mark" data-i18n="hero.head"><span class="lead">Collect references. Find them by content.</span> <em>All on your disk.</em></h1>
 
         <p class="hero-tag" data-i18n="hero.tag">

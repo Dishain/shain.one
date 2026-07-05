@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title data-i18n="meta.title">SHAINBOX — Privacy</title>
-  <meta name="description" data-i18n-attr="content|meta.description" content="What ShainBox collects on the waitlist landing, why, and your rights." />
+  <meta name="description" data-i18n-attr="content|meta.description" content="How ShainBox handles your data: a local-first app, anonymous site analytics, and your rights." />
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
@@ -20,74 +20,97 @@
     })(window, document, "clarity", "script", "xgaq94l7hn");
   </script>
 
-  <!-- Fonts -->
+  <!-- Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=Space+Mono:wght@400;700&family=Doto:wght@700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
+    /* ============================================================
+       Privacy — same light system as the landing.
+       95% Tran Mau Tri Tam: warm off-white paper, white cards,
+       soft shadows, felt hairlines, ONE blue accent, Inter.
+       ============================================================ */
     :root{
-      --bg-0:           #000000;
-      --bg-1:           #070707;
-      --bg-2:           #0E0E0E;
-      --line:           #1A1A1A;
-      --line-2:         #2A2A2A;
-      --text-display:   rgba(255,255,255,1.00);
-      --text-primary:   rgba(255,255,255,0.90);
-      --text-secondary: rgba(255,255,255,0.60);
-      --text-disabled:  rgba(255,255,255,0.40);
-      --text-muted:     rgba(255,255,255,0.24);
-      --accent:         #F4D700;
-      --accent-hi:      #FFE500;
-      --accent-ink:     #0A0A0A;
-      --accent-wash:    rgba(244,215,0,0.12);
-      --accent-ring:    rgba(244,215,0,0.40);
-      --dur:            140ms;
+      --bg-0:           #EFEEEC;
+      --bg-1:           #FFFFFF;
+      --bg-2:           #F4F3F1;
+      --surface:        #FFFFFF;
+      --surface-2:      #F4F3F1;
+
+      --line:           rgba(28,28,30,0.07);
+      --line-2:         rgba(28,28,30,0.12);
+
+      --text-display:   #0A0A0A;
+      --text-primary:   #1C1C1E;
+      --text-secondary: #6B6B70;
+      --text-disabled:  #9A9A9E;
+      --text-muted:     #B8B8BC;
+
+      --accent:         #2A85FF;
+      --accent-hi:      #1E6FE0;
+      --accent-ink:     #FFFFFF;
+      --accent-wash:    rgba(42,133,255,0.10);
+      --accent-ring:    rgba(42,133,255,0.40);
+
+      --shadow-card:    0 8px 24px rgba(28,28,40,0.06);
+      --shadow-hover:   0 14px 36px rgba(28,28,40,0.11);
+
+      --r-btn:          14px;
+      --r-card:         20px;
+
+      --dur:            200ms;
       --ease:           cubic-bezier(.2,.7,.2,1);
-      --maxw:           880px;
+
+      --maxw:           1120px;
       --gutter:         24px;
     }
+
     *{ box-sizing: border-box; }
     html{ scroll-behavior: smooth; }
     html, body{ margin:0; padding:0; background: var(--bg-0); color: var(--text-primary); }
     body{
-      font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+      font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
       font-weight: 400;
       font-size: 16px;
-      line-height: 1.6;
+      line-height: 1.5;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
+      overflow-x: hidden;
     }
     ::selection{ background: var(--accent); color: var(--accent-ink); }
 
-    .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+    .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); position: relative; }
 
-    /* NAV */
+    /* ============================================================
+       NAV — mirrors the landing
+       ============================================================ */
     nav.top{
       position: sticky; top: 0; z-index: 50;
-      background: var(--bg-0);
+      background: rgba(239,238,236,0.82);
+      backdrop-filter: saturate(180%) blur(14px);
+      -webkit-backdrop-filter: saturate(180%) blur(14px);
       border-bottom: 1px solid var(--line);
     }
     .nav-inner{
       display: flex; align-items: center; justify-content: space-between;
       height: 56px; padding: 0 var(--gutter);
-      max-width: 1200px; margin: 0 auto; gap: 16px;
+      max-width: var(--maxw); margin: 0 auto; gap: 16px;
     }
     .brand{
-      font-family: "Space Mono", ui-monospace, monospace;
-      font-size: 12px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+      font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+      font-size: 17px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
       color: var(--text-primary); text-decoration: none;
-      display: inline-flex; align-items: center; gap: 10px;
+      display: inline-flex; align-items: center; gap: 9px;
     }
-    .brand .dot{
-      width: 6px; height: 6px; border-radius: 999px;
-      background: var(--accent); display: inline-block;
-    }
+    .brand .brand-icon{ width: 40px; height: 40px; display: inline-block; flex: none; }
+    .nav-right{ display: flex; align-items: center; gap: 12px; }
+
     .lang{
-      display: inline-flex; align-items: center;
+      display: inline-flex; align-items: center; gap: 0;
       border: 1px solid var(--line-2); border-radius: 999px; padding: 2px;
-      font-family: "Space Mono", monospace; font-size: 10px;
-      letter-spacing: 0.16em; text-transform: uppercase;
+      font-family: "Inter", ui-monospace, monospace;
+      font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
     }
     .lang-opt{
       padding: 6px 10px; border-radius: 999px;
@@ -98,144 +121,114 @@
     }
     .lang-opt:hover{ color: var(--text-primary); }
     .lang-opt.active{ background: var(--text-primary); color: var(--accent-ink); }
+
     .nav-back{
-      font-family: "Space Mono", monospace;
-      font-size: 11px; font-weight: 700;
-      letter-spacing: 0.14em; text-transform: uppercase;
+      font-family: "Inter", ui-monospace, monospace;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
       color: var(--text-secondary); text-decoration: none;
       border: 1px solid var(--line-2); padding: 8px 14px; border-radius: 999px;
-      transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+      transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease), transform var(--dur) var(--ease);
     }
-    .nav-back:hover{ border-color: var(--text-primary); color: var(--text-primary); }
+    .nav-back:hover{ border-color: var(--text-disabled); color: var(--text-primary); transform: translateY(-1px); }
 
-    /* HERO */
-    section.hero{
-      padding: 80px 0 32px;
+    /* ============================================================
+       HERO
+       ============================================================ */
+    section.p-hero{ padding: 72px 0 24px; }
+    .p-hero .kicker{
+      font-family: "Inter", ui-monospace, monospace;
+      font-size: 12px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--accent); margin: 0 0 16px;
     }
-    .hero-kicker{
-      display: flex; align-items: center; gap: 12px;
-      margin-bottom: 32px; flex-wrap: wrap;
+    .p-hero h1{
+      font-weight: 800; font-size: clamp(40px, 6vw, 68px);
+      line-height: 1.04; letter-spacing: -0.03em;
+      color: var(--text-display); margin: 0 0 18px;
     }
-    .hero-kicker .idx{
-      font-family: "Space Mono", monospace;
-      font-size: 10px; color: var(--text-disabled); letter-spacing: 0.18em;
+    .p-hero .tag{
+      font-weight: 300; font-size: clamp(17px, 1.6vw, 21px); line-height: 1.5;
+      color: var(--text-secondary); max-width: 640px; margin: 0;
     }
-    .hero-kicker .lbl{
-      font-family: "Space Mono", monospace;
-      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--text-secondary);
-    }
-    .hero-kicker .hair{ flex: 1; height: 1px; background: var(--line); min-width: 24px; }
-    .hero-mark{
-      font-family: "Doto", monospace;
-      font-weight: 700;
-      font-size: clamp(56px, 12vw, 140px);
-      line-height: 0.88;
-      letter-spacing: -0.01em;
-      color: var(--text-display);
-      margin: 0 0 24px;
-    }
-    .hero-tag{
-      font-family: "Space Grotesk", sans-serif; font-weight: 300;
-      font-size: clamp(18px, 2vw, 22px); line-height: 1.45;
-      color: var(--text-secondary); margin: 0 0 8px; max-width: 620px;
-    }
-    .hero-meta{
-      margin-top: 24px;
-      font-family: "Space Mono", monospace;
-      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    .p-hero .meta{
+      margin-top: 22px;
+      font-family: "Inter", ui-monospace, monospace;
+      font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
       color: var(--text-disabled);
     }
 
-    /* SECTIONS */
-    section.policy{
-      padding: 64px 0 100px;
-    }
+    /* ============================================================
+       POLICY — white cards
+       ============================================================ */
+    section.policy{ padding: 40px 0 96px; }
+    section.policy .wrap{ max-width: 960px; }
     .sec{
-      padding: 40px 0;
-      border-top: 1px solid var(--line);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r-card);
+      box-shadow: var(--shadow-card);
+      padding: 28px clamp(20px, 3vw, 36px);
+      margin-bottom: 20px;
       display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 48px;
+      grid-template-columns: 132px 1fr;
+      gap: 32px;
       align-items: start;
     }
-    .sec:last-of-type{ border-bottom: 1px solid var(--line); }
     .sec .idx{
-      font-family: "Space Mono", monospace;
-      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--text-disabled);
-      padding-top: 6px;
+      font-family: "Inter", ui-monospace, monospace;
+      font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--text-disabled); padding-top: 5px;
     }
     .sec h2{
-      font-family: "Space Grotesk", sans-serif;
-      font-weight: 400; font-size: clamp(22px, 2.6vw, 28px);
-      line-height: 1.2; letter-spacing: -0.01em;
-      margin: 0 0 16px; color: var(--text-display);
+      font-weight: 700; font-size: clamp(20px, 2.4vw, 26px);
+      line-height: 1.2; letter-spacing: -0.02em;
+      margin: 0 0 14px; color: var(--text-display);
     }
     .sec p{
-      font-family: "Space Grotesk", sans-serif;
-      font-weight: 300; font-size: 15px; line-height: 1.65;
-      color: var(--text-secondary); margin: 0 0 14px;
+      font-size: 15px; line-height: 1.65; color: var(--text-secondary); margin: 0 0 12px;
     }
     .sec p:last-child{ margin-bottom: 0; }
-    .sec strong{ color: var(--text-primary); font-weight: 500; }
+    .sec strong{ color: var(--text-primary); font-weight: 600; }
     .sec a{
-      color: var(--text-primary); text-decoration: underline;
-      text-decoration-color: var(--accent-ring);
-      text-underline-offset: 3px;
+      color: var(--accent); text-decoration: none;
+      border-bottom: 1px solid var(--accent-ring); padding-bottom: 1px;
+      transition: border-color var(--dur) var(--ease);
     }
-    .sec a:hover{ text-decoration-color: var(--accent); }
+    .sec a:hover{ border-bottom-color: var(--accent); }
 
-    .sec-list{
-      list-style: none; padding: 0; margin: 0 0 14px;
-      border-top: 1px solid var(--line);
-    }
+    .sec-list{ list-style: none; padding: 0; margin: 4px 0 12px; }
     .sec-list li{
-      padding: 12px 0;
-      border-bottom: 1px solid var(--line);
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 16px;
-      align-items: baseline;
+      padding: 14px 0; border-top: 1px solid var(--line);
+      display: grid; grid-template-columns: 150px 1fr; gap: 16px; align-items: baseline;
     }
+    .sec-list li:last-child{ border-bottom: 1px solid var(--line); }
     .sec-list li .key{
-      font-family: "Space Mono", monospace;
-      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      font-family: "Inter", ui-monospace, monospace;
+      font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
       color: var(--text-disabled);
     }
-    .sec-list li .val{
-      font-family: "Space Grotesk", sans-serif; font-weight: 400;
-      font-size: 15px; color: var(--text-primary); line-height: 1.5;
-    }
+    .sec-list li .val{ font-size: 15px; color: var(--text-primary); line-height: 1.55; }
     .sec-list li .val em{ color: var(--text-secondary); font-style: normal; }
 
-    /* FOOTER */
-    footer.foot{
-      border-top: 1px solid var(--line);
-      padding: 40px 0 56px;
-    }
-    .foot-inner{
-      max-width: 1200px; margin: 0 auto;
-      padding: 0 var(--gutter);
-      display: grid; grid-template-columns: 1fr auto;
-      gap: 24px; align-items: center;
-    }
+    /* ============================================================
+       FOOTER — mirrors the landing
+       ============================================================ */
+    footer.foot{ border-top: 1px solid var(--line); padding: 40px 0 56px; }
+    .foot-inner{ display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; }
     .foot-left{
       display: flex; align-items: center; gap: 14px;
-      font-family: "Space Mono", monospace;
-      font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--text-disabled);
+      font-family: "Inter", ui-monospace, monospace;
+      font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-disabled);
     }
     .foot-left .hair{ display: inline-block; width: 40px; height: 1px; background: var(--line-2); }
     .foot-right{ display: flex; gap: 24px; }
     .foot-right a{
-      font-family: "Space Mono", monospace;
+      font-family: "Inter", ui-monospace, monospace;
       font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
       color: var(--text-secondary); text-decoration: none;
     }
     .foot-right a:hover{ color: var(--text-primary); }
 
-    @media (max-width: 900px){
+    @media (max-width: 720px){
       .sec{ grid-template-columns: 1fr; gap: 12px; }
       .sec-list li{ grid-template-columns: 1fr; gap: 4px; }
       .foot-inner{ grid-template-columns: 1fr; }
@@ -250,29 +243,27 @@
   <nav class="top">
     <div class="nav-inner">
       <a href="index.html" class="brand">
-        <span class="dot" aria-hidden="true"></span>
+        <img class="brand-icon" src="appicon.png" width="40" height="40" alt="" aria-hidden="true" decoding="async" />
         SHAINBOX
       </a>
-      <div class="lang" role="group" aria-label="Language">
-        <button type="button" class="lang-opt" data-lang="en" aria-label="English">EN</button>
-        <button type="button" class="lang-opt" data-lang="uk" aria-label="Українська">UA</button>
+      <div class="nav-right">
+        <div class="lang" role="group" aria-label="Language">
+          <button type="button" class="lang-opt" data-lang="en" aria-label="English">EN</button>
+          <button type="button" class="lang-opt" data-lang="uk" aria-label="Українська">UA</button>
+        </div>
+        <a href="index.html" class="nav-back" data-i18n="nav.back">← Home</a>
       </div>
-      <a href="index.html" class="nav-back" data-i18n="nav.back">← Back</a>
     </div>
   </nav>
 
-  <section class="hero">
+  <section class="p-hero">
     <div class="wrap">
-      <div class="hero-kicker">
-        <span class="idx">/§</span>
-        <span class="lbl" data-i18n="hero.kicker">Privacy &amp; data</span>
-        <span class="hair" aria-hidden="true"></span>
-      </div>
-      <h1 class="hero-mark">PRIVACY.</h1>
-      <p class="hero-tag" data-i18n="hero.tag">
-        Short version: we collect the minimum needed to run the waitlist and improve the landing page. No selling, no ads, no surprises.
+      <div class="kicker" data-i18n="hero.kicker">Privacy &amp; data</div>
+      <h1 data-i18n="hero.h1">Privacy.</h1>
+      <p class="tag" data-i18n="hero.tag">
+        The short version: ShainBox is local-first. Your library lives as plain folders on your disk, the app needs no account, and this site collects only anonymous analytics. No selling, no ads, no surprises.
       </p>
-      <div class="hero-meta" data-i18n="hero.meta">LAST UPDATED · 2026-04-27</div>
+      <div class="meta" data-i18n="hero.meta">LAST UPDATED · 2026-07-05</div>
     </div>
   </section>
 
@@ -283,22 +274,21 @@
         <div class="idx">§ 01</div>
         <div>
           <h2 data-i18n="s1.h">What we collect</h2>
-          <p data-i18n="s1.p1">When you submit the waitlist form, we collect:</p>
+          <p data-i18n="s1.p1">Almost nothing — and none of your actual content. Here's the full picture:</p>
           <ul class="sec-list">
             <li>
-              <span class="key" data-i18n="s1.k1">EMAIL</span>
-              <span class="val" data-i18n="s1.v1">The address you typed in. <em>Required to email you when ShainBox ships.</em></span>
+              <span class="key" data-i18n="s1.k1">THE APP</span>
+              <span class="val" data-i18n="s1.v1">ShainBox runs entirely on your device. Your boards are plain folders on your disk, and the app needs no account. <em>We never see what you store in it.</em></span>
             </li>
             <li>
-              <span class="key" data-i18n="s1.k2">PLATFORM</span>
-              <span class="val" data-i18n="s1.v2">macOS Apple Silicon, macOS Intel, or Windows. <em>Helps us prioritize which build to ship first.</em></span>
+              <span class="key" data-i18n="s1.k2">THIS SITE</span>
+              <span class="val" data-i18n="s1.v2">Anonymized usage analytics — page views, clicks, scroll depth, viewport size and country-level location. <em>No personal data, and we don't record anything you type.</em></span>
             </li>
             <li>
-              <span class="key" data-i18n="s1.k3">CURRENT TOOL</span>
-              <span class="val" data-i18n="s1.v3">Optional free-text answer about what you use today. <em>Helps us understand the landscape.</em></span>
+              <span class="key" data-i18n="s1.k3">DOWNLOADS &amp; PURCHASE</span>
+              <span class="val" data-i18n="s1.v3">Downloads are served by GitHub. When you buy a licence, a payment provider processes the transaction and passes us your email and an order reference. <em>We never receive your full card number.</em></span>
             </li>
           </ul>
-          <p data-i18n="s1.p2">When you visit the landing page, we record anonymized session analytics (page views, clicks, scroll depth, viewport size, country-level location). We do not record what you type into any input.</p>
         </div>
       </div>
 
@@ -306,9 +296,9 @@
         <div class="idx">§ 02</div>
         <div>
           <h2 data-i18n="s2.h">Why we collect it</h2>
-          <p data-i18n="s2.p1"><strong>To run the waitlist.</strong> One email when ShainBox is ready. Maybe one or two product updates before that. That's it.</p>
-          <p data-i18n="s2.p2"><strong>To prioritize builds.</strong> If 80% of signups are on Apple Silicon, that's where we focus first.</p>
-          <p data-i18n="s2.p3"><strong>To improve the landing.</strong> Anonymized analytics tell us which sections work, where people drop off, and which devices to design for.</p>
+          <p data-i18n="s2.p1"><strong>To run and improve this site.</strong> Anonymous analytics show which sections work, where people drop off, and which devices to design for.</p>
+          <p data-i18n="s2.p2"><strong>To deliver the app and your licence.</strong> Your email and order reference let us send your licence and receipt, and help if you write in for support.</p>
+          <p data-i18n="s2.p3"><strong>Nothing else.</strong> We don't sell data, run ads, or build profiles. That's a promise, not a setting.</p>
         </div>
       </div>
 
@@ -316,19 +306,19 @@
         <div class="idx">§ 03</div>
         <div>
           <h2 data-i18n="s3.h">Third-party services</h2>
-          <p data-i18n="s3.p1">Three companies help us run this page. They each see only what they need:</p>
+          <p data-i18n="s3.p1">A few services help us ship this. Each sees only what it needs:</p>
           <ul class="sec-list">
             <li>
-              <span class="key">MAILERLITE</span>
-              <span class="val" data-i18n="s3.v1">Stores your email and waitlist details, sends the confirmation email. <em>Their <a href="https://www.mailerlite.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">privacy policy</a>.</em></span>
-            </li>
-            <li>
               <span class="key">CLARITY</span>
-              <span class="val" data-i18n="s3.v2">Microsoft Clarity records anonymized session behavior on this page. No PII. <em>Their <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer">privacy statement</a>.</em></span>
+              <span class="val" data-i18n="s3.v1">Microsoft Clarity records anonymized session behaviour on this site. No PII. <em>Their <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer">privacy statement</a>.</em></span>
             </li>
             <li>
               <span class="key">GITHUB</span>
-              <span class="val" data-i18n="s3.v3">Hosts this page (GitHub Pages). Logs basic request data (IP, user agent) per their standard logging. <em>Their <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">privacy statement</a>.</em></span>
+              <span class="val" data-i18n="s3.v2">Hosts this site and serves app downloads (GitHub Pages &amp; Releases). Logs basic request data such as IP and user agent. <em>Their <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">privacy statement</a>.</em></span>
+            </li>
+            <li>
+              <span class="key">PAYMENTS</span>
+              <span class="val" data-i18n="s3.v3">Our payment provider processes purchases and keeps billing details on their side. <em>We only receive your email and an order reference.</em></span>
             </li>
           </ul>
         </div>
@@ -338,10 +328,9 @@
         <div class="idx">§ 04</div>
         <div>
           <h2 data-i18n="s4.h">Your rights</h2>
-          <p data-i18n="s4.p1"><strong>Unsubscribe.</strong> Every email we send has a one-click unsubscribe link. Click it and you're out.</p>
-          <p data-i18n="s4.p2"><strong>Delete your data.</strong> Email <a href="mailto:dmitriy.legkov@wearevolt.com">dmitriy.legkov@wearevolt.com</a> with the subject "Delete my data" and we'll wipe your record from MailerLite within 7 days.</p>
-          <p data-i18n="s4.p3"><strong>Access or correct.</strong> Same email — we'll send you whatever we have on file or update it.</p>
-          <p data-i18n="s4.p4">If you're in the EU/EEA or UK, GDPR applies and these rights are legally yours. We treat everyone the same way regardless of location.</p>
+          <p data-i18n="s4.p1"><strong>Access or delete your data.</strong> Email <a href="mailto:dmitriy.legkov@wearevolt.com">dmitriy.legkov@wearevolt.com</a> with what you'd like — we'll send whatever we have on file, correct it, or wipe it within 7 days.</p>
+          <p data-i18n="s4.p2"><strong>Opt out of email.</strong> If we ever email you, every message has a one-click unsubscribe.</p>
+          <p data-i18n="s4.p3">If you're in the EU/EEA or UK, GDPR applies and these rights are legally yours. We treat everyone the same way regardless of location.</p>
         </div>
       </div>
 
@@ -349,8 +338,8 @@
         <div class="idx">§ 05</div>
         <div>
           <h2 data-i18n="s5.h">Contact</h2>
-          <p data-i18n="s5.p1">Anything else — questions, bugs in this policy, requests, complaints — write to <a href="mailto:dmitriy.legkov@wearevolt.com">dmitriy.legkov@wearevolt.com</a>. A real human reads every email.</p>
-          <p data-i18n="s5.p2">ShainBox is a personal project by Dmytro Lehkov. There is no company entity behind it yet.</p>
+          <p data-i18n="s5.p1">Questions, requests, or a bug in this policy — write to <a href="mailto:dmitriy.legkov@wearevolt.com">dmitriy.legkov@wearevolt.com</a>. A real human reads every email.</p>
+          <p data-i18n="s5.p2">ShainBox is a personal project by Dmytro Lehkov. There's no company entity behind it yet.</p>
         </div>
       </div>
 
@@ -358,16 +347,18 @@
   </section>
 
   <footer class="foot">
-    <div class="foot-inner">
-      <div class="foot-left">
-        <span>SHAINBOX</span>
-        <span class="hair" aria-hidden="true"></span>
-        <span data-i18n="foot.tag">Made on disk</span>
-      </div>
-      <div class="foot-right">
-        <a href="privacy.html" data-i18n="foot.privacy">Privacy</a>
-        <a href="index.html" data-i18n="foot.product">Home</a>
-        <a href="mailto:dmitriy.legkov@wearevolt.com" data-i18n="foot.contact">Contact</a>
+    <div class="wrap">
+      <div class="foot-inner">
+        <div class="foot-left">
+          <span>SHAINBOX</span>
+          <span class="hair" aria-hidden="true"></span>
+          <span data-i18n="foot.tag">Made on disk</span>
+        </div>
+        <div class="foot-right">
+          <a href="privacy.html" data-i18n="foot.privacy">Privacy</a>
+          <a href="index.html" data-i18n="foot.product">Home</a>
+          <a href="mailto:dmitriy.legkov@wearevolt.com" data-i18n="foot.contact">Contact</a>
+        </div>
       </div>
     </div>
   </footer>
@@ -376,37 +367,36 @@
     const i18n = {
       en: {
         'meta.title': 'SHAINBOX — Privacy',
-        'meta.description': 'What ShainBox collects on the waitlist landing, why, and your rights.',
-        'nav.back': '← Back',
+        'meta.description': 'How ShainBox handles your data: a local-first app, anonymous site analytics, and your rights.',
+        'nav.back': '← Home',
         'hero.kicker': 'Privacy & data',
-        'hero.tag': 'Short version: we collect the minimum needed to run the waitlist and improve the landing page. No selling, no ads, no surprises.',
-        'hero.meta': 'LAST UPDATED · 2026-04-27',
+        'hero.h1': 'Privacy.',
+        'hero.tag': 'The short version: ShainBox is local-first. Your library lives as plain folders on your disk, the app needs no account, and this site collects only anonymous analytics. No selling, no ads, no surprises.',
+        'hero.meta': 'LAST UPDATED · 2026-07-05',
         's1.h': 'What we collect',
-        's1.p1': 'When you submit the waitlist form, we collect:',
-        's1.k1': 'EMAIL',
-        's1.v1': 'The address you typed in. <em>Required to email you when ShainBox ships.</em>',
-        's1.k2': 'PLATFORM',
-        's1.v2': 'macOS Apple Silicon, macOS Intel, or Windows. <em>Helps us prioritize which build to ship first.</em>',
-        's1.k3': 'CURRENT TOOL',
-        's1.v3': 'Optional free-text answer about what you use today. <em>Helps us understand the landscape.</em>',
-        's1.p2': 'When you visit the landing page, we record anonymized session analytics (page views, clicks, scroll depth, viewport size, country-level location). We do not record what you type into any input.',
+        's1.p1': "Almost nothing — and none of your actual content. Here's the full picture:",
+        's1.k1': 'THE APP',
+        's1.v1': 'ShainBox runs entirely on your device. Your boards are plain folders on your disk, and the app needs no account. <em>We never see what you store in it.</em>',
+        's1.k2': 'THIS SITE',
+        's1.v2': "Anonymized usage analytics — page views, clicks, scroll depth, viewport size and country-level location. <em>No personal data, and we don't record anything you type.</em>",
+        's1.k3': 'DOWNLOADS & PURCHASE',
+        's1.v3': 'Downloads are served by GitHub. When you buy a licence, a payment provider processes the transaction and passes us your email and an order reference. <em>We never receive your full card number.</em>',
         's2.h': 'Why we collect it',
-        's2.p1': '<strong>To run the waitlist.</strong> One email when ShainBox is ready. Maybe one or two product updates before that. That\'s it.',
-        's2.p2': '<strong>To prioritize builds.</strong> If 80% of signups are on Apple Silicon, that\'s where we focus first.',
-        's2.p3': '<strong>To improve the landing.</strong> Anonymized analytics tell us which sections work, where people drop off, and which devices to design for.',
+        's2.p1': '<strong>To run and improve this site.</strong> Anonymous analytics show which sections work, where people drop off, and which devices to design for.',
+        's2.p2': '<strong>To deliver the app and your licence.</strong> Your email and order reference let us send your licence and receipt, and help if you write in for support.',
+        's2.p3': "<strong>Nothing else.</strong> We don't sell data, run ads, or build profiles. That's a promise, not a setting.",
         's3.h': 'Third-party services',
-        's3.p1': 'Three companies help us run this page. They each see only what they need:',
-        's3.v1': 'Stores your email and waitlist details, sends the confirmation email. <em>Their <a href="https://www.mailerlite.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">privacy policy</a>.</em>',
-        's3.v2': 'Microsoft Clarity records anonymized session behavior on this page. No PII. <em>Their <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer">privacy statement</a>.</em>',
-        's3.v3': 'Hosts this page (GitHub Pages). Logs basic request data (IP, user agent) per their standard logging. <em>Their <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">privacy statement</a>.</em>',
+        's3.p1': 'A few services help us ship this. Each sees only what it needs:',
+        's3.v1': 'Microsoft Clarity records anonymized session behaviour on this site. No PII. <em>Their <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer">privacy statement</a>.</em>',
+        's3.v2': 'Hosts this site and serves app downloads (GitHub Pages & Releases). Logs basic request data such as IP and user agent. <em>Their <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">privacy statement</a>.</em>',
+        's3.v3': 'Our payment provider processes purchases and keeps billing details on their side. <em>We only receive your email and an order reference.</em>',
         's4.h': 'Your rights',
-        's4.p1': '<strong>Unsubscribe.</strong> Every email we send has a one-click unsubscribe link. Click it and you\'re out.',
-        's4.p2': '<strong>Delete your data.</strong> Email <a href="mailto:dmitriy.legkov@wearevolt.com">dmitriy.legkov@wearevolt.com</a> with the subject "Delete my data" and we\'ll wipe your record from MailerLite within 7 days.',
-        's4.p3': '<strong>Access or correct.</strong> Same email — we\'ll send you whatever we have on file or update it.',
-        's4.p4': 'If you\'re in the EU/EEA or UK, GDPR applies and these rights are legally yours. We treat everyone the same way regardless of location.',
+        's4.p1': "<strong>Access or delete your data.</strong> Email <a href=\"mailto:dmitriy.legkov@wearevolt.com\">dmitriy.legkov@wearevolt.com</a> with what you'd like — we'll send whatever we have on file, correct it, or wipe it within 7 days.",
+        's4.p2': '<strong>Opt out of email.</strong> If we ever email you, every message has a one-click unsubscribe.',
+        's4.p3': "If you're in the EU/EEA or UK, GDPR applies and these rights are legally yours. We treat everyone the same way regardless of location.",
         's5.h': 'Contact',
-        's5.p1': 'Anything else — questions, bugs in this policy, requests, complaints — write to <a href="mailto:dmitriy.legkov@wearevolt.com">dmitriy.legkov@wearevolt.com</a>. A real human reads every email.',
-        's5.p2': 'ShainBox is a personal project by Dmytro Lehkov. There is no company entity behind it yet.',
+        's5.p1': 'Questions, requests, or a bug in this policy — write to <a href="mailto:dmitriy.legkov@wearevolt.com">dmitriy.legkov@wearevolt.com</a>. A real human reads every email.',
+        's5.p2': "ShainBox is a personal project by Dmytro Lehkov. There's no company entity behind it yet.",
         'foot.tag': 'Made on disk',
         'foot.privacy': 'Privacy',
         'foot.product': 'Home',
@@ -414,36 +404,35 @@
       },
       uk: {
         'meta.title': 'SHAINBOX — Конфіденційність',
-        'meta.description': 'Які дані ShainBox збирає на сторінці waitlist, навіщо, і твої права.',
-        'nav.back': '← Назад',
+        'meta.description': 'Як ShainBox поводиться з даними: локальний застосунок, знеособлена аналітика сайту і твої права.',
+        'nav.back': '← Головна',
         'hero.kicker': 'Конфіденційність та дані',
-        'hero.tag': 'Коротко: ми збираємо мінімум, потрібний для роботи waitlist і покращення лендингу. Жодного продажу даних, реклами чи сюрпризів.',
-        'hero.meta': 'ОНОВЛЕНО · 2026-04-27',
+        'hero.h1': 'Конфіденційність.',
+        'hero.tag': 'Коротко: ShainBox працює локально. Твоя бібліотека — це звичайні папки на твоєму диску, застосунку не потрібен акаунт, а сайт збирає лише знеособлену аналітику. Жодного продажу даних, реклами чи сюрпризів.',
+        'hero.meta': 'ОНОВЛЕНО · 2026-07-05',
         's1.h': 'Що ми збираємо',
-        's1.p1': 'Коли ти заповнюєш форму waitlist, ми збираємо:',
-        's1.k1': 'EMAIL',
-        's1.v1': 'Адреса, яку ти ввів. <em>Потрібна, щоб надіслати лист у день релізу ShainBox.</em>',
-        's1.k2': 'ПЛАТФОРМА',
-        's1.v2': 'macOS Apple Silicon, macOS Intel або Windows. <em>Допомагає визначити, з якої збірки починати.</em>',
-        's1.k3': 'ПОТОЧНИЙ ІНСТРУМЕНТ',
-        's1.v3': 'Необов\'язкова текстова відповідь про те, чим зараз користуєшся. <em>Допомагає нам зрозуміти ринок.</em>',
-        's1.p2': 'Коли ти заходиш на лендинг, ми зберігаємо знеособлену аналітику сесії (перегляди сторінки, кліки, глибина скролу, розмір вікна, країна). Ми НЕ записуємо те, що ти вводиш у поля форми.',
+        's1.p1': 'Майже нічого — і нічого з твого вмісту. Ось повна картина:',
+        's1.k1': 'ЗАСТОСУНОК',
+        's1.v1': 'ShainBox працює повністю на твоєму пристрої. Борди — це звичайні папки на диску, акаунт не потрібен. <em>Ми ніколи не бачимо, що ти в ньому зберігаєш.</em>',
+        's1.k2': 'ЦЕЙ САЙТ',
+        's1.v2': 'Знеособлена аналітика — перегляди сторінки, кліки, глибина скролу, розмір вікна і країна. <em>Без персональних даних; ми не записуємо те, що ти вводиш.</em>',
+        's1.k3': 'ЗАВАНТАЖЕННЯ ТА ПОКУПКА',
+        's1.v3': 'Завантаження роздає GitHub. Коли ти купуєш ліцензію, платіжний провайдер проводить оплату й передає нам твій email та номер замовлення. <em>Ми ніколи не отримуємо повний номер картки.</em>',
         's2.h': 'Навіщо ми це збираємо',
-        's2.p1': '<strong>Щоб працював waitlist.</strong> Один лист — коли ShainBox буде готовий. Можливо, один-два анонси до релізу. Це все.',
-        's2.p2': '<strong>Щоб пріоритизувати збірки.</strong> Якщо 80% підписок з Apple Silicon — починаємо саме з неї.',
-        's2.p3': '<strong>Щоб покращити лендинг.</strong> Знеособлена аналітика показує, які секції працюють, де люди відпадають і під які пристрої проектувати.',
+        's2.p1': '<strong>Щоб тримати й покращувати сайт.</strong> Знеособлена аналітика показує, які секції працюють, де люди відпадають і під які пристрої проектувати.',
+        's2.p2': '<strong>Щоб видати застосунок і ліцензію.</strong> Email і номер замовлення дають змогу надіслати ліцензію та чек і допомогти, якщо ти напишеш у підтримку.',
+        's2.p3': '<strong>Більше нічого.</strong> Ми не продаємо дані, не крутимо рекламу і не будуємо профілі. Це обіцянка, а не налаштування.',
         's3.h': 'Сторонні сервіси',
-        's3.p1': 'Три компанії допомагають нам тримати цю сторінку. Кожна бачить тільки те, що їй потрібно:',
-        's3.v1': 'Зберігає твій email та дані waitlist, надсилає лист-підтвердження. <em><a href="https://www.mailerlite.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Їхня політика</a>.</em>',
-        's3.v2': 'Microsoft Clarity записує знеособлену поведінку на цій сторінці. Без PII. <em><a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer">Їхня заява</a>.</em>',
-        's3.v3': 'Хостить цю сторінку (GitHub Pages). Логує базові дані запиту (IP, user agent) за стандартом. <em><a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">Їхня заява</a>.</em>',
+        's3.p1': 'Кілька сервісів допомагають це тримати. Кожен бачить тільки те, що йому потрібно:',
+        's3.v1': 'Microsoft Clarity записує знеособлену поведінку на цьому сайті. Без PII. <em><a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener noreferrer">Їхня заява</a>.</em>',
+        's3.v2': 'Хостить сайт і роздає завантаження застосунку (GitHub Pages та Releases). Логує базові дані запиту — IP, user agent. <em><a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">Їхня заява</a>.</em>',
+        's3.v3': 'Наш платіжний провайдер проводить оплати й тримає платіжні дані на своєму боці. <em>Ми отримуємо лише твій email та номер замовлення.</em>',
         's4.h': 'Твої права',
-        's4.p1': '<strong>Відписатися.</strong> У кожному листі — посилання на відписку в один клік. Тиснеш — і тебе немає у списку.',
-        's4.p2': '<strong>Видалити дані.</strong> Напиши на <a href="mailto:dmitriy.legkov@wearevolt.com">dmitriy.legkov@wearevolt.com</a> з темою "Delete my data" — за 7 днів видалимо твій запис з MailerLite.',
-        's4.p3': '<strong>Отримати або змінити.</strong> Той самий email — надішлемо все, що в нас є, або оновимо.',
-        's4.p4': 'Якщо ти в ЄС/ЄЕЗ або Великій Британії, GDPR застосовується і ці права у тебе за законом. Ми ставимося до всіх однаково незалежно від країни.',
+        's4.p1': '<strong>Отримати або видалити дані.</strong> Напиши на <a href="mailto:dmitriy.legkov@wearevolt.com">dmitriy.legkov@wearevolt.com</a>, що потрібно — надішлемо все, що маємо, виправимо або видалимо за 7 днів.',
+        's4.p2': '<strong>Відписатися від листів.</strong> Якщо ми колись напишемо, у кожному листі — відписка в один клік.',
+        's4.p3': 'Якщо ти в ЄС/ЄЕЗ або Великій Британії, застосовується GDPR і ці права у тебе за законом. Ми ставимося до всіх однаково незалежно від країни.',
         's5.h': 'Контакт',
-        's5.p1': 'Щось інше — питання, помилки в політиці, запити, скарги — пиши на <a href="mailto:dmitriy.legkov@wearevolt.com">dmitriy.legkov@wearevolt.com</a>. Кожен лист читає жива людина.',
+        's5.p1': 'Питання, запити чи помилка в цій політиці — пиши на <a href="mailto:dmitriy.legkov@wearevolt.com">dmitriy.legkov@wearevolt.com</a>. Кожен лист читає жива людина.',
         's5.p2': 'ShainBox — особистий проект Дмитра Легкова. Юридичної особи поки не існує.',
         'foot.tag': 'Зроблено на диску',
         'foot.privacy': 'Конфіденційність',

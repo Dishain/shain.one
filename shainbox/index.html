@@ -1226,6 +1226,8 @@
        RESPONSIVE
        ============================================================ */
     @media (max-width: 900px){
+      /* let the headline wrap naturally on mobile instead of forcing a per-sentence break */
+      .br-desktop{ display: none; }
       .hero-grid{ grid-template-columns: 1fr; gap: 36px; }
       .hero-media-col{ order: -1; }
       section.hero{ padding: 56px 0 0; }
@@ -1305,7 +1307,7 @@
     <div class="wrap">
       <div class="hero-center">
         <img class="hero-appicon" src="appicon.png" width="178" height="178" alt="ShainBox app icon" decoding="async" fetchpriority="high" />
-        <h1 class="hero-mark" data-i18n="hero.head"><span class="lead">Collect references. Find them by content.</span> <em>All on your disk.</em></h1>
+        <h1 class="hero-mark" data-i18n="hero.head"><span class="lead">Collect references.<br class="br-desktop"> Find them by content.</span> <em>All on your disk.</em></h1>
 
         <p class="hero-tag" data-i18n="hero.tag">
           A desktop app for references and design assets, with local AI search.
@@ -1512,7 +1514,7 @@
 
         'hero.kicker': 'A desktop library for design references',
         'hero.status': 'Public beta · macOS + Windows',
-        'hero.head': '<span class="lead">Collect references. Find them by content.</span> <em>All on your disk.</em>',
+        'hero.head': '<span class="lead">Collect references.<br class="br-desktop"> Find them by content.</span> <em>All on your disk.</em>',
         'hero.tag': 'A desktop app for references and design assets, with local AI search.',
         'hero.cta_primary': 'Join waitlist',
         'hero.dl_mac': 'Download for macOS',

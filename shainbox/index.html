@@ -13,11 +13,17 @@
 
   <!-- Microsoft Clarity analytics -->
   <script type="text/javascript">
+    (() => {
+    // Only run in a real browser over https. Electron shells (in-app
+    // webviews etc.) execute page scripts too and register phantom
+    // sessions like "https://Electron"; local dev shouldn't count either.
+    if (/electron/i.test(navigator.userAgent) || location.protocol !== "https:") return;
     (function(c,l,a,r,i,t,y){
       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
       t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "xgaq94l7hn");
+    })();
   </script>
 
   <!-- Fonts: Inter (everything) -->

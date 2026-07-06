@@ -13,6 +13,12 @@
   // Skip when ID not set
   if (!CLARITY_PROJECT_ID) return;
 
+  // Skip Electron shells (in-app webviews execute page scripts too and
+  // register phantom sessions like "https://Electron") and any non-https
+  // context (file://, custom app protocols).
+  if (/electron/i.test(navigator.userAgent)) return;
+  if (location.protocol !== "https:") return;
+
   // Respect Do-Not-Track
   if (navigator.doNotTrack === "1" || window.doNotTrack === "1") return;
 

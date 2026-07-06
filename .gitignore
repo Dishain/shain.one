@@ -5,3 +5,8 @@ node_modules/
 *.log
 *.bak
 *.tmp
+
+# working materials - not for deploy
+_incoming/
+_compose/
+_wireframe.html

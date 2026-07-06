@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title data-i18n="meta.title">SHAINBOX — Organize design references &amp; assets, with local AI search.</title>
-  <meta name="description" data-i18n-attr="content|meta.description" content="ShainBox is a desktop app for organizing design references and assets. Local AI search by content — find anything even if you never tagged it. Your files stay as plain folders on your disk." />
+  <title data-i18n="meta.title">SHAINBOX - Organize design references &amp; assets, with local AI search.</title>
+  <meta name="description" data-i18n-attr="content|meta.description" content="ShainBox is a desktop app for organizing design references and assets. Local AI search by content - find anything even if you never tagged it. Your files stay as plain folders on your disk." />
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
@@ -33,43 +33,43 @@
 
   <style>
     /* ============================================================
-       LIGHT REDESIGN — 95% Tran Mau Tri Tam + 5% Nothing
+       LIGHT REDESIGN - 95% Tran Mau Tri Tam + 5% Nothing
        Warm off-white paper, white cards, soft shadows, hairlines,
        ONE blue accent. The only Nothing tells kept: the Doto hero
        mark and the mono "§ 01" section indices. Same var names as
        before so the existing markup re-themes to light.
        ============================================================ */
     :root{
-      /* Surfaces — warm off-white canvas, white cards */
+      /* Surfaces - warm off-white canvas, white cards */
       --bg-0:           #EFEEEC;
       --bg-1:           #FFFFFF;
       --bg-2:           #F4F3F1;
       --surface:        #FFFFFF;
       --surface-2:      #F4F3F1;
 
-      /* Hairlines — felt, not seen */
+      /* Hairlines - felt, not seen */
       --line:           rgba(28,28,30,0.07);
       --line-2:         rgba(28,28,30,0.12);
 
-      /* Type — ink on paper. Hierarchy via size + weight + space */
+      /* Type - ink on paper. Hierarchy via size + weight + space */
       --text-display:   #0A0A0A;
       --text-primary:   #1C1C1E;
       --text-secondary: #6B6B70;
       --text-disabled:  #9A9A9E;
       --text-muted:     #B8B8BC;
 
-      /* One accent — calm product blue (TMaTriTam default) */
+      /* One accent - calm product blue (TMaTriTam default) */
       --accent:         #2A85FF;
       --accent-hi:      #1E6FE0;
       --accent-ink:     #FFFFFF;       /* white text on blue */
       --accent-wash:    rgba(42,133,255,0.10);
       --accent-ring:    rgba(42,133,255,0.40);
 
-      /* Ink black — secondary surfaces / footer text */
+      /* Ink black - secondary surfaces / footer text */
       --ink-black:      #0A0A0A;
       --on-black:       #FAFAF8;
 
-      /* Elevation — wide, soft, low-opacity */
+      /* Elevation - wide, soft, low-opacity */
       --shadow-card:    0 8px 24px rgba(28,28,40,0.06);
       --shadow-hover:   0 14px 36px rgba(28,28,40,0.11);
       --shadow-hero:    0 24px 60px rgba(28,28,40,0.12), 0 4px 14px rgba(28,28,40,0.05);
@@ -334,7 +334,7 @@
     }
     .btn-secondary:hover{ transform: translateY(-1px); box-shadow: var(--shadow-hover); border-color: var(--text-disabled); }
 
-    /* Hero inline waitlist form (legacy — markup removed) */
+    /* Hero inline waitlist form (legacy - markup removed) */
     .hero-form{
       display: grid;
       grid-template-columns: minmax(220px, 1fr) auto auto;
@@ -620,29 +620,22 @@
     }
     .social-chips .chip .dot{ width: 5px; height: 5px; border-radius: 999px; background: var(--accent); }
 
-    /* Three value props under the showcase (formats / AI search / local) */
-    .values{
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: clamp(24px, 4vw, 56px);
-      padding: clamp(40px, 5vw, 64px) 8px 0;
-      max-width: 960px;
+    /* Positioning strip under the showcase */
+    .strip{
+      text-align: center;
+      padding: clamp(48px, 7vw, 88px) 8px 0;
+    }
+    .strip p{
+      font-family: "Inter", sans-serif;
+      font-weight: 500;
+      font-size: clamp(20px, 2.4vw, 30px);
+      line-height: 1.32;
+      letter-spacing: -0.015em;
+      color: var(--text-display);
+      max-width: 30ch;
       margin: 0 auto;
     }
-    .value h3{
-      font-family: "Inter", sans-serif;
-      font-weight: 600;
-      font-size: 17px;
-      letter-spacing: -0.01em;
-      color: var(--text-display);
-      margin: 0 0 8px;
-    }
-    .value p{
-      font-size: 14px;
-      line-height: 1.55;
-      color: var(--text-secondary);
-      margin: 0;
-    }
+    .strip p .em{ color: var(--text-secondary); }
 
     /* ============================================================
        SECTION HEAD (shared)
@@ -672,7 +665,7 @@
     .section-head h2 .em{ color: var(--text-secondary); }
 
     /* ============================================================
-       SHOWCASE — single hero screenshot
+       SHOWCASE - single hero screenshot
        ============================================================ */
     section.showcase{
       padding: 80px 0 100px;
@@ -738,7 +731,7 @@
     }
 
     /* ============================================================
-       WHY — alternating video + text rows
+       WHY - alternating video + text rows
        ============================================================ */
     section.why{
       padding: 100px 0;
@@ -804,6 +797,24 @@
     .why-media.has-video::before,
     .why-media.has-image::before{ display: none; }
 
+    /* White 8px mat around the shot (per Figma) */
+    .why-media.framed{
+      padding: 8px;
+      background: var(--surface);
+    }
+    .why-media.framed img,
+    .why-media.framed video{ border-radius: 14px; }
+
+    /* Gradient aura mat (search beat) - soft blue / warm / pink glows */
+    .why-media.aura{
+      background:
+        linear-gradient(90deg, #FFFFFF 0%, rgba(255,255,255,0) 50%),
+        radial-gradient(274px 314px at 76% 2%, rgba(122,150,255,0.55) 0%, rgba(122,150,255,0) 60%),
+        radial-gradient(643px 731px at 0% 61%, rgba(255,193,120,0.62) 0%, rgba(255,193,120,0) 62%),
+        radial-gradient(264px 298px at 72% 95%, rgba(255,138,158,0.45) 0%, rgba(255,138,158,0) 66%),
+        #FFFFFF;
+    }
+
     .why-text .num{
       font-family: "Inter", ui-monospace, monospace;
       font-size: 11px;
@@ -829,9 +840,132 @@
       margin: 0;
       max-width: 480px;
     }
+    .why-text .kick{
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: "Inter", ui-monospace, monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-disabled);
+      margin: 0 0 14px;
+    }
+
+    /* Small secondary CTA (web clipper install) */
+    .btn-clip{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      height: 40px;
+      padding: 0 17px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--line-2);
+      color: var(--text-primary);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: var(--shadow-card);
+      transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease);
+    }
+    .btn-clip:hover{ transform: translateY(-1px); box-shadow: var(--shadow-hover); border-color: var(--text-disabled); }
+    .btn-clip img{ width: 24px; height: 24px; display: block; flex: none; }
+
+    /* Dev placeholder state for beat media (until real shots/videos land) */
+    .why-media.is-ph{
+      background: var(--surface-2);
+      border-style: dashed;
+      border-color: var(--line-2);
+      box-shadow: none;
+    }
+    .why-media.is-ph::before{ display: none; }
+    .ph-hint{ position: relative; z-index: 1; text-align: center; padding: 16px; }
+    .ph-hint .t{
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-disabled);
+    }
+    .ph-hint .s{
+      display: block;
+      margin-top: 4px;
+      font-family: "Inter", ui-monospace, monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
 
     /* ============================================================
-       PRICING — single block
+       BENTO - the small stuff that adds up
+       ============================================================ */
+    section.bento{
+      padding: 100px 0;
+      border-top: 1px solid var(--line);
+    }
+    .bento-head{ margin-bottom: 36px; }
+    .bento-head h2{
+      font-family: "Inter", sans-serif;
+      font-weight: 700;
+      font-size: clamp(26px, 3.2vw, 38px);
+      letter-spacing: -0.02em;
+      color: var(--text-display);
+      margin: 0 0 8px;
+    }
+    .bento-head p{ font-size: 15px; color: var(--text-secondary); margin: 0; }
+    .bento-grid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .bento-cell{
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r-card);
+      box-shadow: var(--shadow-card);
+      padding: 22px;
+      min-height: 148px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+    .bento-cell.w2{ grid-column: span 2; }
+    .bento-decor{
+      position: absolute;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .bento-ic{
+      width: 36px;
+      height: 36px;
+      border-radius: var(--r-chip);
+      background: var(--accent-wash);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: none;
+    }
+    .bento-ic svg{ width: 18px; height: 18px; }
+    .bento-txt{ display: flex; flex-direction: column; gap: 4px; }
+    .bento-cell h3{
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text-display);
+      margin: 0;
+    }
+    .bento-cell p{ font-size: 13px; line-height: 1.5; color: var(--text-secondary); margin: 0; }
+
+    /* ============================================================
+       PRICING - single block
        ============================================================ */
     section.pricing{
       padding: 100px 0;
@@ -872,7 +1006,7 @@
               mask-image: linear-gradient(90deg, #000 58%, transparent 100%);
       z-index: 0;
       pointer-events: none;
-      /* Gentle living shimmer — medium pace, eases back and forth. */
+      /* Gentle living shimmer - medium pace, eases back and forth. */
       animation: auraDrift 12s ease-in-out infinite alternate;
       will-change: background-position, filter;
     }
@@ -1211,7 +1345,7 @@
     .foot-right a:hover{ color: var(--text-primary); }
 
     /* ============================================================
-       GET — closing download block
+       GET - closing download block
        ============================================================ */
     section.get{
       padding: 96px 0 112px;
@@ -1229,6 +1363,8 @@
     }
     .get-h .em{ color: var(--text-secondary); }
     section.get .hero-actions{ justify-content: center; }
+    .get-clip{ text-align: center; }
+    .get-clip .btn-clip{ margin-top: 16px; }
 
     /* ============================================================
        RESPONSIVE
@@ -1242,7 +1378,9 @@
       .hero-guides{ display: none; }
       section.showcase{ padding: 24px 0 56px; }
       .showcase-stage{ border-radius: 22px; }
-      .values{ grid-template-columns: 1fr; gap: 28px; text-align: center; }
+      .bento-grid{ grid-template-columns: repeat(2, 1fr); }
+      .bento-cell.w2{ grid-column: span 2; }
+      section.bento{ padding: 64px 0; }
       .hero-mark .lead{ white-space: normal; }
       .hero-meta{ grid-template-columns: 1fr; }
       .hero-meta > div{ border-right: 0; padding-left: 0; padding-right: 0; border-bottom: 1px solid var(--line); padding: 16px 0; }
@@ -1339,7 +1477,7 @@
   </section>
 
   <!-- ============================================================
-       SHOWCASE — product screenshot in a soft stage
+       SHOWCASE - product screenshot in a soft stage
        ============================================================ -->
   <section class="showcase">
     <div class="wrap">
@@ -1350,75 +1488,250 @@
           <picture>
             <source srcset="screenshots/main.webp" type="image/webp" />
             <img src="screenshots/main.png"
-                 alt="ShainBox main view — sidebar with boards, masonry reference grid, details panel"
+                 alt="ShainBox main view - sidebar with boards, masonry reference grid, details panel"
                  loading="eager"
                  decoding="async" />
           </picture>
         </div>
       </div>
 
-      <div class="values">
-        <div class="value">
-          <h3 data-i18n="val.1_h">AI search by content</h3>
-          <p data-i18n="val.1_p">Type “blue gradient onboarding” and find the shot — even if you never tagged it.</p>
-        </div>
-        <div class="value">
-          <h3 data-i18n="val.2_h">Any visual format</h3>
-          <p data-i18n="val.2_p">PNG, JPG, WebP, SVG, GIF, HEIC and MP4 / MOV video — one home for the whole collection.</p>
-        </div>
-        <div class="value">
-          <h3 data-i18n="val.3_h">Your files, local</h3>
-          <p data-i18n="val.3_p">Boards are plain folders on your disk. No account, no cloud, no vendor lock-in.</p>
-        </div>
+      <div class="strip">
+        <p data-i18n="strip.p">The reference library for designers - <span class="em">collect fast, find by memory, keep it all on your disk.</span></p>
       </div>
     </div>
   </section>
 
   <!-- ============================================================
-       WHY — alternating video + text
+       FEATURES - alternating media + text beats
+       Media are dev placeholders (.is-ph) until real shots/videos land.
        ============================================================ -->
   <section class="why" id="why">
     <div class="wrap">
-      <!-- Row 1: video LEFT, text RIGHT -->
+
+      <!-- 1 · WEB CLIPPER -->
       <div class="why-row">
-        <div class="why-media has-video">
-          <video autoplay muted loop playsinline preload="metadata" aria-label="Capture demo">
-            <source src="videos/capture.mp4" type="video/mp4" />
-          </video>
+        <div class="why-media has-image framed">
+          <picture>
+            <source srcset="screenshots/clipper.webp" type="image/webp" />
+            <img src="screenshots/clipper.png"
+                 alt="ShainBox web clipper - Save to dropdown over an image in the browser"
+                 loading="lazy"
+                 decoding="async" />
+          </picture>
         </div>
         <div class="why-text">
-          <h3 data-i18n="why.r1_h">Drag, drop, or shortcut.</h3>
-          <p data-i18n="why.r1_p">Global hotkey grabs a file from the clipboard or a drop zone. Automatic deduplication via content hash — the same reference never gets saved twice.</p>
+          <div class="kick" data-i18n="b2.kick">Web clipper · Chrome</div>
+          <h3 data-i18n="b2.h">Save straight from the browser.</h3>
+          <p data-i18n="b2.p"><a href="#">Install the extension</a>. Hover any image on a site, click - and it's already in the app. Pick a board from the dropdown, or let it land in Inbox. No downloads, no copy-paste.</p>
+          <a class="btn-clip" href="#"><img src="chrome.svg" width="24" height="24" alt="" aria-hidden="true" /><span data-i18n="b2.btn">Download the Chrome extension</span></a>
         </div>
       </div>
 
-      <!-- Row 2: text LEFT, video RIGHT -->
+      <!-- 2 · FIND -->
       <div class="why-row flip">
         <div class="why-text">
-          <h3 data-i18n="why.r2_h">Files, not a database.</h3>
-          <p data-i18n="why.r2_p">Boards are folders on your disk. Create a board in the app — a folder appears. Drop a file into the folder — it shows up in the app. Want it on another computer? Put your library inside Google Drive, Dropbox, or iCloud. Optional. Not required.</p>
+          <div class="kick" data-i18n="b3.kick">Find</div>
+          <h3 data-i18n="b3.h">Search the way you remember it.</h3>
+          <p data-i18n="b3.p">Visual AI search finds “blue gradient onboarding” even if you never tagged it. Plus full-text search, tags, filters, and OCR that reads text inside screenshots (macOS for now).</p>
         </div>
-        <div class="why-media has-image">
+        <div class="why-media has-image framed aura">
           <picture>
-            <source srcset="screenshots/store.webp" type="image/webp" />
-            <img src="screenshots/store.png"
-                 alt="Finder window showing ShainBox library — boards as plain folders, plus .shainbox-config"
+            <source srcset="screenshots/search.webp" type="image/webp" />
+            <img src="screenshots/search.png"
+                 alt="ShainBox visual search - typing a query finds the generated image"
                  loading="lazy"
                  decoding="async" />
           </picture>
         </div>
       </div>
 
-      <!-- Row 3: video LEFT, text RIGHT -->
+      <!-- 3 · FORMATS -->
       <div class="why-row">
-        <div class="why-media has-video">
-          <video autoplay muted loop playsinline preload="metadata" aria-label="AI search demo">
-            <source src="videos/search.mp4" type="video/mp4" />
+        <div class="why-media has-video framed">
+          <video autoplay muted loop playsinline preload="metadata" aria-label="Videos and animations playing live in the grid">
+            <source src="videos/formats.mp4" type="video/mp4" />
           </video>
         </div>
         <div class="why-text">
-          <h3 data-i18n="why.r3_h">Search what you remember, not what you tagged.</h3>
-          <p data-i18n="why.r3_p">Local AI indexing means you can search "blue gradient login screen" and find it — even if you never tagged it. Auto-sort moves Inbox items into the right boards on its own.</p>
+          <div class="kick" data-i18n="b4.kick">Formats</div>
+          <h3 data-i18n="b4.h">Not just images.</h3>
+          <p data-i18n="b4.p">PNG, SVG, GIF, HEIC, PDF, MP4/MOV - plus HTML pages, Lottie and SVG animations rendered live right in the grid.</p>
+        </div>
+      </div>
+
+      <!-- 4 · ORGANIZE -->
+      <div class="why-row flip">
+        <div class="why-text">
+          <div class="kick" data-i18n="b5.kick">Organize</div>
+          <h3 data-i18n="b5.h">Boards, Inbox and tags - your way.</h3>
+          <p data-i18n="b5.p">All is your whole library; Inbox holds whatever isn't filed yet; Boards are the folders you make. Star the best into Favorites and layer flat tags across everything. Dump fast now, sort whenever you like.</p>
+        </div>
+        <div class="why-media has-image framed">
+          <picture>
+            <source srcset="screenshots/tags.webp" type="image/webp" />
+            <img src="screenshots/tags.png"
+                 alt="ShainBox sidebar - All, Inbox, Favorites and Boards, with tags on references"
+                 loading="lazy"
+                 decoding="async" />
+          </picture>
+        </div>
+      </div>
+
+      <!-- 5 · YOUR VIEW -->
+      <div class="why-row">
+        <div class="why-media has-image framed">
+          <picture>
+            <source srcset="screenshots/view.webp" type="image/webp" />
+            <img src="screenshots/view.png"
+                 alt="ShainBox board views - masonry, uniform grid and size slider"
+                 loading="lazy"
+                 decoding="async" />
+          </picture>
+        </div>
+        <div class="why-text">
+          <div class="kick" data-i18n="b6.kick">Your view</div>
+          <h3 data-i18n="b6.h">Customize every board.</h3>
+          <p data-i18n="b6.p">Masonry or a clean uniform grid - drag the size S→L. Icons don't need a masonry wall: switch to a grid and set the spacing. Hide extra UI to keep focus on what matters.</p>
+        </div>
+      </div>
+
+      <!-- 6 · ASSETS → EDITOR -->
+      <div class="why-row flip">
+        <div class="why-text">
+          <div class="kick" data-i18n="b7.kick">Assets → Figma</div>
+          <h3 data-i18n="b7.h">Drag it into your editor.</h3>
+          <p data-i18n="b7.p">Keep the pieces you use - icons, components, clips - and drag them from ShainBox into Figma or your editor when you need them.</p>
+        </div>
+        <div class="why-media has-image framed">
+          <picture>
+            <source srcset="screenshots/figma.webp" type="image/webp" />
+            <img src="screenshots/figma.png"
+                 alt="Dragging a reference from ShainBox into Figma"
+                 loading="lazy"
+                 decoding="async" />
+          </picture>
+        </div>
+      </div>
+
+      <!-- 7 · PROMPTS -->
+      <div class="why-row">
+        <div class="why-media has-image framed">
+          <picture>
+            <source srcset="screenshots/prompts.webp" type="image/webp" />
+            <img src="screenshots/prompts.png"
+                 alt="ShainBox details panel - prompt saved in the description"
+                 loading="lazy"
+                 decoding="async" />
+          </picture>
+        </div>
+        <div class="why-text">
+          <div class="kick" data-i18n="b8.kick">Prompts</div>
+          <h3 data-i18n="b8.h">Save the prompt or a note.</h3>
+          <p data-i18n="b8.p">Generated something with AI? Drop the prompt into the description. Next time, rerun or tweak it.</p>
+        </div>
+      </div>
+
+      <!-- 8 · LOCAL -->
+      <div class="why-row flip">
+        <div class="why-text">
+          <div class="kick" data-i18n="b9.kick">Local</div>
+          <h3 data-i18n="b9.h">Boards are just folders on your disk.</h3>
+          <p data-i18n="b9.p">No account, no cloud lock-in. Create a board - a folder appears; drop a file in - it shows in the app. Put your library on Google Drive, Dropbox or iCloud to sync across machines. Optional.</p>
+        </div>
+        <div class="why-media has-image framed">
+          <picture>
+            <source srcset="screenshots/local.webp" type="image/webp" />
+            <img src="screenshots/local.png"
+                 alt="Finder - ShainBox boards as plain folders on disk"
+                 loading="lazy"
+                 decoding="async" />
+          </picture>
+        </div>
+      </div>
+
+      <!-- 9 · CAPTURE (temporarily hidden per request) -->
+      <div class="why-row" style="display:none">
+        <div class="why-media has-video">
+          <video autoplay muted loop playsinline preload="metadata" aria-label="Drag-and-drop capture demo">
+            <source src="videos/drag.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="why-text">
+          <div class="kick" data-i18n="b1.kick">Capture</div>
+          <h3 data-i18n="b1.h">Save it the second you see it.</h3>
+          <p data-i18n="b1.p">Global hotkey, drag-and-drop, or paste.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BENTO - the small stuff that adds up
+       ============================================================ -->
+  <section class="bento">
+    <div class="wrap">
+      <div class="bento-head">
+        <h2 data-i18n="bento.h">The small stuff that adds up.</h2>
+        <p data-i18n="bento.sub">The quality-of-life details designers notice.</p>
+      </div>
+      <div class="bento-grid">
+        <div class="bento-cell w2">
+          <div class="bento-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.12 2.12 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.12 2.12 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.12 2.12 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.12 2.12 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.12 2.12 0 0 0 1.597-1.16z"/></svg></div>
+          <div class="bento-txt">
+            <h3 data-i18n="bento.c1h">Favorites</h3>
+            <p data-i18n="bento.c1p">One key to star the best - and a dedicated view for them.</p>
+          </div>
+          <img class="bento-decor" src="appicon.png" alt="" aria-hidden="true"
+               style="width:178px; height:178px; right:-36px; top:22px; transform:rotate(-22.42deg);" />
+        </div>
+        <div class="bento-cell">
+          <div class="bento-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><path d="M6 9h.01"/><path d="M10 9h.01"/><path d="M14 9h.01"/><path d="M18 9h.01"/><path d="M7 13h10"/></svg></div>
+          <div class="bento-txt">
+            <h3 data-i18n="bento.c2h">Keyboard-first</h3>
+            <p data-i18n="bento.c2p">j/k to move, t tag, b board, f favorite.</p>
+          </div>
+        </div>
+        <div class="bento-cell">
+          <div class="bento-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/></svg></div>
+          <div class="bento-txt">
+            <h3 data-i18n="bento.c3h">Search by meaning</h3>
+            <p data-i18n="bento.c3p">No need to name things to find that button.</p>
+          </div>
+        </div>
+        <div class="bento-cell">
+          <div class="bento-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <div class="bento-txt">
+            <h3 data-i18n="bento.c4h">QuickLook preview</h3>
+            <p data-i18n="bento.c4p">Spacebar for full-screen preview (macOS).</p>
+          </div>
+        </div>
+        <div class="bento-cell">
+          <div class="bento-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg></div>
+          <div class="bento-txt">
+            <h3 data-i18n="bento.c5h">Soft delete</h3>
+            <p data-i18n="bento.c5p">Trash, not gone. 30-day recovery.</p>
+          </div>
+        </div>
+        <div class="bento-cell">
+          <div class="bento-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8a2.83 2.83 0 0 0 4 4 4 4 0 1 1-4-4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.9 4.9 1.4 1.4"/><path d="m17.7 17.7 1.4 1.4"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.3 17.7-1.4 1.4"/><path d="m19.1 4.9-1.4 1.4"/></svg></div>
+          <div class="bento-txt">
+            <h3 data-i18n="bento.c6h">Light / dark / auto</h3>
+            <p data-i18n="bento.c6p">Follows your system, looks good either way.</p>
+          </div>
+        </div>
+        <div class="bento-cell w2">
+          <div class="bento-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg></div>
+          <div class="bento-txt">
+            <h3 data-i18n="bento.c7h">Google Drive, Dropbox, iCloud…</h3>
+            <p data-i18n="bento.c7p">Sync your library folder across machines.</p>
+          </div>
+          <img class="bento-decor" src="screenshots/sync-1.png" alt="" aria-hidden="true"
+               style="width:75px; height:75px; right:69px; top:47px; transform:rotate(-15deg);" />
+          <img class="bento-decor" src="screenshots/sync-2.png" alt="" aria-hidden="true"
+               style="width:46px; height:46px; right:135px; top:114px; transform:rotate(-45deg);" />
+          <img class="bento-decor" src="screenshots/sync-3.png" alt="" aria-hidden="true"
+               style="width:57px; height:57px; right:2px; top:60px; transform:rotate(3deg);" />
         </div>
       </div>
     </div>
@@ -1446,9 +1759,9 @@
           <ul class="price-list">
             <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f1">Full app for macOS &amp; Windows</span></li>
             <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f2">Unlimited boards &amp; references</span></li>
-            <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f3">Local AI search &amp; auto-sort</span></li>
-            <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f4">All future updates included</span></li>
-            <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f5">Open formats. No vendor lock-in</span></li>
+            <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f3">Local AI &amp; visual search</span></li>
+            <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f4">Web clipper + all future updates</span></li>
+            <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f5">Use on 2 devices · open files, no lock-in</span></li>
           </ul>
         </div>
       </div>
@@ -1459,14 +1772,14 @@
        WAITLIST FORM
        ───────────────────────────────────────────────────────────
        Submits to Web3Forms (https://web3forms.com).
-       Replaces MailerLite — was unreliable due to double opt-in
+       Replaces MailerLite - was unreliable due to double opt-in
        confirmation emails landing in spam.
        Each submission arrives as an email to the account tied to
        the access_key. Configure allowed domains in Web3Forms
        dashboard to prevent abuse.
        ============================================================ -->
   <!-- ============================================================
-       GET — download block (anchor target for the header CTA)
+       GET - download block (anchor target for the header CTA)
        ============================================================ -->
   <section class="get" id="download">
     <div class="wrap">
@@ -1480,6 +1793,9 @@
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5.4l7.2-1v6.9H3zM11 4.27 21 3v8.3H11zM3 12.6h7.2v6.9l-7.2-1zM11 12.6h10V21l-10-1.4z"/></svg>
           <span class="b-text"><span data-i18n="hero.dl_win">Download for Windows</span><span class="b-sub">Windows 10 · 11</span></span>
         </a>
+      </div>
+      <div class="get-clip">
+        <a class="btn-clip" href="#"><img src="chrome.svg" width="24" height="24" alt="" aria-hidden="true" /><span data-i18n="b2.btn">Download the Chrome extension</span></a>
       </div>
     </div>
   </section>
@@ -1505,7 +1821,7 @@
   </footer>
 
   <!-- ============================================================
-       SCRIPTS — i18n + form submission
+       SCRIPTS - i18n + form submission
        ============================================================ -->
   <script>
     /* ============================================================
@@ -1515,8 +1831,8 @@
        ============================================================ */
     const i18n = {
       en: {
-        'meta.title': 'SHAINBOX — Organize design references & assets, with local AI search.',
-        'meta.description': 'ShainBox is a desktop app for organizing design references and assets. Local AI search by content — find anything even if you never tagged it. Your files stay as plain folders on your disk.',
+        'meta.title': 'SHAINBOX - Organize design references & assets, with local AI search.',
+        'meta.description': 'ShainBox is a desktop app for organizing design references and assets. Local AI search by content - find anything even if you never tagged it. Your files stay as plain folders on your disk.',
 
         'nav.cta': 'Download',
 
@@ -1540,27 +1856,56 @@
         'social.a': 'Local-first',
         'social.b': 'No account',
         'social.c': 'Open formats',
-        'val.1_h': 'AI search by content',
-        'val.1_p': 'Type “blue gradient onboarding” and find the shot — even if you never tagged it.',
-        'val.2_h': 'Any visual format',
-        'val.2_p': 'PNG, JPG, WebP, SVG, GIF, HEIC and MP4 / MOV video — one home for the whole collection.',
-        'val.3_h': 'Your files, local',
-        'val.3_p': 'Boards are plain folders on your disk. No account, no cloud, no vendor lock-in.',
+        'strip.p': 'The reference library for designers - <span class="em">collect fast, find by memory, keep it all on your disk.</span>',
 
         'showcase.idx': '§ 01 · The app',
         'showcase.h2': 'Accent on what matters. <span class="em">Nothing extra. No clutter.</span>',
 
-        'why.idx': '§ 02 · Why',
-        'why.h2': 'Built for capture, not collection management. <span class="em">Every pixel earns its place.</span>',
-        'why.r1_num': '01 / CAPTURE',
-        'why.r1_h': 'Add a reference in a second.',
-        'why.r1_p': 'Global hotkey grabs a file from the clipboard or a drop zone. Automatic deduplication via content hash — the same reference never gets saved twice.',
-        'why.r2_num': '02 / STORE',
-        'why.r2_h': 'Your files, not someone\'s database.',
-        'why.r2_p': 'Boards are folders on your disk. Create a board in the app — a folder appears. Drop a file into the folder — it shows up in the app. Want it on another computer? Put your library inside Google Drive, Dropbox, or iCloud. Optional. Not required.',
-        'why.r3_num': '03 / FIND',
-        'why.r3_h': 'Search what you remember, not what you tagged.',
-        'why.r3_p': 'Local AI indexing means you can search "blue gradient login screen" and find it — even if you never tagged it. Auto-sort moves Inbox items into the right boards on its own.',
+        'b1.kick': 'Capture',
+        'b1.h': 'Save it the second you see it.',
+        'b1.p': 'Global hotkey, drag-and-drop, or paste.',
+        'b2.kick': 'Web clipper · Chrome',
+        'b2.h': 'Save straight from the browser.',
+        'b2.p': '<a href="#">Install the extension</a>. Hover any image on a site, click - and it\'s already in the app. Pick a board from the dropdown, or let it land in Inbox. No downloads, no copy-paste.',
+        'b2.btn': 'Download the Chrome extension',
+        'b3.kick': 'Find',
+        'b3.h': 'Search the way you remember it.',
+        'b3.p': 'Visual AI search finds “blue gradient onboarding” even if you never tagged it. Plus full-text search, tags, filters, and OCR that reads text inside screenshots (macOS for now).',
+        'b4.kick': 'Formats',
+        'b4.h': 'Not just images.',
+        'b4.p': 'PNG, SVG, GIF, HEIC, PDF, MP4/MOV - plus HTML pages, Lottie and SVG animations rendered live right in the grid.',
+        'b5.kick': 'Organize',
+        'b5.h': 'Boards, Inbox and tags - your way.',
+        'b5.p': 'All is your whole library; Inbox holds whatever isn\'t filed yet; Boards are the folders you make. Star the best into Favorites and layer flat tags across everything. Dump fast now, sort whenever you like.',
+        'b6.kick': 'Your view',
+        'b6.h': 'Customize every board.',
+        'b6.p': 'Masonry or a clean uniform grid - drag the size S→L. Icons don\'t need a masonry wall: switch to a grid and set the spacing. Hide extra UI to keep focus on what matters.',
+        'b7.kick': 'Assets → Figma',
+        'b7.h': 'Drag it into your editor.',
+        'b7.p': 'Keep the pieces you use - icons, components, clips - and drag them from ShainBox into Figma or your editor when you need them.',
+        'b8.kick': 'Prompts',
+        'b8.h': 'Save the prompt or a note.',
+        'b8.p': 'Generated something with AI? Drop the prompt into the description. Next time, rerun or tweak it.',
+        'b9.kick': 'Local',
+        'b9.h': 'Boards are just folders on your disk.',
+        'b9.p': 'No account, no cloud lock-in. Create a board - a folder appears; drop a file in - it shows in the app. Put your library on Google Drive, Dropbox or iCloud to sync across machines. Optional.',
+
+        'bento.h': 'The small stuff that adds up.',
+        'bento.sub': 'The quality-of-life details designers notice.',
+        'bento.c1h': 'Favorites',
+        'bento.c1p': 'One key to star the best - and a dedicated view for them.',
+        'bento.c2h': 'Keyboard-first',
+        'bento.c2p': 'j/k to move, t tag, b board, f favorite.',
+        'bento.c3h': 'Search by meaning',
+        'bento.c3p': 'No need to name things to find that button.',
+        'bento.c4h': 'QuickLook preview',
+        'bento.c4p': 'Spacebar for full-screen preview (macOS).',
+        'bento.c5h': 'Soft delete',
+        'bento.c5p': 'Trash, not gone. 30-day recovery.',
+        'bento.c6h': 'Light / dark / auto',
+        'bento.c6p': 'Follows your system, looks good either way.',
+        'bento.c7h': 'Google Drive, Dropbox, iCloud…',
+        'bento.c7p': 'Sync your library folder across machines.',
 
         'pricing.idx': '§ 03 · Pricing',
         'pricing.h2': 'One price. <span class="em">No subscription. No tiers.</span>',
@@ -1571,9 +1916,9 @@
         'pricing.foot': '14-day free trial · no card',
         'pricing.f1': 'Full app for macOS & Windows',
         'pricing.f2': 'Unlimited boards & references',
-        'pricing.f3': 'Local AI search & auto-sort',
-        'pricing.f4': 'All future updates included',
-        'pricing.f5': 'Open formats. No vendor lock-in',
+        'pricing.f3': 'Local AI & visual search',
+        'pricing.f4': 'Web clipper + all future updates',
+        'pricing.f5': 'Use on 2 devices · open files, no lock-in',
 
         'get.h': 'Download ShainBox. <span class="em">14 days free, no card.</span>',
 
@@ -1591,7 +1936,7 @@
         'form.error': 'Something went wrong. Please try again, or email us.',
         'form.ok_tag': '[ ON THE LIST ]',
         'form.ok_h': 'You\'re on the list.',
-        'form.ok_p': 'I\'ll write when ShainBox is ready. One email, no spam — that\'s it.',
+        'form.ok_p': 'I\'ll write when ShainBox is ready. One email, no spam - that\'s it.',
 
         'foot.tag': 'Made on disk',
         'foot.privacy': 'Privacy',
@@ -1599,8 +1944,8 @@
         'foot.contact': 'Contact'
       },
       uk: {
-        'meta.title': 'SHAINBOX — Організовуй референси й дизайн-асети з локальним AI-пошуком.',
-        'meta.description': 'ShainBox — десктоп-застосунок для організації референсів і дизайн-асетів. Локальний AI-пошук за змістом — знаходь будь-що, навіть без тегів. Твої файли лишаються звичайними папками на диску.',
+        'meta.title': 'SHAINBOX - Організовуй референси й дизайн-асети з локальним AI-пошуком.',
+        'meta.description': 'ShainBox - десктоп-застосунок для організації референсів і дизайн-асетів. Локальний AI-пошук за змістом - знаходь будь-що, навіть без тегів. Твої файли лишаються звичайними папками на диску.',
 
         'nav.cta': 'Завантажити',
 
@@ -1624,27 +1969,56 @@
         'social.a': 'Локально',
         'social.b': 'Без акаунта',
         'social.c': 'Відкриті формати',
-        'val.1_h': 'AI-пошук за змістом',
-        'val.1_p': 'Введи «синій градієнтний онбординг» — і знайдеш кадр, навіть якщо не тегав.',
-        'val.2_h': 'Будь-який візуальний формат',
-        'val.2_p': 'PNG, JPG, WebP, SVG, GIF, HEIC і відео MP4 / MOV — уся добірка в одному місці.',
-        'val.3_h': 'Твої файли, локально',
-        'val.3_p': 'Дошки — це звичайні папки на диску. Без акаунта, без хмари, без замку.',
+        'strip.p': 'Бібліотека референсів для дизайнерів - <span class="em">збирай швидко, знаходь по пам\'яті, тримай усе на своєму диску.</span>',
 
         'showcase.idx': '§ 01 · Застосунок',
         'showcase.h2': 'Акцент на головному. <span class="em">Нічого зайвого.</span>',
 
-        'why.idx': '§ 02 · Чому',
-        'why.h2': 'Зроблено для захоплення, а не для управління колекцією. <span class="em">Кожен піксель заробляє своє місце.</span>',
-        'why.r1_num': '01 / ЗБЕРЕЖЕННЯ',
-        'why.r1_h': 'Додавай за секунду.',
-        'why.r1_p': 'Глобальна гаряча клавіша забирає файл з буфера або зони дропу. Автоматична дедуплікація за хешем — один і той самий референс не збережеться двічі.',
-        'why.r2_num': '02 / ЗБЕРІГАННЯ',
-        'why.r2_h': 'Це твої файли, а не чужа база.',
-        'why.r2_p': 'Борди — це папки на твоєму диску. Створюєш борд у застосунку — з\'являється папка. Кидаєш файл у папку — він з\'являється в застосунку. Потрібен синк між комп\'ютерами? Поклади бібліотеку в Google Drive, Dropbox чи iCloud. За бажанням. Не обов\'язково.',
-        'why.r3_num': '03 / ПОШУК',
-        'why.r3_h': 'Шукай те, що пам\'ятаєш, а не те, що протегав.',
-        'why.r3_p': 'Локальний AI-індекс дає змогу шукати «синій градієнтний екран логіну» — навіть без жодного тегу. Auto-sort сам розкладає Inbox по потрібних бордах.',
+        'b1.kick': 'Захоплення',
+        'b1.h': 'Зберігай тієї ж миті, щойно побачив.',
+        'b1.p': 'Глобальна гаряча клавіша, drag-and-drop або вставка.',
+        'b2.kick': 'Веб-кліпер · Chrome',
+        'b2.h': 'Зберігай прямо з браузера.',
+        'b2.p': '<a href="#">Встанови розширення</a>. Наведи на будь-яке зображення на сайті, тисни - і воно вже в додатку. Обери борд у дропдауні або лишай в Inbox. Без завантажень і копіпасту.',
+        'b2.btn': 'Скачати розширення в Chrome',
+        'b3.kick': 'Пошук',
+        'b3.h': 'Шукай так, як пам\'ятаєш.',
+        'b3.p': 'Візуальний AI-пошук знайде «синій градієнтний онбординг», навіть якщо ти не тегав. Плюс повнотекстовий пошук, теги, фільтри та OCR, що читає текст усередині скриншотів (поки для macOS).',
+        'b4.kick': 'Формати',
+        'b4.h': 'Не лише картинки.',
+        'b4.p': 'PNG, SVG, GIF, HEIC, PDF, MP4/MOV - і HTML-сторінки, Lottie- та SVG-анімації рендеряться живими прямо в сітці.',
+        'b5.kick': 'Організація',
+        'b5.h': 'Boards, Inbox і теги - як тобі зручно.',
+        'b5.p': 'All - уся бібліотека; Inbox тримає все нерозкладане; Boards - папки, які ти створюєш. Познач найкраще в Favorites і накладай пласкі теги на все. Кидай швидко зараз, сортуй, коли захочеш.',
+        'b6.kick': 'Твій вигляд',
+        'b6.h': 'Кастомізуй кожен борд під себе.',
+        'b6.p': 'Masonry, рівна сітка - тягни розмір S→L. Іконкам не потрібна masonry-стіна: переключи на рівну сітку й задай відступи. Скривай зайвий UI, щоб тримати фокус на головному.',
+        'b7.kick': 'Асети → Figma',
+        'b7.h': 'Перетягни у редактор.',
+        'b7.p': 'Тримай елементи, які використовуєш - іконки, компоненти, кліпи - і перетягуй їх із ShainBox у Figma чи редактор, коли потрібно.',
+        'b8.kick': 'Промти',
+        'b8.h': 'Зберігай промт або опис.',
+        'b8.p': 'Згенерував щось через AI? Поклади промт в опис. Наступного разу повториш або підправиш.',
+        'b9.kick': 'Локально',
+        'b9.h': 'Борди - це просто папки на твоєму диску.',
+        'b9.p': 'Без акаунта й прив\'язки до хмари. Створюєш борд - з\'являється папка; кидаєш файл - він у застосунку. Поклади бібліотеку на Google Drive, Dropbox чи iCloud для синхронізації між машинами. Необов\'язково.',
+
+        'bento.h': 'Дрібниці, що складаються у щось велике.',
+        'bento.sub': 'Деталі зручності, які дизайнери помічають.',
+        'bento.c1h': 'Favorites',
+        'bento.c1p': 'Одна клавіша - познач найкраще; окремий вигляд.',
+        'bento.c2h': 'Клавіатура-first',
+        'bento.c2p': 'j/k - рух, t - тег, b - борд, f - обране.',
+        'bento.c3h': 'Пошук за змістом',
+        'bento.c3p': 'Не треба давати назви, щоб знайти кнопку.',
+        'bento.c4h': 'QuickLook прев\'ю',
+        'bento.c4p': 'Пробіл - повноекранний перегляд (macOS).',
+        'bento.c5h': 'М\'яке видалення',
+        'bento.c5p': 'Trash, не назавжди. Відновлення 30 днів.',
+        'bento.c6h': 'Світла / темна / авто',
+        'bento.c6p': 'Слідує за системою, гарна в обох.',
+        'bento.c7h': 'Google Drive, Dropbox, iCloud…',
+        'bento.c7p': 'Синхронізуй папку бібліотеки між машинами.',
 
         'pricing.idx': '§ 03 · Ціна',
         'pricing.h2': 'Одна ціна. <span class="em">Без підписки. Без тарифів.</span>',
@@ -1655,9 +2029,9 @@
         'pricing.foot': '14 днів безкоштовно · без карти',
         'pricing.f1': 'Повний застосунок для macOS і Windows',
         'pricing.f2': 'Необмежено бордів і референсів',
-        'pricing.f3': 'Локальний AI-пошук та auto-sort',
-        'pricing.f4': 'Усі майбутні оновлення в комплекті',
-        'pricing.f5': 'Відкриті формати. Без прив\'язки до сервісу',
+        'pricing.f3': 'Локальний AI та візуальний пошук',
+        'pricing.f4': 'Веб-кліпер + усі майбутні оновлення',
+        'pricing.f5': 'На 2 пристроях · відкриті файли, без прив\'язки',
 
         'get.h': 'Завантаж ShainBox. <span class="em">14 днів безкоштовно, без карти.</span>',
 
@@ -1675,7 +2049,7 @@
         'form.error': 'Щось пішло не так. Спробуй ще раз або напиши нам.',
         'form.ok_tag': '[ У СПИСКУ ]',
         'form.ok_h': 'Ти у списку.',
-        'form.ok_p': 'Напишу, коли ShainBox буде готовий. Один лист, без спаму — і все.',
+        'form.ok_p': 'Напишу, коли ShainBox буде готовий. Один лист, без спаму - і все.',
 
         'foot.tag': 'Зроблено на диску',
         'foot.privacy': 'Конфіденційність',
@@ -1709,7 +2083,7 @@
         if (dict[key] !== undefined) el.innerHTML = dict[key];
       });
 
-      // Attribute strings (placeholder, content, etc) — format "attr|key"
+      // Attribute strings (placeholder, content, etc) - format "attr|key"
       document.querySelectorAll('[data-i18n-attr]').forEach(el => {
         const raw = el.getAttribute('data-i18n-attr');
         const [attr, key] = raw.split('|');
@@ -1732,7 +2106,7 @@
     /* ============================================================
        PLATFORM AUTO-DETECT
        Pre-selects macOS/Windows in both forms based on user-agent.
-       Bottom form has a 3rd option (Apple Silicon vs Intel) — we
+       Bottom form has a 3rd option (Apple Silicon vs Intel) - we
        default macOS to Apple Silicon since most modern Macs are.
        ============================================================ */
     function detectAndPreselectPlatform(){
@@ -1754,7 +2128,7 @@
     }
 
     /* ============================================================
-       FORM SUBMIT — sends to Web3Forms (api.web3forms.com).
+       FORM SUBMIT - sends to Web3Forms (api.web3forms.com).
        Real success/error states (no more "always show success").
        Hero form uses the inline status row; bottom form uses the
        existing wl-success / wl-error blocks.

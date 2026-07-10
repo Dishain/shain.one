@@ -3,8 +3,41 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title data-i18n="meta.title">SHAINBOX - Organize design references &amp; assets, with local AI search.</title>
+  <title data-i18n="meta.title">ShainBox - a desktop library for design references &amp; assets</title>
   <meta name="description" data-i18n-attr="content|meta.description" content="ShainBox is a desktop app for organizing design references and assets. Local AI search by content - find anything even if you never tagged it. Your files stay as plain folders on your disk." />
+
+  <!-- SEO -->
+  <link rel="canonical" href="https://shain.one/shainbox/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ShainBox" />
+  <meta property="og:title" content="ShainBox - a desktop library for design references &amp; assets" />
+  <meta property="og:description" content="Collect references, find them by meaning with offline AI search, and keep everything as plain files on your disk. macOS &amp; Windows. $29 once." />
+  <meta property="og:url" content="https://shain.one/shainbox/" />
+  <meta property="og:image" content="https://shain.one/shainbox/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ShainBox - a desktop library for design references &amp; assets" />
+  <meta name="twitter:description" content="Offline AI search, live Lottie/HTML previews, files on your disk. macOS &amp; Windows. $29 once, free updates forever." />
+  <meta name="twitter:image" content="https://shain.one/shainbox/og.png" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ShainBox",
+    "url": "https://shain.one/shainbox/",
+    "image": "https://shain.one/shainbox/og.png",
+    "description": "A desktop library for design references and assets. Offline AI search by meaning, live Lottie and HTML previews, Chrome clipper. Files stay as plain folders on your disk. No account, no cloud.",
+    "operatingSystem": "macOS, Windows",
+    "applicationCategory": "DesignApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "29.00",
+      "priceCurrency": "USD",
+      "description": "One-time purchase, 2 devices, free updates forever. 30-day free trial."
+    }
+  }
+  </script>
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
@@ -507,6 +540,8 @@
       margin: 0 0 22px;
     }
     .hero-center .hero-mark .lead{ white-space: normal; }
+    /* smaller step for long category-style headlines (variant test) */
+    .hero-center .hero-mark.long{ font-size: clamp(34px, 4.4vw, 56px); line-height: 1.08; }
     /* gray closing phrase always on its own line (line 3 on desktop) */
     .hero-center .hero-mark em{ color: var(--text-secondary); display: block; }
     /* app icon above the headline */
@@ -533,6 +568,79 @@
       font-size: 12px;
       letter-spacing: 0.04em;
       color: var(--text-disabled);
+    }
+
+    /* Key differentiator chips in the hero */
+    .hero-chips{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 0 0 32px;
+    }
+    .hero-chips .chip{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      background: var(--surface);
+      border: 1px solid var(--line-2);
+      border-radius: 999px;
+      padding: 8px 14px;
+    }
+    .hero-chips .chip svg{ width: 15px; height: 15px; color: var(--accent); flex: none; }
+
+    /* Roadmap */
+    section.roadmap{
+      padding: 100px 0;
+      border-top: 1px solid var(--line);
+    }
+    .roadmap-head{ margin-bottom: 32px; }
+    .roadmap-head .kick{
+      font-family: "Inter", ui-monospace, monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-disabled);
+      margin: 0 0 14px;
+    }
+    .roadmap-head h2{
+      font-family: "Inter", sans-serif;
+      font-weight: 700;
+      font-size: clamp(26px, 3.2vw, 38px);
+      letter-spacing: -0.02em;
+      color: var(--text-display);
+      margin: 0 0 8px;
+    }
+    .roadmap-head p{ font-size: 15px; color: var(--text-secondary); margin: 0; }
+    .roadmap-list{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .roadmap-list li{
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 18px;
+      box-shadow: var(--shadow-card);
+    }
+    .roadmap-list li .dot{
+      width: 6px; height: 6px; border-radius: 999px;
+      background: var(--accent);
+      flex: none;
     }
 
     /* Faint vertical column guides behind the hero */
@@ -1453,11 +1561,14 @@
     <div class="wrap">
       <div class="hero-center">
         <img class="hero-appicon" src="appicon.png" width="178" height="178" alt="ShainBox app icon" decoding="async" fetchpriority="high" />
-        <h1 class="hero-mark" data-i18n="hero.head"><span class="lead">Collect references.<br class="br-desktop"> Find them by content.</span> <em>All on your disk.</em></h1>
+        <h1 class="hero-mark long" data-i18n="hero.head"><span class="lead">A desktop library<br class="br-desktop"> for references &amp; design assets.</span> <em>Fast. Private. Yours.</em></h1>
 
-        <p class="hero-tag" data-i18n="hero.tag">
-          A desktop app for references and design assets, with local AI search.
-        </p>
+        <!-- Key differentiators (test: UK hardcoded, i18n after approval) -->
+        <div class="hero-chips">
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg><span data-i18n="hero.chip1">Offline AI search by meaning</span></span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3"/></svg><span data-i18n="hero.chip2">Lottie, HTML, GIF - live</span></span>
+          <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg><span data-i18n="hero.chip3">Files on your disk, no cloud</span></span>
+        </div>
 
         <!-- Download CTAs → latest release from Dishain/shainbox-releases. -->
         <div class="hero-actions">
@@ -1471,7 +1582,7 @@
           </a>
         </div>
 
-        <p class="hero-reassure" data-i18n="hero.reassure">$29 once · 14-day free trial · no card</p>
+        <p class="hero-reassure" data-i18n="hero.reassure">$29 once · 30-day free trial · no card</p>
       </div>
     </div>
   </section>
@@ -1522,18 +1633,27 @@
         <div class="why-text">
           <div class="kick" data-i18n="b2.kick">Web clipper · Chrome</div>
           <h3 data-i18n="b2.h">Save straight from the browser.</h3>
-          <p data-i18n="b2.p"><a href="https://chromewebstore.google.com/detail/galokbefgegmgkpnkaginlekldeahldi" target="_blank" rel="noopener">Install the extension</a>. Hover any image on a site, click - and it's already in the app. Pick a board from the dropdown, or let it land in Inbox. No downloads, no copy-paste.</p>
+          <p data-i18n="b2.p"><a href="https://chromewebstore.google.com/detail/galokbefgegmgkpnkaginlekldeahldi" target="_blank" rel="noopener">Install the extension</a>. Hover any image or video on a site, click - and it's already in the app. Pick a board from the dropdown, or let it land in Inbox. No downloads, no copy-paste.</p>
           <a class="btn-clip" href="https://chromewebstore.google.com/detail/galokbefgegmgkpnkaginlekldeahldi" target="_blank" rel="noopener"><img src="chrome.svg" width="24" height="24" alt="" aria-hidden="true" /><span data-i18n="b2.btn">Download the Chrome extension</span></a>
         </div>
       </div>
 
-      <!-- 2 · FIND -->
+      <!-- 2 · FORMATS -->
       <div class="why-row flip">
         <div class="why-text">
-          <div class="kick" data-i18n="b3.kick">Find</div>
-          <h3 data-i18n="b3.h">Search the way you remember it.</h3>
-          <p data-i18n="b3.p">Visual AI search finds “blue gradient onboarding” even if you never tagged it. Plus full-text search, tags, filters, and OCR that reads text inside screenshots (macOS for now).</p>
+          <div class="kick" data-i18n="b4.kick">Formats</div>
+          <h3 data-i18n="b4.h">Not just images.</h3>
+          <p data-i18n="b4.p">PNG, SVG, GIF, HEIC, PDF, MP4/MOV - plus HTML pages, Lottie and SVG animations rendered live right in the grid.</p>
         </div>
+        <div class="why-media has-video framed">
+          <video autoplay muted loop playsinline preload="metadata" aria-label="Videos and animations playing live in the grid">
+            <source src="videos/formats.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+
+      <!-- 3 · FIND -->
+      <div class="why-row">
         <div class="why-media has-image framed aura">
           <picture>
             <source srcset="screenshots/search.webp" type="image/webp" />
@@ -1543,19 +1663,10 @@
                  decoding="async" />
           </picture>
         </div>
-      </div>
-
-      <!-- 3 · FORMATS -->
-      <div class="why-row">
-        <div class="why-media has-video framed">
-          <video autoplay muted loop playsinline preload="metadata" aria-label="Videos and animations playing live in the grid">
-            <source src="videos/formats.mp4" type="video/mp4" />
-          </video>
-        </div>
         <div class="why-text">
-          <div class="kick" data-i18n="b4.kick">Formats</div>
-          <h3 data-i18n="b4.h">Not just images.</h3>
-          <p data-i18n="b4.p">PNG, SVG, GIF, HEIC, PDF, MP4/MOV - plus HTML pages, Lottie and SVG animations rendered live right in the grid.</p>
+          <div class="kick" data-i18n="b3.kick">Find</div>
+          <h3 data-i18n="b3.h">Search the way you remember it.</h3>
+          <p data-i18n="b3.p">Describe what you remember - “blue gradient onboarding” - and it turns up. No filenames, no tags. Plus full-text search, filters, and offline OCR that reads text inside screenshots (macOS for now).</p>
         </div>
       </div>
 
@@ -1738,6 +1849,25 @@
   </section>
 
   <!-- ============================================================
+       ROADMAP (test: UK hardcoded, i18n after approval)
+       ============================================================ -->
+  <section class="roadmap">
+    <div class="wrap">
+      <div class="roadmap-head">
+        <p class="kick" data-i18n="road.kick">Roadmap</p>
+        <h2 data-i18n="road.h">What's next.</h2>
+        <p data-i18n="road.sub">ShainBox is in active development - here's what's already in the works.</p>
+      </div>
+      <ul class="roadmap-list">
+        <li><span class="dot" aria-hidden="true"></span><span data-i18n="road.i1">OCR for Windows</span></li>
+        <li><span class="dot" aria-hidden="true"></span><span data-i18n="road.i2">Custom sorting</span></li>
+        <li><span class="dot" aria-hidden="true"></span><span data-i18n="road.i3">Canvas mode for moodboards</span></li>
+        <li><span class="dot" aria-hidden="true"></span><span data-i18n="road.i4">Import your Eagle library</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================================
        PRICING
        ============================================================ -->
   <section class="pricing" id="pricing">
@@ -1753,15 +1883,17 @@
           <div class="price-num">$29<span class="cents" data-i18n="pricing.cents">once</span></div>
           <div class="price-sub" data-i18n="pricing.sub">Yours forever. Every future update included.</div>
           <a href="#download" class="price-cta" data-i18n="pricing.cta">Get ShainBox</a>
-          <div class="price-foot" data-i18n="pricing.foot">14-day free trial · no card</div>
+          <div class="price-foot" data-i18n="pricing.foot">30-day free trial · no card</div>
         </div>
         <div class="price-right">
           <ul class="price-list">
             <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f1">Full app for macOS &amp; Windows</span></li>
-            <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f2">Unlimited boards &amp; references</span></li>
-            <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f3">Local AI &amp; visual search</span></li>
-            <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f4">Web clipper + all future updates</span></li>
-            <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f5">Use on 2 devices · open files, no lock-in</span></li>
+            <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f2">License for 2 devices</span></li>
+            <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f3">All future updates - free</span></li>
+            <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f4">Offline AI search by meaning + OCR</span></li>
+            <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f5">Chrome extension - save images and videos from any site</span></li>
+            <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f6">Unlimited boards &amp; references</span></li>
+            <li><span class="bul" aria-hidden="true"></span><span data-i18n="pricing.f7">Open files on your disk - no lock-in</span></li>
           </ul>
         </div>
       </div>
@@ -1783,7 +1915,7 @@
        ============================================================ -->
   <section class="get" id="download">
     <div class="wrap">
-      <h2 class="get-h" data-i18n="get.h">Download ShainBox. <span class="em">14 days free, no card.</span></h2>
+      <h2 class="get-h" data-i18n="get.h">Download ShainBox. <span class="em">30 days free, no card.</span></h2>
       <div class="hero-actions">
         <a href="https://github.com/Dishain/shainbox-releases/releases/latest/download/ShainBox.dmg" class="btn btn-primary" aria-label="Download for macOS">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 12.04c-.03-2.78 2.27-4.11 2.37-4.18-1.29-1.89-3.3-2.15-4.01-2.18-1.71-.17-3.34 1.01-4.2 1.01-.86 0-2.2-.99-3.62-.96-1.86.03-3.58 1.08-4.54 2.75-1.94 3.36-.5 8.33 1.39 11.06.92 1.33 2.02 2.83 3.46 2.78 1.39-.06 1.91-.9 3.59-.9 1.68 0 2.15.9 3.62.87 1.5-.03 2.45-1.36 3.37-2.7 1.06-1.55 1.5-3.05 1.52-3.13-.03-.01-2.92-1.12-2.95-4.44M14.6 4.2c.76-.92 1.27-2.2 1.13-3.47-1.09.04-2.42.73-3.2 1.65-.7.81-1.31 2.11-1.15 3.36 1.22.09 2.46-.62 3.22-1.54"/></svg>
@@ -1831,15 +1963,24 @@
        ============================================================ */
     const i18n = {
       en: {
-        'meta.title': 'SHAINBOX - Organize design references & assets, with local AI search.',
+        'meta.title': 'ShainBox - a desktop library for design references & assets',
         'meta.description': 'ShainBox is a desktop app for organizing design references and assets. Local AI search by content - find anything even if you never tagged it. Your files stay as plain folders on your disk.',
 
         'nav.cta': 'Download',
 
         'hero.kicker': 'A desktop library for design references',
         'hero.status': 'Public beta · macOS + Windows',
-        'hero.head': '<span class="lead">Collect references.<br class="br-desktop"> Find them by content.</span> <em>All on your disk.</em>',
-        'hero.tag': 'A desktop app for references and design assets, with local AI search.',
+        'hero.head': '<span class="lead">A desktop library<br class="br-desktop"> for references & design assets.</span> <em>Fast. Private. Yours.</em>',
+        'hero.chip1': 'Offline AI search by meaning',
+        'hero.chip2': 'Lottie, HTML, GIF - live',
+        'hero.chip3': 'Files on your disk, no cloud',
+        'road.kick': 'Roadmap',
+        'road.h': 'What\'s next.',
+        'road.sub': 'ShainBox is in active development - here\'s what\'s already in the works.',
+        'road.i1': 'OCR for Windows',
+        'road.i2': 'Custom sorting',
+        'road.i3': 'Canvas mode for moodboards',
+        'road.i4': 'Import your Eagle library',
         'hero.cta_primary': 'Join waitlist',
         'hero.dl_mac': 'Download for macOS',
         'hero.dl_win': 'Download for Windows',
@@ -1850,8 +1991,8 @@
         'hero.meta1_k': 'Pricing',
         'hero.meta1_v': '$29. One-time. Yours forever.',
         'hero.meta2_k': 'Trial',
-        'hero.meta2_v': '14 days free. No card.',
-        'hero.reassure': '$29 once · 14-day free trial · no card',
+        'hero.meta2_v': '30 days free. No card.',
+        'hero.reassure': '$29 once · 30-day free trial · no card',
         'social.label': 'Made for designers who keep their references close',
         'social.a': 'Local-first',
         'social.b': 'No account',
@@ -1870,7 +2011,7 @@
         'b2.btn': 'Download the Chrome extension',
         'b3.kick': 'Find',
         'b3.h': 'Search the way you remember it.',
-        'b3.p': 'Visual AI search finds “blue gradient onboarding” even if you never tagged it. Plus full-text search, tags, filters, and OCR that reads text inside screenshots (macOS for now).',
+        'b3.p': 'Describe what you remember - “blue gradient onboarding” - and it turns up. No filenames, no tags. Plus full-text search, filters, and offline OCR that reads text inside screenshots (macOS for now).',
         'b4.kick': 'Formats',
         'b4.h': 'Not just images.',
         'b4.p': 'PNG, SVG, GIF, HEIC, PDF, MP4/MOV - plus HTML pages, Lottie and SVG animations rendered live right in the grid.',
@@ -1913,14 +2054,16 @@
         'pricing.cents': 'once',
         'pricing.sub': 'Yours forever. Every future update included.',
         'pricing.cta': 'Get ShainBox',
-        'pricing.foot': '14-day free trial · no card',
+        'pricing.foot': '30-day free trial · no card',
         'pricing.f1': 'Full app for macOS & Windows',
-        'pricing.f2': 'Unlimited boards & references',
-        'pricing.f3': 'Local AI & visual search',
-        'pricing.f4': 'Web clipper + all future updates',
-        'pricing.f5': 'Use on 2 devices · open files, no lock-in',
+        'pricing.f2': 'License for 2 devices',
+        'pricing.f3': 'All future updates - free',
+        'pricing.f4': 'Offline AI search by meaning + OCR',
+        'pricing.f5': 'Chrome extension - save images and videos from any site',
+        'pricing.f6': 'Unlimited boards & references',
+        'pricing.f7': 'Open files on your disk - no lock-in',
 
-        'get.h': 'Download ShainBox. <span class="em">14 days free, no card.</span>',
+        'get.h': 'Download ShainBox. <span class="em">30 days free, no card.</span>',
 
         'form.idx': '§ 04 · Waitlist',
         'form.h2': 'Join the waitlist. <span class="em">Be the first to try it on day one.</span>',
@@ -1944,15 +2087,24 @@
         'foot.contact': 'Contact'
       },
       uk: {
-        'meta.title': 'SHAINBOX - Організовуй референси й дизайн-асети з локальним AI-пошуком.',
+        'meta.title': 'ShainBox - десктоп-бібліотека референсів і дизайн-асетів',
         'meta.description': 'ShainBox - десктоп-застосунок для організації референсів і дизайн-асетів. Локальний AI-пошук за змістом - знаходь будь-що, навіть без тегів. Твої файли лишаються звичайними папками на диску.',
 
         'nav.cta': 'Завантажити',
 
         'hero.kicker': 'Десктоп-бібліотека для дизайн-референсів',
         'hero.status': 'Бета · macOS + Windows',
-        'hero.head': '<span class="lead">Збирай референси. Знаходь за змістом.</span> <em>Усе на твоєму диску.</em>',
-        'hero.tag': 'Десктоп-застосунок для референсів і дизайн-асетів із AI-пошуком.',
+        'hero.head': '<span class="lead">Десктоп-бібліотека<br class="br-desktop"> референсів і дизайн-асетів.</span> <em>Швидка. Приватна. Твоя.</em>',
+        'hero.chip1': 'Офлайн AI-пошук за змістом',
+        'hero.chip2': 'Lottie, HTML, GIF - живими',
+        'hero.chip3': 'Файли на диску, без хмари',
+        'road.kick': 'Роадмап',
+        'road.h': 'Що далі.',
+        'road.sub': 'ShainBox активно розвивається - ось що вже в роботі.',
+        'road.i1': 'OCR для Windows',
+        'road.i2': 'Кастомне сортування',
+        'road.i3': 'Canvas-режим для мудбордів',
+        'road.i4': 'Імпорт бібліотеки з Eagle',
         'hero.cta_primary': 'Приєднатися',
         'hero.dl_mac': 'Завантажити для macOS',
         'hero.dl_win': 'Завантажити для Windows',
@@ -1963,8 +2115,8 @@
         'hero.meta1_k': 'Ціна',
         'hero.meta1_v': '$29. Один платіж. Назавжди твоє.',
         'hero.meta2_k': 'Тріал',
-        'hero.meta2_v': '14 днів безкоштовно. Без карти.',
-        'hero.reassure': '$29 одноразово · 14 днів безкоштовно · без карти',
+        'hero.meta2_v': '30 днів безкоштовно. Без карти.',
+        'hero.reassure': '$29 одноразово · 30 днів безкоштовно · без карти',
         'social.label': 'Зроблено для дизайнерів, які тримають референси під рукою',
         'social.a': 'Локально',
         'social.b': 'Без акаунта',
@@ -1979,11 +2131,11 @@
         'b1.p': 'Глобальна гаряча клавіша, drag-and-drop або вставка.',
         'b2.kick': 'Веб-кліпер · Chrome',
         'b2.h': 'Зберігай прямо з браузера.',
-        'b2.p': '<a href="https://chromewebstore.google.com/detail/galokbefgegmgkpnkaginlekldeahldi" target="_blank" rel="noopener">Встанови розширення</a>. Наведи на будь-яке зображення на сайті, тисни - і воно вже в додатку. Обери борд у дропдауні або лишай в Inbox. Без завантажень і копіпасту.',
+        'b2.p': '<a href="https://chromewebstore.google.com/detail/galokbefgegmgkpnkaginlekldeahldi" target="_blank" rel="noopener">Встанови розширення</a>. Наведи на зображення чи відео на сайті, тисни - і воно вже в додатку. Обери борд у дропдауні або лишай в Inbox. Без завантажень і копіпасту.',
         'b2.btn': 'Скачати розширення в Chrome',
         'b3.kick': 'Пошук',
         'b3.h': 'Шукай так, як пам\'ятаєш.',
-        'b3.p': 'Візуальний AI-пошук знайде «синій градієнтний онбординг», навіть якщо ти не тегав. Плюс повнотекстовий пошук, теги, фільтри та OCR, що читає текст усередині скриншотів (поки для macOS).',
+        'b3.p': 'Опиши, що пам\'ятаєш - «синій градієнтний онбординг» - і воно знайдеться. Без імен файлів і тегів. Плюс повнотекстовий пошук, фільтри та офлайн-OCR, що читає текст у скриншотах (поки для macOS).',
         'b4.kick': 'Формати',
         'b4.h': 'Не лише картинки.',
         'b4.p': 'PNG, SVG, GIF, HEIC, PDF, MP4/MOV - і HTML-сторінки, Lottie- та SVG-анімації рендеряться живими прямо в сітці.',
@@ -2026,14 +2178,16 @@
         'pricing.cents': 'одноразово',
         'pricing.sub': 'Назавжди твоє. Усі майбутні оновлення включено.',
         'pricing.cta': 'Завантажити ShainBox',
-        'pricing.foot': '14 днів безкоштовно · без карти',
-        'pricing.f1': 'Повний застосунок для macOS і Windows',
-        'pricing.f2': 'Необмежено бордів і референсів',
-        'pricing.f3': 'Локальний AI та візуальний пошук',
-        'pricing.f4': 'Веб-кліпер + усі майбутні оновлення',
-        'pricing.f5': 'На 2 пристроях · відкриті файли, без прив\'язки',
+        'pricing.foot': '30 днів безкоштовно · без карти',
+        'pricing.f1': 'Повна версія для macOS і Windows',
+        'pricing.f2': 'Ліцензія на 2 пристрої',
+        'pricing.f3': 'Усі майбутні оновлення - безкоштовно',
+        'pricing.f4': 'Офлайн AI-пошук за змістом + OCR',
+        'pricing.f5': 'Розширення для Chrome - зберігай картинки й відео з будь-якого сайту',
+        'pricing.f6': 'Необмежено бордів і референсів',
+        'pricing.f7': 'Відкриті файли на твоєму диску - без прив\'язки',
 
-        'get.h': 'Завантаж ShainBox. <span class="em">14 днів безкоштовно, без карти.</span>',
+        'get.h': 'Завантаж ShainBox. <span class="em">30 днів безкоштовно, без карти.</span>',
 
         'form.idx': '§ 04 · Waitlist',
         'form.h2': 'Залишай email. <span class="em">Будеш серед перших у день релізу.</span>',
@@ -2248,6 +2402,7 @@
       bindForm();
     });
   </script>
+
 
 </body>
 </html>

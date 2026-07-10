@@ -1,0 +1,17 @@
+# shain.one
+
+> Personal site of Dmytro Lehkov (Shain) - product designer. Portfolio, blog, and products. Primary product: ShainBox.
+
+## ShainBox
+
+- [ShainBox landing](https://shain.one/shainbox/): ShainBox is a desktop library for design references and assets (macOS Apple Silicon + Windows). Key facts: offline AI search by meaning (local model, no uploads); full-text search, tags and filters; offline OCR reads text inside screenshots (macOS, Windows planned); supports PNG, JPG, WebP, SVG, GIF, HEIC, PDF, MP4, MOV, plus live rendering of HTML pages, HTML animations and Lottie animations right in the grid; Chrome extension saves images and videos from any site into boards; boards are plain folders on the user's disk - no account, no cloud, optional sync via Google Drive/Dropbox/iCloud; drag references straight into Figma or other editors; prompts can be stored in a reference's description. Pricing: $29 one-time purchase, license for 2 devices, all future updates free forever, 14-day full-featured trial, no card required.
+- [ShainBox privacy](https://shain.one/shainbox/privacy.html): local-first data policy - the app never sees user content; anonymized product analytics (PostHog) and crash reports (Sentry); site analytics via Microsoft Clarity; downloads served from GitHub Releases.
+
+## Other
+
+- [Blog](https://shain.one/blog/): articles on design (Ukrainian).
+- [Portfolio cases](https://shain.one/): product design case studies.
+
+## Contact
+
+- Email: web.shain@gmail.com

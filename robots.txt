@@ -20,33 +20,33 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-# ===== AI training crawlers (disallow - no consent for model training) =====
+# ===== AI training crawlers (allow - we want models to know DIIVO) =====
 User-agent: GPTBot
-Disallow: /
+Allow: /
 
 User-agent: ClaudeBot
-Disallow: /
+Allow: /
 
 User-agent: CCBot
-Disallow: /
+Allow: /
 
 User-agent: Google-Extended
-Disallow: /
+Allow: /
 
 User-agent: Bytespider
-Disallow: /
+Allow: /
 
 User-agent: Meta-ExternalAgent
-Disallow: /
+Allow: /
 
 User-agent: Amazonbot
-Disallow: /
+Allow: /
 
 User-agent: anthropic-ai
-Disallow: /
+Allow: /
 
 User-agent: cohere-ai
-Disallow: /
+Allow: /
 
 # ===== Sitemap =====
 Sitemap: https://shain.one/sitemap.xml

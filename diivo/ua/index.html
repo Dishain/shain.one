@@ -1578,7 +1578,10 @@
     }
 
     @media (max-width: 520px){
-      .nav-cta span.full{ display: none; }
+      /* mobile: no header download button, no bento decor images, sync cell narrow */
+      .nav-cta{ display: none; }
+      .bento-decor{ display: none; }
+      .bento-grid .bento-cell:last-child{ grid-column: span 1; }
     }
 
     @media (prefers-reduced-motion: reduce){

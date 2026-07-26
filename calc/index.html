@@ -15,8 +15,14 @@
 <link rel="canonical" href="https://shain.one/calc/">
 <title>Калькулятор ілюзій найму - IT Україна</title>
 
-<!-- Microsoft Clarity (inherits shain.one analytics setup) -->
-<script src="/assets/analytics.js" defer></script>
+<!-- Microsoft Clarity - dedicated project for calc (Project ID: xslqem2kh9) -->
+<script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "xslqem2kh9");
+</script>
 
 <!-- Brutalism favicon: yellow square with black border + % -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' fill='%23FFD93D' stroke='%230A0A0A' stroke-width='6'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-family='monospace' font-size='38' font-weight='900' fill='%230A0A0A'%3E%25%3C/text%3E%3C/svg%3E">
@@ -872,7 +878,7 @@
           <button class="toggle" data-key="no_oncall">Без on-call</button>
           <button class="toggle" data-key="modern_stack">Без legacy у стеку</button>
           <button class="toggle" data-key="stock">Опціон / equity</button>
-          <button class="toggle" data-key="eng_team">Англомовна команда</button>
+          <button class="toggle" data-key="no_english">Без англійської у роботі</button>
           <button class="toggle" data-key="flex_hours">Гнучкий графік</button>
           <button class="toggle" data-key="no_overtime">Без переробок</button>
           <button class="toggle" data-key="no_microman">Без мікроменеджменту</button>
@@ -1090,7 +1096,7 @@ const COMPANY_EXTRAS = {
   no_oncall:      0.45,
   modern_stack:   0.30,
   stock:          0.08,
-  eng_team:       0.40,
+  no_english:     0.18,   // UA IT reality: most companies need English (outsourcing + intl product). Companies that don't require it = ~18% (banks, local product, gov)
   flex_hours:     0.68,
   no_overtime:    0.50,
   no_microman:    0.55,
